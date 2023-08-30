@@ -1,0 +1,114 @@
+[
+  {
+    "objectID": "slides/3_business_plugins.html#python",
+    "href": "slides/3_business_plugins.html#python",
+    "title": "Business Plugins",
+    "section": "Python",
+    "text": "Python\n\nimport semantic_kernel as sk\nfrom semantic_kernel.connectors.ai.open_ai import AzureChatCompletion, OpenAIChatCompletion\nfrom IPython.display import display, Markdown"
+  },
+  {
+    "objectID": "slides/3_business_plugins.html#kernel",
+    "href": "slides/3_business_plugins.html#kernel",
+    "title": "Business Plugins",
+    "section": "Kernel",
+    "text": "Kernel\n\nkernel = sk.Kernel()\n\napi_key, org_id = sk.openai_settings_from_dot_env()\n\nkernel.add_text_completion_service(\n    \"openai\", OpenAIChatCompletion(\"gpt-3.5-turbo\", api_key, org_id))\n\nprint(\"A kernel is now ready.\")\n\nA kernel is now ready."
+  },
+  {
+    "objectID": "slides/3_business_plugins.html#business-goals",
+    "href": "slides/3_business_plugins.html#business-goals",
+    "title": "Business Plugins",
+    "section": "Business goals",
+    "text": "Business goals\n\nGrow the existing business\nSave money and time\nAdd completely new business\nPrepare for the unknown"
+  },
+  {
+    "objectID": "slides/3_business_plugins.html#plugins-directory",
+    "href": "slides/3_business_plugins.html#plugins-directory",
+    "title": "Business Plugins",
+    "section": "Plugins directory",
+    "text": "Plugins directory\nplugins-sk/\n│\n└─── BusinessThinking/\n     |\n     └─── BasicStrategies/\n     |    └─── config.json\n     |    └─── skprompt.txt\n     |\n     └─── SeekCostEfficiency/\n     |    └─── config.json\n     |    └─── skprompt.txt\n     |\n     └─── SeekTimeEfficiency/\n          └─── config.json\n          └─── skprompt.txt"
+  },
+  {
+    "objectID": "slides/3_business_plugins.html#activate-plugins",
+    "href": "slides/3_business_plugins.html#activate-plugins",
+    "title": "Business Plugins",
+    "section": "Activate plugins",
+    "text": "Activate plugins\n\npluginsDirectory = \"../plugins-sk\"\n\npluginBT = kernel.import_semantic_skill_from_directory(\n    pluginsDirectory, \"BusinessThinking\")"
+  },
+  {
+    "objectID": "slides/3_business_plugins.html#input-strengths-and-weaknesses",
+    "href": "slides/3_business_plugins.html#input-strengths-and-weaknesses",
+    "title": "Business Plugins",
+    "section": "Input strengths and weaknesses",
+    "text": "Input strengths and weaknesses\n\nstrengths = [\"Unique garlic pizza recipe that wins top awards\", \"Owner trained in Sicily at some of the best pizzerias\",\n             \"Strong local reputation\", \"Prime location on university campus\"]\n\nweaknesses = [\"High staff turnover\", \"Floods in the area damaged the seating areas that are in need of repair\",\n              \"Absence of popular calzones from menu\", \"Negative reviews from younger demographic for lack of hip ingredients\"]"
+  },
+  {
+    "objectID": "slides/3_business_plugins.html#context",
+    "href": "slides/3_business_plugins.html#context",
+    "title": "Business Plugins",
+    "section": "Context",
+    "text": "Context\n\nmy_context = kernel.create_new_context()\n\nmy_context['input'] = 'makes pizzas'\nmy_context['strengths'] = \", \".join(strengths)\nmy_context['weaknesses'] = \", \".join(weaknesses)"
+  },
+  {
+    "objectID": "slides/3_business_plugins.html#run-kernel-with-cost-efficiency-plugin",
+    "href": "slides/3_business_plugins.html#run-kernel-with-cost-efficiency-plugin",
+    "title": "Business Plugins",
+    "section": "Run kernel with cost efficiency plugin",
+    "text": "Run kernel with cost efficiency plugin\n\ncostefficiency_result = await kernel.run_async(pluginBT[\"SeekCostEfficiency\"], input_context=my_context)"
+  },
+  {
+    "objectID": "slides/3_business_plugins.html#output",
+    "href": "slides/3_business_plugins.html#output",
+    "title": "Business Plugins",
+    "section": "Output",
+    "text": "Output\n\ncostefficiency_str = str(\n    \"### ✨ Suggestions for how to gain cost efficiencies\\n\" + str(costefficiency_result))\n\n\n\ndisplay(Markdown(costefficiency_str))"
+  },
+  {
+    "objectID": "slides/3_business_plugins.html#output-output",
+    "href": "slides/3_business_plugins.html#output-output",
+    "title": "Business Plugins",
+    "section": "Output",
+    "text": "Output\n\n✨ Suggestions for how to gain cost efficiencies\n\n\n\n\n\n\n\n\n\nTitle\nStrength\nWeakness\nDescription\n\n\n\n\nStreamline operations\nStrong local reputation\nHigh staff turnover\nImplementing efficient processes and systems to reduce the need for excessive staff and improve productivity. This can include automating certain tasks, cross-training employees, and implementing clear procedures.\n\n\nRenovate seating areas\nPrime location on university campus\nFloods damaging seating areas\nInvesting in repairing and renovating the seating areas to attract more customers and improve the overall dining experience. This can lead to increased customer satisfaction and higher sales.\n\n\nExpand menu with popular calzones\nUnique garlic pizza recipe that wins top awards\nAbsence of popular calzones from menu\nAdding popular calzones to the menu can attract a wider customer base and increase sales. This can be achieved by conducting market research to identify popular calzone flavors and incorporating them into the menu."
+  },
+  {
+    "objectID": "slides/3_business_plugins.html#input-opportunities-and-threats",
+    "href": "slides/3_business_plugins.html#input-opportunities-and-threats",
+    "title": "Business Plugins",
+    "section": "Input opportunities and threats",
+    "text": "Input opportunities and threats\n\nopportunities = [\"Untapped catering potential\", \"Growing local tech startup community\",\n                 \"Unexplored online presence and order capabilities\", \"Upcoming annual food fair\"]\n\nthreats = [\"Competition from cheaper pizza businesses nearby\", \"There's nearby street construction that will impact foot traffic\",\n           \"Rising cost of cheese will increase the cost of pizzas\", \"No immediate local regulatory changes but it's election season\"]"
+  },
+  {
+    "objectID": "slides/3_business_plugins.html#import-plugin",
+    "href": "slides/3_business_plugins.html#import-plugin",
+    "title": "Business Plugins",
+    "section": "Import plugin",
+    "text": "Import plugin\n\npluginBT = kernel.import_semantic_skill_from_directory(\n    pluginsDirectory, \"BusinessThinking\")"
+  },
+  {
+    "objectID": "slides/3_business_plugins.html#context-1",
+    "href": "slides/3_business_plugins.html#context-1",
+    "title": "Business Plugins",
+    "section": "Context",
+    "text": "Context\n\nmy_context = kernel.create_new_context()\n\nmy_context['input'] = 'makes pizzas'\nmy_context['strengths'] = \", \".join(strengths)\nmy_context['weaknesses'] = \", \".join(weaknesses)\nmy_context['opportunities'] = \", \".join(opportunities)\nmy_context['threats'] = \", \".join(threats)"
+  },
+  {
+    "objectID": "slides/3_business_plugins.html#run-kernel",
+    "href": "slides/3_business_plugins.html#run-kernel",
+    "title": "Business Plugins",
+    "section": "Run kernel",
+    "text": "Run kernel\n\nbizstrat_result = await kernel.run_async(pluginBT[\"BasicStrategies\"], input_context=my_context)"
+  },
+  {
+    "objectID": "slides/3_business_plugins.html#output-1",
+    "href": "slides/3_business_plugins.html#output-1",
+    "title": "Business Plugins",
+    "section": "Output",
+    "text": "Output\n\nbizstrat_str = \"## ✨ Business strategy thinking based on SWOT analysis\\n\" + \\\n    str(bizstrat_result)\n\n\n\ndisplay(Markdown(bizstrat_str))"
+  },
+  {
+    "objectID": "slides/3_business_plugins.html#business-strategy-thinking-based-on-swot-analysis",
+    "href": "slides/3_business_plugins.html#business-strategy-thinking-based-on-swot-analysis",
+    "title": "Business Plugins",
+    "section": "✨ Business strategy thinking based on SWOT analysis",
+    "text": "✨ Business strategy thinking based on SWOT analysis\nBuilding on strengths can immediately improve the business\n\n\n\n\n\n\n\n\n\nTitle\nStrength\nWeakness\nDescription\n\n\n\n\nExpand menu with popular calzones\nUnique garlic pizza recipe that wins top awards\nAbsence of popular calzones from menu\nBy adding popular calzones to the menu, the business can attract a wider range of customers and increase sales.\n\n\nImprove seating areas damaged by floods\nStrong local reputation\nFloods in the area damaged the seating areas that are in need of repair\nBy repairing and improving the seating areas, the business can provide a better dining experience for customers and increase customer satisfaction.\n\n\nEnhance online presence and marketing\nPrime location on university campus\nNegative reviews from younger demographic for lack of hip ingredients\nBy leveraging its prime location on the university campus and targeting the younger demographic through online marketing, the business can attract more customers and improve its reputation among the target market.\n\n\n\nTaking advantage of opportunities whenever possible\n\n\n\n\n\n\n\n\nTitle\nOpportunity\nDescription\n\n\n\n\nLaunch catering services\nUntapped catering potential\nBy offering catering services, the business can tap into a new revenue stream and cater to events and gatherings in the local community.\n\n\nDevelop online ordering capabilities\nUnexplored online presence and order capabilities\nBy developing an online ordering system, the business can cater to the growing demand for online food ordering and reach a wider customer base.\n\n\nParticipate in the upcoming annual food fair\nUpcoming annual food fair\nBy participating in the food fair, the business can showcase its unique garlic pizza recipe and attract new customers, as well as network with other businesses in the industry.\n\n\n\nBuilding resilience to threats is always a good idea\n\n\n\n\n\n\n\n\nTitle\nThreat\nDescription\n\n\n\n\nOffer competitive pricing and promotions\nCompetition from cheaper pizza businesses nearby\nBy offering competitive pricing and promotions, the business can attract customers who may be considering cheaper alternatives and maintain its customer base.\n\n\nDiversify customer base beyond foot traffic\nThere’s nearby street construction that will impact foot traffic\nBy implementing delivery services and targeting customers outside of the immediate area, the business can mitigate the impact of reduced foot traffic due to street construction.\n\n\nMonitor and manage ingredient costs\nRising cost of cheese will increase the cost of pizzas\nBy closely monitoring ingredient costs and exploring alternative suppliers, the business can mitigate the impact of rising cheese costs and maintain profitability."
+  }
+]
