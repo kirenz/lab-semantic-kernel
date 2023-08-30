@@ -229,5 +229,110 @@
     "title": "Use a Database",
     "section": "Output",
     "text": "Output\n\n✨ Generated presentation ...\n\n# Business Strategy Consultant Presentation\n\n# Summary\n\nThe business owner has asked for ways to save time. We will explore three key concerns that can help the business owner save time and improve operations.\n\n# The Question\n- How can the business owner save time?\n\n# Key Concerns\n\n1. Unexplored online presence and order capabilities\n2. Untapped catering potential\n3. Growing local tech startup community\n\n# Unexplored Online Presence and Order Capabilities\n\n- Explanation: The business can save time by implementing online ordering capabilities and improving their online presence. This will allow customers to place orders without the need for phone calls or in-person visits.\n\n- Example: The business can create a website with an online ordering system and integrate it with their social media accounts. This will allow customers to easily place orders and the business can save time by not having to take orders over the phone.\n\n# Untapped Catering Potential\n\n- Explanation: The business can save time by exploring catering opportunities. This will allow the business to serve multiple customers at once and potentially increase revenue.\n\n- Example: The business can create a catering menu and market it to local businesses and events. This will allow the business to serve multiple customers at once and save time by not having to prepare individual orders.\n\n# Growing Local Tech Startup Community\n\n- Explanation: The business can save time by targeting under-served customer segments or market areas. The growing local tech startup community is an opportunity for the business to gain new customers and potentially increase revenue.\n\n- Example: The business can create a marketing campaign targeted towards the local tech startup community. This will allow the business to gain new customers and potentially increase revenue.\n\n# Summary\n\n- By implementing online ordering capabilities, exploring catering opportunities, and targeting under-served customer segments, the business owner can save time and improve operations."
+  },
+  {
+    "objectID": "slides/6_core_plugins.html#python",
+    "href": "slides/6_core_plugins.html#python",
+    "title": "Core Plugins",
+    "section": "Python",
+    "text": "Python\n\nimport semantic_kernel as sk\nfrom semantic_kernel.connectors.ai.open_ai import OpenAIChatCompletion, OpenAITextEmbedding\nfrom semantic_kernel.connectors.ai.open_ai import AzureChatCompletion, AzureTextEmbedding\nfrom semantic_kernel.planning import ActionPlanner\nfrom semantic_kernel.planning import SequentialPlanner\nfrom semantic_kernel.core_skills.text_skill import TextSkill\nfrom semantic_kernel.planning import SequentialPlanner\nfrom semantic_kernel.core_skills.text_skill import TextSkill\nfrom semantic_kernel.core_skills import FileIOSkill, MathSkill, TextSkill, TimeSkill\n\nfrom IPython.display import display, Markdown"
+  },
+  {
+    "objectID": "slides/6_core_plugins.html#kernel",
+    "href": "slides/6_core_plugins.html#kernel",
+    "title": "Core Plugins",
+    "section": "Kernel",
+    "text": "Kernel\n\nkernel = sk.Kernel()\n\napi_key, org_id = sk.openai_settings_from_dot_env()\n\nkernel.add_text_completion_service(\n    \"openaicompletion\", OpenAIChatCompletion(\"gpt-3.5-turbo-0301\", api_key, org_id))\n\nkernel.add_text_embedding_generation_service(\n    \"openaiembedding\", OpenAITextEmbedding(\"text-embedding-ada-002\", api_key, org_id))"
+  },
+  {
+    "objectID": "slides/6_core_plugins.html#import-plugins",
+    "href": "slides/6_core_plugins.html#import-plugins",
+    "title": "Core Plugins",
+    "section": "Import plugins",
+    "text": "Import plugins\n\nAction Planner is a simple tool which can find the right tool to get things done\n\n\nplanner = ActionPlanner(kernel)\n\n\nAdding the tools for the kernel to do math, to read/write files, to tell the time, and to play with text:\n\n\n\nkernel.import_skill(MathSkill(), \"math\")\nkernel.import_skill(FileIOSkill(), \"fileIO\")\nkernel.import_skill(TimeSkill(), \"time\")\nkernel.import_skill(TextSkill(), \"text\")"
+  },
+  {
+    "objectID": "slides/6_core_plugins.html#math",
+    "href": "slides/6_core_plugins.html#math",
+    "title": "Core Plugins",
+    "section": "Math",
+    "text": "Math\n\nask = \"What is the sum of 110 and 990?\"\n\n\n\nFinding the most similar function available to get that done…\n\n\nplan = await planner.create_plan_async(goal=ask)\n\n\n\n\nprint(\n    f\" The best single function to use is `{plan._skill_name}.{plan._function.name}`\")"
+  },
+  {
+    "objectID": "slides/6_core_plugins.html#date",
+    "href": "slides/6_core_plugins.html#date",
+    "title": "Core Plugins",
+    "section": "Date",
+    "text": "Date\n\nask = \"What is today?\"\n\n\n\nprint(f\" Finding the most similar function available to get that done...\")\n\n\n\n\nplan = await planner.create_plan_async(goal=ask)\n\n\n\n\nprint(\n    f\" The best single function to use is `{plan._skill_name}.{plan._function.name}`\")"
+  },
+  {
+    "objectID": "slides/6_core_plugins.html#text",
+    "href": "slides/6_core_plugins.html#text",
+    "title": "Core Plugins",
+    "section": "Text",
+    "text": "Text\n\nask = \"How do I write the word 'text' to a file?\"\n\n\n\nprint(f\" Finding the most similar function available to get that done...\")\nplan = await planner.create_plan_async(goal=ask)\nprint(\n    f\" The best single function to use is `{plan._skill_name}.{plan._function.name}`\")"
+  },
+  {
+    "objectID": "slides/6_core_plugins.html#custom-plugin-literatefriend",
+    "href": "slides/6_core_plugins.html#custom-plugin-literatefriend",
+    "title": "Core Plugins",
+    "section": "Custom Plugin LiterateFriend",
+    "text": "Custom Plugin LiterateFriend\n\nplugins_directory = \"../plugins-sk\"\n\n\n\nwriter_plugin = kernel.import_semantic_skill_from_directory(\n    plugins_directory, \"LiterateFriend\")"
+  },
+  {
+    "objectID": "slides/6_core_plugins.html#use-sequential-planner",
+    "href": "slides/6_core_plugins.html#use-sequential-planner",
+    "title": "Core Plugins",
+    "section": "Use Sequential Planner",
+    "text": "Use Sequential Planner\n\nplanner = SequentialPlanner(kernel)"
+  },
+  {
+    "objectID": "slides/6_core_plugins.html#task",
+    "href": "slides/6_core_plugins.html#task",
+    "title": "Core Plugins",
+    "section": "Task",
+    "text": "Task\n\nask = \"\"\"\nTomorrow is Valentine's day. I need to come up with a poem. Translate the poem to German.\n\"\"\"\n\n\nThis will require two plugins (write poem and translate)"
+  },
+  {
+    "objectID": "slides/6_core_plugins.html#call-planner",
+    "href": "slides/6_core_plugins.html#call-planner",
+    "title": "Core Plugins",
+    "section": "Call planner",
+    "text": "Call planner\n\nplan = await planner.create_plan_async(goal=ask)"
+  },
+  {
+    "objectID": "slides/6_core_plugins.html#obtain-result",
+    "href": "slides/6_core_plugins.html#obtain-result",
+    "title": "Core Plugins",
+    "section": "Obtain result",
+    "text": "Obtain result\n\nresult = await plan.invoke_async()"
+  },
+  {
+    "objectID": "slides/6_core_plugins.html#output",
+    "href": "slides/6_core_plugins.html#output",
+    "title": "Core Plugins",
+    "section": "Output",
+    "text": "Output\n\nfor index, step in enumerate(plan._steps):\n    print(f\"✅ Step {index+1} used function `{step._function.name}`\")\n\ntrace_resultp = True\n\ndisplay(\n    Markdown(f\"## ✨ Generated result from the ask: {ask}\\n\\n---\\n\" + str(result)))"
+  },
+  {
+    "objectID": "slides/6_core_plugins.html#display-output",
+    "href": "slides/6_core_plugins.html#display-output",
+    "title": "Core Plugins",
+    "section": "Display output",
+    "text": "Display output\n✅ Step 1 used function `ShortPoem`\n✅ Step 2 used function `Translate`\n✨ Generated result from the ask:\n\nTomorrow is Valentine's day. I need to come up with a poem. Translate the poem to German.\n\nRosen sind rot, Veilchen sind blau, Valentinstag ist da, was wirst du tun? Kaufe Schokolade und Blumen oder schreibe einen Liebesbrief, Vergiss nur nicht, es alles besser zu machen.\n\nWenn du Single bist, keine Sorge, Gönn dir selbst, zu...\n\nmmmhhh, maybe lost in translation 🙂"
+  },
+  {
+    "objectID": "slides/6_core_plugins.html#take-a-closer-look-at-the-output",
+    "href": "slides/6_core_plugins.html#take-a-closer-look-at-the-output",
+    "title": "Core Plugins",
+    "section": "Take a closer look at the output",
+    "text": "Take a closer look at the output\n\nfor index, step in enumerate(plan._steps):\n    print(f\"✅ Step {index+1} used function `{step._function.name}`\")\n\ntrace_resultp = True\n\nif trace_resultp:\n    print(\"Longform trace:\\n\")\n    for index, step in enumerate(plan._steps):\n        print(\"Step:\", index)\n        print(\"Description:\", step.description)\n        print(\"Function:\", step.skill_name + \".\" + step._function.name)\n        print(\"Output vars:\", step._outputs)\n        if len(step._outputs) &gt; 0:\n            print(\"  Output:\\n\", str.replace(\n                result[step._outputs[0]], \"\\n\", \"\\n  \"))\n\ndisplay(\n    Markdown(f\"## ✨ Generated result from the ask: {ask}\\n\\n---\\n\" + str(result)))"
+  },
+  {
+    "objectID": "slides/6_core_plugins.html#take-a-closer-look-at-the-output-1",
+    "href": "slides/6_core_plugins.html#take-a-closer-look-at-the-output-1",
+    "title": "Core Plugins",
+    "section": "Take a closer look at the output",
+    "text": "Take a closer look at the output\n\n✅ Step 1 used function `ShortPoem`\n✅ Step 2 used function `Translate`\nLongform trace:\n\nStep: 0\nDescription: Turn a scenario into a short and entertaining poem.\nFunction: LiterateFriend.ShortPoem\nOutput vars: ['POEM']\n  Output:\n Roses are red, violets are blue,\n  Valentine's Day is here, what will you do?\n  Buy chocolates and flowers, or write a love letter,\n  Just don't forget, to make it all better.\n  \n  If you're single, don't you fret,\n  Treat yourself, to\n\nStep: 1\nDescription: Translate the input into a language of your choice\nFunction: LiterateFriend.Translate\nOutput vars: ['RESULT__TRANSLATED_POEM']\n  Output:\n Rosen sind rot, Veilchen sind blau,\n  Valentinstag ist da, was wirst du tun?\n  Kaufe Schokolade und Blumen oder schreibe einen Liebesbrief,\n  Vergiss nur nicht, es alles besser zu machen.\n  \n  Wenn du Single bist, keine Sorge,\n  Gönn dir selbst, zu..."
   }
 ]
