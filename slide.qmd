@@ -3,9 +3,8 @@ title: "Slides"
 number-sections: true
 ---
 
-*The following tutorials are mainly based on [""]() provided by*
+*The tutorials are mainly based on the excellent course ["How Business Thinkers Can Start Building AI Plugins With Semantic Kernel"](https://www.deeplearning.ai/short-courses/microsoft-semantic-kernel/) provided by John Maeda and Andrew Ng*
 
-Txt
 
 ::: {.callout-note appearance="simple"}
 Take a look at the [slides tutorial](https://kirenz.github.io/lab-toolkit/slides/slides.html#/title-slide) to learn how to use all slide options. 
@@ -14,11 +13,57 @@ To download Jupyter Notebooks: Go to the Colab menu and choose "File" > "Downloa
 :::
 
 
-## Txt
+## Semantic Kernel 
 
-In this tutorial, you'll learn:
 
 ::: {.callout-tip appearance="simple" icon=false}
-- [🖥️ Presentation]()
+- [🖥️ Presentation](slides/1_kernel.qmd)
+- [💻 Jupyter Notebook]()
+:::
+
+
+## SWOT-Analysis  
+
+
+::: {.callout-tip appearance="simple" icon=false}
+- [🖥️ Presentation](slides/2_swot.qmd)
+- [💻 Jupyter Notebook]()
+:::
+
+## Business Plugins
+
+
+::: {.callout-tip appearance="simple" icon=false}
+- [🖥️ Presentation](slides/3_business_plugins.qmd)
+- [💻 Jupyter Notebook]()
+:::
+
+
+## Design Thinking
+
+Use the Semantic Kernel in the Design Thinking process:
+
+::: {.callout-tip appearance="simple" icon=false}
+- [🖥️ Presentation](slides/4_design.qmd)
+- [💻 Jupyter Notebook]()
+:::
+
+## Database
+
+Learn how to use data in a vector store database:
+
+::: {.callout-tip appearance="simple" icon=false}
+- [🖥️ Presentation](slides/5_database.qmd)
+- [💻 Jupyter Notebook]()
+:::
+
+
+## Core Plugins
+
+Learn how to add the tools for the kernel to do math, to read/write files, to tell the time, and to play with text. You can find more about core plugins [here](https://learn.microsoft.com/en-us/semantic-kernel/ai-orchestration/out-of-the-box-plugins?tabs=Csharp).
+
+
+::: {.callout-tip appearance="simple" icon=false}
+- [🖥️ Presentation](slides/6_core_plugins.qmd)
 - [💻 Jupyter Notebook]()
 :::
