@@ -1,0 +1,326 @@
+---
+title: Use a Database
+title-slide-attributes:
+  data-background-image: ../images/logo.png
+  data-background-size: contain
+  data-background-opacity: "0.5"
+lang: en
+subtitle: with Semantic Kernel
+author: Jan Kirenz
+execute:
+  eval: false
+  echo: true
+highlight-style: github
+format:
+  revealjs: 
+    toc: true
+    toc-depth: 1
+    embed-resources: false
+    theme: [dark, ../custom.scss]  
+    incremental: true
+    transition: slide
+    background-transition: fade
+    transition-speed: slow
+    code-copy: true
+    code-line-numbers: true
+    smaller: false
+    scrollable: true
+    slide-number: c
+    preview-links: auto
+    chalkboard: 
+      buttons: false
+   # logo: ../images/logo.png
+    footer: Jan Kirenz
+---
+
+# Use a Database
+
+# Setup
+
+## Python
+
+```{python}
+import shutil
+from IPython.display import display, Markdown
+import semantic_kernel as sk
+from semantic_kernel.connectors.ai.open_ai import OpenAIChatCompletion, OpenAITextEmbedding
+from semantic_kernel.connectors.memory.chroma import ChromaMemoryStore
+```
+
+## Kernel and completion service
+
+
+```{python}
+kernel = sk.Kernel()
+
+api_key, org_id = sk.openai_settings_from_dot_env()
+
+# Completion service
+kernel.add_text_completion_service(
+    "openai-completion", OpenAIChatCompletion("gpt-3.5-turbo", api_key, org_id))
+```
+
+## Embeddings and database
+
+```{python}
+# Embedding service
+kernel.add_text_embedding_generation_service(
+    "openai-embedding", OpenAITextEmbedding("text-embedding-ada-002", api_key, org_id))
+```
+
+[Chroma](https://docs.trychroma.com/) database:
+
+```{python}
+kernel.register_memory_store(
+    memory_store=ChromaMemoryStore(persist_directory='../data/mymemories'))
+
+print("")
+```
+
+## Reset database (if necessary)
+
+```{python}
+
+# ONLY DELETE THE DIRECTORY IF YOU WANT TO CLEAR THE MEMORY
+# OTHERWISE, SET delete_dir = True
+
+delete_dir = False
+
+if (delete_dir):
+    dir_path = "../data/mymemories"
+    shutil.rmtree(dir_path)
+    kernel.register_memory_store(
+        memory_store=ChromaMemoryStore(persist_directory=dir_path))
+    print("⚠️ Memory cleared and reset")
+```
+
+
+# Import Data into Database
+
+## Input data {.smaller}
+
+```{python}
+strength_questions = ["What unique recipes or ingredients does the pizza shop use?", "What are the skills and experience of the staff?", "Does the pizza shop have a strong reputation in the local area?",
+                      "Are there any unique features of the shop or its location that attract customers?", "Does the pizza shop have a strong reputation in the local area?", "Are there any unique features of the shop or its location that attract customers?"]
+weakness_questions = ["What are the operational challenges of the pizza shop? (e.g., slow service, high staff turnover)", "Are there financial constraints that limit growth or improvements?",
+                      "Are there any gaps in the product offering?", "Are there customer complaints or negative reviews that need to be addressed?"]
+opportunities_questions = ["Is there potential for new products or services (e.g., catering, delivery)?", "Are there under-served customer segments or market areas?",
+                           "Can new technologies or systems enhance the business operations?", "Are there partnerships or local events that can be leveraged for marketing?"]
+threats_questions = ["Who are the major competitors and what are they offering?", "Are there potential negative impacts due to changes in the local area (e.g., construction, closure of nearby businesses)?",
+                     "Are there economic or industry trends that could impact the business negatively (e.g., increased ingredient costs)?", "Is there any risk due to changes in regulations or legislation (e.g., health and safety, employment)?"]
+
+strengths = ["Unique garlic pizza recipe that wins top awards", "Owner trained in Sicily at some of the best pizzerias",
+             "Strong local reputation", "Prime location on university campus"]
+weaknesses = ["High staff turnover", "Floods in the area damaged the seating areas that are in need of repair",
+              "Absence of popular calzones from menu", "Negative reviews from younger demographic for lack of hip ingredients"]
+opportunities = ["Untapped catering potential", "Growing local tech startup community",
+                 "Unexplored online presence and order capabilities", "Upcoming annual food fair"]
+threats = ["Competition from cheaper pizza businesses nearby", "There's nearby street construction that will impact foot traffic",
+           "Rising cost of cheese will increase the cost of pizzas", "No immediate local regulatory changes but it's election season"]
+
+```
+
+## Import into database {.smaller}
+
+- Create embeddings and store data
+
+```{python}
+
+memoryCollectionName = "SWOT"
+
+for i in range(len(strengths)):
+    await kernel.memory.save_information_async(memoryCollectionName, id=f"strength-{i}", text=f"Internal business strength (S in SWOT) that makes customers happy and satisfied Q&A: Q: {strength_questions[i]} A: {strengths[i]}")
+
+for i in range(len(weaknesses)):
+    await kernel.memory.save_information_async(memoryCollectionName, id=f"weakness-{i}", text=f"Internal business weakness (W in SWOT) that makes customers unhappy and dissatisfied Q&A: Q: {weakness_questions[i]} A: {weaknesses[i]}")
+
+for i in range(len(opportunities)):
+    await kernel.memory.save_information_async(memoryCollectionName, id=f"opportunity-{i}", text=f"External opportunity (O in SWOT) for the business to gain entirely new customers Q&A: Q: {opportunities_questions[i]} A: {opportunities[i]}")
+
+for i in range(len(threats)):
+    await kernel.memory.save_information_async(memoryCollectionName, id=f"threat-{i}", text=f"External threat (T in SWOT) to the business that impacts its survival Q&A: Q: {threats_questions[i]} A: {threats[i]}")
+
+```
+
+# Use case: How to make more money?
+
+## Question
+
+```{python}
+potential_question = "What are the easiest ways to make more money?"
+
+```
+
+## Memory search
+
+```{python}
+counter = 0
+
+memories = await kernel.memory.search_async(memoryCollectionName, potential_question, limit=5, min_relevance_score=0.5)
+
+```
+
+## Result
+
+```{python}
+display(Markdown(f"### ❓ Potential question: {potential_question}"))
+```
+
+```{python}
+for memory in memories:
+    if counter == 0:
+        related_memory = memory.text
+    counter += 1
+    print(
+        f"  > Similarity result {counter}:\n  >> ID: {memory.id}\n  Text: {memory.text}  Relevance: {memory.relevance}\n")
+```
+
+## Result
+
+```markdown
+> Similarity result 1:
+  >> ID: opportunity-0
+  Text: External opportunity (O in SWOT) for the business to gain entirely new customers Q&A: Q: Is there potential for new products or services (e.g., catering, delivery)? A: Untapped catering potential  Relevance: 0.7721327504132071
+
+  > Similarity result 2:
+  >> ID: opportunity-3
+  Text: External opportunity (O in SWOT) for the business to gain entirely new customers Q&A: Q: Are there partnerships or local events that can be leveraged for marketing? A: Upcoming annual food fair  Relevance: 0.770177891378116
+
+  > Similarity result 3:
+  >> ID: opportunity-1
+  Text: External opportunity (O in SWOT) for the business to gain entirely new customers Q&A: Q: Are there under-served customer segments or market areas? A: Growing local tech startup community  Relevance: 0.7698220128086722
+
+  > Similarity result 4:
+  >> ID: opportunity-2
+  Text: External opportunity (O in SWOT) for the business to gain entirely new customers Q&A: Q: Can new technologies or systems enhance the business operations? A: Unexplored online presence and order capabilities  Relevance: 0.7676498736381523
+
+  > Similarity result 5:
+  >> ID: threat-0
+  Text: External threat (T in SWOT) to the business that impacts its survival Q&A: Q: Who are the major competitors and what are they offering? A: Competition from cheaper pizza businesses nearby  Relevance: 0.7522373129207561
+```
+
+# Use Case: How to Save Time?
+
+## Question
+
+```{python}
+what_if_scenario = "How can the business owner save time?"
+```
+
+## Memory search
+
+```{python}
+counter = 0
+gathered_context = []
+max_memories = 3
+```
+
+. . .
+
+```{python}
+memories = await kernel.memory.search_async(memoryCollectionName, what_if_scenario, limit=max_memories, min_relevance_score=0.77)
+
+```
+
+## Save output to database
+
+```{python}
+
+print(f"✨ Leveraging information available to address '{what_if_scenario}'...")
+
+for memory in memories:
+    if counter == 0:
+        related_memory = memory.text
+    counter += 1
+    gathered_context.append(memory.text + "\n")
+    print(f"  > Hit {counter}: {memory.id} ")
+
+```
+
+
+## Create presentation
+
+```{python}
+skillsDirectory = "../plugins-sk"
+
+pluginFC = kernel.import_semantic_skill_from_directory(
+    skillsDirectory, "FriendlyConsultant")
+```
+
+## Context
+
+```{python}
+
+my_context = kernel.create_new_context()
+my_context['input'] = what_if_scenario
+my_context['context'] = "\n".join(gathered_context)
+
+```
+
+## Presentation output
+
+```{python}
+preso_result = await kernel.run_async(pluginFC["Presentation"], input_context=my_context)
+```
+
+```{python}
+display(Markdown("# ✨ Generated presentation ...\n"+str(preso_result)))
+```
+
+
+## Output
+
+```markdown
+
+✨ Generated presentation ...
+
+# Business Strategy Consultant Presentation
+
+# Summary
+
+The business owner has asked for ways to save time. We will explore three key concerns that can help the business owner save time and improve operations.
+
+# The Question
+- How can the business owner save time?
+
+# Key Concerns
+
+1. Unexplored online presence and order capabilities
+2. Untapped catering potential
+3. Growing local tech startup community
+
+# Unexplored Online Presence and Order Capabilities
+
+- Explanation: The business can save time by implementing online ordering capabilities and improving their online presence. This will allow customers to place orders without the need for phone calls or in-person visits.
+
+- Example: The business can create a website with an online ordering system and integrate it with their social media accounts. This will allow customers to easily place orders and the business can save time by not having to take orders over the phone.
+
+# Untapped Catering Potential
+
+- Explanation: The business can save time by exploring catering opportunities. This will allow the business to serve multiple customers at once and potentially increase revenue.
+
+- Example: The business can create a catering menu and market it to local businesses and events. This will allow the business to serve multiple customers at once and save time by not having to prepare individual orders.
+
+# Growing Local Tech Startup Community
+
+- Explanation: The business can save time by targeting under-served customer segments or market areas. The growing local tech startup community is an opportunity for the business to gain new customers and potentially increase revenue.
+
+- Example: The business can create a marketing campaign targeted towards the local tech startup community. This will allow the business to gain new customers and potentially increase revenue.
+
+# Summary
+
+- By implementing online ordering capabilities, exploring catering opportunities, and targeting under-served customer segments, the business owner can save time and improve operations.
+
+```
+
+
+# Acknowledgments
+
+*This tutorial is mainly based on the excellent course ["How Business Thinkers Can Start Building AI Plugins With Semantic Kernel"](https://www.deeplearning.ai/short-courses/microsoft-semantic-kernel/) provided by John Maeda and Andrew Ng*
+
+# What's next? {background-image="../images/logo.png" background-opacity="0.5"}
+
+- **Congratulations! You have completed this tutorial** 👍
+
+**Next, you may want to go back to the [lab's website](https://kirenz.github.io/semantic-kernel/)**
+
