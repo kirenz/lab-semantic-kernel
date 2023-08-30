@@ -5,7 +5,7 @@ title-slide-attributes:
   data-background-size: contain
   data-background-opacity: "0.5"
 lang: en
-subtitle: Tutorial 3
+subtitle: Enhance Semantic Kernel
 author: Jan Kirenz
 execute:
   eval: true
