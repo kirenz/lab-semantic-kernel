@@ -7,7 +7,14 @@ Welcome to the lab *""*
 ![](/images/logo.png){width="60%"}
 
 
-In this lab you will ...
+Large Language Models (LLMs) are enabling coders and non-coders to build new kinds of applications that harness the power of AI. In this course, you’ll learn how to use and create with Microsoft’s open source orchestrator, Semantic Kernel. Along the way you’ll gain skills in getting the most out of LLMs developing prompts, semantic functions, vector databases and using an LLM for planning.
+
+After completing this course you will be able to:
+
+Develop sophisticated business applications using LLM’s
+Leverage common LLM building blocks such as memories, connectors, chains and planners
+Utilize the open source orchestrator, the Semantic Kernel, in your applications
+Using an orchestration SDK such as Semantic Kernel means you can avoid having to learn APIs for each individual AI service, and build integrations that can always stay up to date with the latest advances in AI research rather than solutions that quickly get outdated. Through this course, you’ll have all you need to take full advantage of this powerful open source tool.
 
 ::: {.callout-important}
 Make sure you meet all the [requirements](/requirements.qmd) and have read the lecture [slides](/slide.qmd) before you start with the [assignments](/assignments.qmd) 
@@ -19,3 +26,8 @@ What you will learn in this lab:
 - Use SQL for data analysis
 - Make use of Pandas for data analysis in Python
 - Use Altair for data visualization in Python 
+
+
+---
+
+https://www.deeplearning.ai/short-courses/microsoft-semantic-kernel/
