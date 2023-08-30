@@ -5,7 +5,7 @@ title-slide-attributes:
   data-background-size: contain
   data-background-opacity: "0.5"
 lang: en
-subtitle: Tutorial 4
+subtitle: with Semantic Kernel
 author: Jan Kirenz
 execute:
   eval: false
@@ -59,15 +59,20 @@ api_key, org_id = sk.openai_settings_from_dot_env()
 kernel.add_text_completion_service(
     "openai", OpenAIChatCompletion("gpt-3.5-turbo-0301", api_key, org_id))
 
-pluginsDirectory = "../plugins-sk"
-
-
 print("A kernel is now ready.")
 ```
 
-# Plugins
 
-## Design thinking directory
+
+## Plugins {.smaller}
+
+```{python}
+pluginsDirectory = "../plugins-sk"
+
+pluginDT = kernel.import_semantic_skill_from_directory(
+    pluginsDirectory, "DesignThinking")
+```
+
 
 ```directory
 plugins-sk/
@@ -84,7 +89,7 @@ plugins-sk/
 
 ```
 
-# Input
+# Provide Input
 
 ## Strength questions
 
@@ -145,7 +150,7 @@ threats = ["Competition from cheaper pizza businesses nearby", "There's nearby s
            "Rising cost of cheese will increase the cost of pizzas", "No immediate local regulatory changes but it's election season"]
 ```
 
-## Customer comments
+## Customer comments {.smaller}
 
 ```{python}
 customer_comments = """
@@ -163,57 +168,64 @@ Customer 10: Why is the seating so uncomfortable and dirty?
 ```
 
 
-# Empathize
+# Workflow for Empathize
 
-## Import plugin
-
-```{python}
-
-pluginDT = kernel.import_semantic_skill_from_directory(
-    pluginsDirectory, "DesignThinking")
-```
-
-## Run kernel 
+## Run kernel with plugin
 
 ```{python}
-
 my_result = await kernel.run_async(pluginDT["Empathize"], input_str=customer_comments)
 ```
 
 ## Output
 
 ```{python}
+# | output-location: slide
 display(Markdown(
     "## ✨ The categorized observations from the 'Empathize' phase of design thinking\n"))
-```
-
-. . .
-
-```{python}
-
 print(json.dumps(json.loads(str(my_result)), indent=2))
 ```
 
 
-# Empathize
+# Workflow for Define
+
+## Run kernel with plugins
+
+- Kernel works sequentially (first uses plugin `Empathize`, then `Define`)
+
+. . .
 
 ```{python}
 my_result = await kernel.run_async(pluginDT["Empathize"], pluginDT["Define"], input_str=customer_comments)
 
 ```
 
-```{python}
+## Output
 
+```{python}
+# | output-location: slide
 display(Markdown("## ✨ The categorized observations from the 'Empathize' + 'Define' phases of design thinking\n"+str(my_result)))
 ```
+
+# Workflow for Ideation & Prototyping
+
+## Run kernel
 
 ```{python}
 my_result = await kernel.run_async(pluginDT["Empathize"], pluginDT["Define"], pluginDT["Ideate"], pluginDT["PrototypeWithPaper"], input_str=customer_comments)
 ```
 
+## Output
+
 ```{python}
+# | output-location: slide
+
 display(Markdown("## ✨ The categorized observations from the 'Empathize' + 'Define' + 'Ideate' + 'Prototype' + phases of design thinking\n"+str(my_result)))
 ```
+
+
+# Workflow for Evaluation
+
+## Prompt template
 
 ```{python}
 sk_prompt = """
@@ -226,14 +238,17 @@ Summarize their possible reactions to this experience.
 """
 ```
 
-```{python}
+## Test function
 
+```{python}
 test_function = kernel.create_semantic_function(prompt_template=sk_prompt,
                                                 description="Simulates reaction to an experience.",
                                                 max_tokens=1000,
                                                 temperature=0.1,
                                                 top_p=0.5)
 ```
+
+## Example prototype idea
 
 ```{python}
 
@@ -242,14 +257,18 @@ A simple loyalty card that includes details such as the rewards for each level o
 """
 ```
 
+## Run kernel
+
 ```{python}
 test_result = await kernel.run_async(test_function, input_str=sk_input)
 ```
 
+## Output
+
 ```{python}
+# | output-location: slide
 display(Markdown("### ✨ " + str(test_result)))
 ```
-
 
 
 # Acknowledgments
