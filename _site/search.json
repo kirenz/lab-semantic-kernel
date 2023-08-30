@@ -110,5 +110,124 @@
     "title": "Business Plugins",
     "section": "✨ Business strategy thinking based on SWOT analysis",
     "text": "✨ Business strategy thinking based on SWOT analysis\nBuilding on strengths can immediately improve the business\n\n\n\n\n\n\n\n\n\nTitle\nStrength\nWeakness\nDescription\n\n\n\n\nExpand menu with popular calzones\nUnique garlic pizza recipe that wins top awards\nAbsence of popular calzones from menu\nBy adding popular calzones to the menu, the business can attract a wider range of customers and increase sales.\n\n\nImprove seating areas damaged by floods\nStrong local reputation\nFloods in the area damaged the seating areas that are in need of repair\nBy repairing and improving the seating areas, the business can provide a better dining experience for customers and increase customer satisfaction.\n\n\nEnhance online presence and marketing\nPrime location on university campus\nNegative reviews from younger demographic for lack of hip ingredients\nBy leveraging its prime location on the university campus and targeting the younger demographic through online marketing, the business can attract more customers and improve its reputation among the target market.\n\n\n\nTaking advantage of opportunities whenever possible\n\n\n\n\n\n\n\n\nTitle\nOpportunity\nDescription\n\n\n\n\nLaunch catering services\nUntapped catering potential\nBy offering catering services, the business can tap into a new revenue stream and cater to events and gatherings in the local community.\n\n\nDevelop online ordering capabilities\nUnexplored online presence and order capabilities\nBy developing an online ordering system, the business can cater to the growing demand for online food ordering and reach a wider customer base.\n\n\nParticipate in the upcoming annual food fair\nUpcoming annual food fair\nBy participating in the food fair, the business can showcase its unique garlic pizza recipe and attract new customers, as well as network with other businesses in the industry.\n\n\n\nBuilding resilience to threats is always a good idea\n\n\n\n\n\n\n\n\nTitle\nThreat\nDescription\n\n\n\n\nOffer competitive pricing and promotions\nCompetition from cheaper pizza businesses nearby\nBy offering competitive pricing and promotions, the business can attract customers who may be considering cheaper alternatives and maintain its customer base.\n\n\nDiversify customer base beyond foot traffic\nThere’s nearby street construction that will impact foot traffic\nBy implementing delivery services and targeting customers outside of the immediate area, the business can mitigate the impact of reduced foot traffic due to street construction.\n\n\nMonitor and manage ingredient costs\nRising cost of cheese will increase the cost of pizzas\nBy closely monitoring ingredient costs and exploring alternative suppliers, the business can mitigate the impact of rising cheese costs and maintain profitability."
+  },
+  {
+    "objectID": "slides/5_database.html#python",
+    "href": "slides/5_database.html#python",
+    "title": "Use a Database",
+    "section": "Python",
+    "text": "Python\n\nimport shutil\nfrom IPython.display import display, Markdown\nimport semantic_kernel as sk\nfrom semantic_kernel.connectors.ai.open_ai import OpenAIChatCompletion, OpenAITextEmbedding\nfrom semantic_kernel.connectors.memory.chroma import ChromaMemoryStore"
+  },
+  {
+    "objectID": "slides/5_database.html#kernel-and-completion-service",
+    "href": "slides/5_database.html#kernel-and-completion-service",
+    "title": "Use a Database",
+    "section": "Kernel and completion service",
+    "text": "Kernel and completion service\n\nkernel = sk.Kernel()\n\napi_key, org_id = sk.openai_settings_from_dot_env()\n\n# Completion service\nkernel.add_text_completion_service(\n    \"openai-completion\", OpenAIChatCompletion(\"gpt-3.5-turbo\", api_key, org_id))"
+  },
+  {
+    "objectID": "slides/5_database.html#embeddings-and-database",
+    "href": "slides/5_database.html#embeddings-and-database",
+    "title": "Use a Database",
+    "section": "Embeddings and database",
+    "text": "Embeddings and database\n\n# Embedding service\nkernel.add_text_embedding_generation_service(\n    \"openai-embedding\", OpenAITextEmbedding(\"text-embedding-ada-002\", api_key, org_id))\n\nChroma database:\n\nkernel.register_memory_store(\n    memory_store=ChromaMemoryStore(persist_directory='../data/mymemories'))\n\nprint(\"\")"
+  },
+  {
+    "objectID": "slides/5_database.html#reset-database-if-necessary",
+    "href": "slides/5_database.html#reset-database-if-necessary",
+    "title": "Use a Database",
+    "section": "Reset database (if necessary)",
+    "text": "Reset database (if necessary)\n\n# ONLY DELETE THE DIRECTORY IF YOU WANT TO CLEAR THE MEMORY\n# OTHERWISE, SET delete_dir = True\n\ndelete_dir = False\n\nif (delete_dir):\n    dir_path = \"../data/mymemories\"\n    shutil.rmtree(dir_path)\n    kernel.register_memory_store(\n        memory_store=ChromaMemoryStore(persist_directory=dir_path))\n    print(\"⚠️ Memory cleared and reset\")"
+  },
+  {
+    "objectID": "slides/5_database.html#input-data",
+    "href": "slides/5_database.html#input-data",
+    "title": "Use a Database",
+    "section": "Input data",
+    "text": "Input data\n\nstrength_questions = [\"What unique recipes or ingredients does the pizza shop use?\", \"What are the skills and experience of the staff?\", \"Does the pizza shop have a strong reputation in the local area?\",\n                      \"Are there any unique features of the shop or its location that attract customers?\", \"Does the pizza shop have a strong reputation in the local area?\", \"Are there any unique features of the shop or its location that attract customers?\"]\nweakness_questions = [\"What are the operational challenges of the pizza shop? (e.g., slow service, high staff turnover)\", \"Are there financial constraints that limit growth or improvements?\",\n                      \"Are there any gaps in the product offering?\", \"Are there customer complaints or negative reviews that need to be addressed?\"]\nopportunities_questions = [\"Is there potential for new products or services (e.g., catering, delivery)?\", \"Are there under-served customer segments or market areas?\",\n                           \"Can new technologies or systems enhance the business operations?\", \"Are there partnerships or local events that can be leveraged for marketing?\"]\nthreats_questions = [\"Who are the major competitors and what are they offering?\", \"Are there potential negative impacts due to changes in the local area (e.g., construction, closure of nearby businesses)?\",\n                     \"Are there economic or industry trends that could impact the business negatively (e.g., increased ingredient costs)?\", \"Is there any risk due to changes in regulations or legislation (e.g., health and safety, employment)?\"]\n\nstrengths = [\"Unique garlic pizza recipe that wins top awards\", \"Owner trained in Sicily at some of the best pizzerias\",\n             \"Strong local reputation\", \"Prime location on university campus\"]\nweaknesses = [\"High staff turnover\", \"Floods in the area damaged the seating areas that are in need of repair\",\n              \"Absence of popular calzones from menu\", \"Negative reviews from younger demographic for lack of hip ingredients\"]\nopportunities = [\"Untapped catering potential\", \"Growing local tech startup community\",\n                 \"Unexplored online presence and order capabilities\", \"Upcoming annual food fair\"]\nthreats = [\"Competition from cheaper pizza businesses nearby\", \"There's nearby street construction that will impact foot traffic\",\n           \"Rising cost of cheese will increase the cost of pizzas\", \"No immediate local regulatory changes but it's election season\"]"
+  },
+  {
+    "objectID": "slides/5_database.html#import-into-database",
+    "href": "slides/5_database.html#import-into-database",
+    "title": "Use a Database",
+    "section": "Import into database",
+    "text": "Import into database\n\nCreate embeddings and store data\n\n\nmemoryCollectionName = \"SWOT\"\n\nfor i in range(len(strengths)):\n    await kernel.memory.save_information_async(memoryCollectionName, id=f\"strength-{i}\", text=f\"Internal business strength (S in SWOT) that makes customers happy and satisfied Q&A: Q: {strength_questions[i]} A: {strengths[i]}\")\n\nfor i in range(len(weaknesses)):\n    await kernel.memory.save_information_async(memoryCollectionName, id=f\"weakness-{i}\", text=f\"Internal business weakness (W in SWOT) that makes customers unhappy and dissatisfied Q&A: Q: {weakness_questions[i]} A: {weaknesses[i]}\")\n\nfor i in range(len(opportunities)):\n    await kernel.memory.save_information_async(memoryCollectionName, id=f\"opportunity-{i}\", text=f\"External opportunity (O in SWOT) for the business to gain entirely new customers Q&A: Q: {opportunities_questions[i]} A: {opportunities[i]}\")\n\nfor i in range(len(threats)):\n    await kernel.memory.save_information_async(memoryCollectionName, id=f\"threat-{i}\", text=f\"External threat (T in SWOT) to the business that impacts its survival Q&A: Q: {threats_questions[i]} A: {threats[i]}\")"
+  },
+  {
+    "objectID": "slides/5_database.html#question",
+    "href": "slides/5_database.html#question",
+    "title": "Use a Database",
+    "section": "Question",
+    "text": "Question\n\npotential_question = \"What are the easiest ways to make more money?\""
+  },
+  {
+    "objectID": "slides/5_database.html#memory-search",
+    "href": "slides/5_database.html#memory-search",
+    "title": "Use a Database",
+    "section": "Memory search",
+    "text": "Memory search\n\ncounter = 0\n\nmemories = await kernel.memory.search_async(memoryCollectionName, potential_question, limit=5, min_relevance_score=0.5)"
+  },
+  {
+    "objectID": "slides/5_database.html#result",
+    "href": "slides/5_database.html#result",
+    "title": "Use a Database",
+    "section": "Result",
+    "text": "Result\n\ndisplay(Markdown(f\"### ❓ Potential question: {potential_question}\"))\n\n\nfor memory in memories:\n    if counter == 0:\n        related_memory = memory.text\n    counter += 1\n    print(\n        f\"  &gt; Similarity result {counter}:\\n  &gt;&gt; ID: {memory.id}\\n  Text: {memory.text}  Relevance: {memory.relevance}\\n\")"
+  },
+  {
+    "objectID": "slides/5_database.html#result-1",
+    "href": "slides/5_database.html#result-1",
+    "title": "Use a Database",
+    "section": "Result",
+    "text": "Result\n&gt; Similarity result 1:\n  &gt;&gt; ID: opportunity-0\n  Text: External opportunity (O in SWOT) for the business to gain entirely new customers Q&A: Q: Is there potential for new products or services (e.g., catering, delivery)? A: Untapped catering potential  Relevance: 0.7721327504132071\n\n  &gt; Similarity result 2:\n  &gt;&gt; ID: opportunity-3\n  Text: External opportunity (O in SWOT) for the business to gain entirely new customers Q&A: Q: Are there partnerships or local events that can be leveraged for marketing? A: Upcoming annual food fair  Relevance: 0.770177891378116\n\n  &gt; Similarity result 3:\n  &gt;&gt; ID: opportunity-1\n  Text: External opportunity (O in SWOT) for the business to gain entirely new customers Q&A: Q: Are there under-served customer segments or market areas? A: Growing local tech startup community  Relevance: 0.7698220128086722\n\n  &gt; Similarity result 4:\n  &gt;&gt; ID: opportunity-2\n  Text: External opportunity (O in SWOT) for the business to gain entirely new customers Q&A: Q: Can new technologies or systems enhance the business operations? A: Unexplored online presence and order capabilities  Relevance: 0.7676498736381523\n\n  &gt; Similarity result 5:\n  &gt;&gt; ID: threat-0\n  Text: External threat (T in SWOT) to the business that impacts its survival Q&A: Q: Who are the major competitors and what are they offering? A: Competition from cheaper pizza businesses nearby  Relevance: 0.7522373129207561"
+  },
+  {
+    "objectID": "slides/5_database.html#question-1",
+    "href": "slides/5_database.html#question-1",
+    "title": "Use a Database",
+    "section": "Question",
+    "text": "Question\n\nwhat_if_scenario = \"How can the business owner save time?\""
+  },
+  {
+    "objectID": "slides/5_database.html#memory-search-1",
+    "href": "slides/5_database.html#memory-search-1",
+    "title": "Use a Database",
+    "section": "Memory search",
+    "text": "Memory search\n\ncounter = 0\ngathered_context = []\nmax_memories = 3\n\n\n\nmemories = await kernel.memory.search_async(memoryCollectionName, what_if_scenario, limit=max_memories, min_relevance_score=0.77)"
+  },
+  {
+    "objectID": "slides/5_database.html#save-output-to-database",
+    "href": "slides/5_database.html#save-output-to-database",
+    "title": "Use a Database",
+    "section": "Save output to database",
+    "text": "Save output to database\n\nprint(f\"✨ Leveraging information available to address '{what_if_scenario}'...\")\n\nfor memory in memories:\n    if counter == 0:\n        related_memory = memory.text\n    counter += 1\n    gathered_context.append(memory.text + \"\\n\")\n    print(f\"  &gt; Hit {counter}: {memory.id} \")"
+  },
+  {
+    "objectID": "slides/5_database.html#create-presentation",
+    "href": "slides/5_database.html#create-presentation",
+    "title": "Use a Database",
+    "section": "Create presentation",
+    "text": "Create presentation\n\nskillsDirectory = \"../plugins-sk\"\n\npluginFC = kernel.import_semantic_skill_from_directory(\n    skillsDirectory, \"FriendlyConsultant\")"
+  },
+  {
+    "objectID": "slides/5_database.html#context",
+    "href": "slides/5_database.html#context",
+    "title": "Use a Database",
+    "section": "Context",
+    "text": "Context\n\nmy_context = kernel.create_new_context()\nmy_context['input'] = what_if_scenario\nmy_context['context'] = \"\\n\".join(gathered_context)"
+  },
+  {
+    "objectID": "slides/5_database.html#presentation-output",
+    "href": "slides/5_database.html#presentation-output",
+    "title": "Use a Database",
+    "section": "Presentation output",
+    "text": "Presentation output\n\npreso_result = await kernel.run_async(pluginFC[\"Presentation\"], input_context=my_context)\n\n\ndisplay(Markdown(\"# ✨ Generated presentation ...\\n\"+str(preso_result)))"
+  },
+  {
+    "objectID": "slides/5_database.html#output",
+    "href": "slides/5_database.html#output",
+    "title": "Use a Database",
+    "section": "Output",
+    "text": "Output\n\n✨ Generated presentation ...\n\n# Business Strategy Consultant Presentation\n\n# Summary\n\nThe business owner has asked for ways to save time. We will explore three key concerns that can help the business owner save time and improve operations.\n\n# The Question\n- How can the business owner save time?\n\n# Key Concerns\n\n1. Unexplored online presence and order capabilities\n2. Untapped catering potential\n3. Growing local tech startup community\n\n# Unexplored Online Presence and Order Capabilities\n\n- Explanation: The business can save time by implementing online ordering capabilities and improving their online presence. This will allow customers to place orders without the need for phone calls or in-person visits.\n\n- Example: The business can create a website with an online ordering system and integrate it with their social media accounts. This will allow customers to easily place orders and the business can save time by not having to take orders over the phone.\n\n# Untapped Catering Potential\n\n- Explanation: The business can save time by exploring catering opportunities. This will allow the business to serve multiple customers at once and potentially increase revenue.\n\n- Example: The business can create a catering menu and market it to local businesses and events. This will allow the business to serve multiple customers at once and save time by not having to prepare individual orders.\n\n# Growing Local Tech Startup Community\n\n- Explanation: The business can save time by targeting under-served customer segments or market areas. The growing local tech startup community is an opportunity for the business to gain new customers and potentially increase revenue.\n\n- Example: The business can create a marketing campaign targeted towards the local tech startup community. This will allow the business to gain new customers and potentially increase revenue.\n\n# Summary\n\n- By implementing online ordering capabilities, exploring catering opportunities, and targeting under-served customer segments, the business owner can save time and improve operations."
   }
 ]
