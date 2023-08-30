@@ -1,0 +1,219 @@
+---
+title: Business Plugins
+title-slide-attributes:
+  data-background-image: ../images/logo.png
+  data-background-size: contain
+  data-background-opacity: "0.5"
+lang: en
+subtitle: Tutorial 3
+author: Jan Kirenz
+execute:
+  eval: true
+  echo: true
+highlight-style: github
+format:
+  revealjs: 
+    toc: true
+    toc-depth: 1
+    embed-resources: false
+    theme: [dark, ../custom.scss]  
+    incremental: true
+    transition: slide
+    background-transition: fade
+    transition-speed: slow
+    code-copy: true
+    code-line-numbers: true
+    smaller: false
+    scrollable: true
+    slide-number: c
+    preview-links: auto
+    chalkboard: 
+      buttons: false
+   # logo: ../images/logo.png
+    footer: Jan Kirenz
+---
+
+# Business Plugins
+
+# Setup
+
+## Python
+
+
+```{python}
+import semantic_kernel as sk
+from semantic_kernel.connectors.ai.open_ai import AzureChatCompletion, OpenAIChatCompletion
+from IPython.display import display, Markdown
+```
+
+## Kernel
+
+```{python}
+kernel = sk.Kernel()
+
+api_key, org_id = sk.openai_settings_from_dot_env()
+
+kernel.add_text_completion_service(
+    "openai", OpenAIChatCompletion("gpt-3.5-turbo", api_key, org_id))
+
+print("A kernel is now ready.")
+```
+
+# Business Plugins
+
+## Business goals
+
+1. Grow the existing business
+2. Save money and time
+3. Add completely new business
+4. Prepare for the unknown
+
+## Plugins directory
+
+```directory
+plugins-sk/
+│
+└─── BusinessThinking/
+     |
+     └─── BasicStrategies/
+     |    └─── config.json
+     |    └─── skprompt.txt
+     |
+     └─── SeekCostEfficiency/
+     |    └─── config.json
+     |    └─── skprompt.txt
+     |
+     └─── SeekTimeEfficiency/
+          └─── config.json
+          └─── skprompt.txt
+```
+
+## Activate plugins
+
+```{python}
+pluginsDirectory = "../plugins-sk"
+
+pluginBT = kernel.import_semantic_skill_from_directory(
+    pluginsDirectory, "BusinessThinking")
+
+```
+
+# Cost Efficiency 
+
+## Input strengths and weaknesses
+
+```{python}
+strengths = ["Unique garlic pizza recipe that wins top awards", "Owner trained in Sicily at some of the best pizzerias",
+             "Strong local reputation", "Prime location on university campus"]
+
+weaknesses = ["High staff turnover", "Floods in the area damaged the seating areas that are in need of repair",
+              "Absence of popular calzones from menu", "Negative reviews from younger demographic for lack of hip ingredients"]
+
+```
+
+## Context
+
+```{python}
+
+my_context = kernel.create_new_context()
+
+my_context['input'] = 'makes pizzas'
+my_context['strengths'] = ", ".join(strengths)
+my_context['weaknesses'] = ", ".join(weaknesses)
+
+```
+
+## Run kernel with cost efficiency plugin
+
+```{python}
+
+costefficiency_result = await kernel.run_async(pluginBT["SeekCostEfficiency"], input_context=my_context)
+
+```
+
+## Output
+
+```{python}
+costefficiency_str = str(
+    "### ✨ Suggestions for how to gain cost efficiencies\n" + str(costefficiency_result))
+```
+
+. . .
+
+```{python}
+# | output-location: slide
+display(Markdown(costefficiency_str))
+```
+
+# Business Strategy
+
+## Input opportunities and threats
+
+```{python}
+opportunities = ["Untapped catering potential", "Growing local tech startup community",
+                 "Unexplored online presence and order capabilities", "Upcoming annual food fair"]
+
+threats = ["Competition from cheaper pizza businesses nearby", "There's nearby street construction that will impact foot traffic",
+           "Rising cost of cheese will increase the cost of pizzas", "No immediate local regulatory changes but it's election season"]
+
+```
+
+## Import plugin
+
+```{python}
+
+pluginBT = kernel.import_semantic_skill_from_directory(
+    pluginsDirectory, "BusinessThinking")
+
+```
+
+## Context
+
+```{python}
+my_context = kernel.create_new_context()
+
+my_context['input'] = 'makes pizzas'
+my_context['strengths'] = ", ".join(strengths)
+my_context['weaknesses'] = ", ".join(weaknesses)
+my_context['opportunities'] = ", ".join(opportunities)
+my_context['threats'] = ", ".join(threats)
+```
+
+## Run kernel 
+
+```{python}
+
+bizstrat_result = await kernel.run_async(pluginBT["BasicStrategies"], input_context=my_context)
+
+```
+
+## Output
+
+```{python}
+
+bizstrat_str = "## ✨ Business strategy thinking based on SWOT analysis\n" + \
+    str(bizstrat_result)
+
+```
+
+. . .
+
+```{python}
+# | output-location: slide
+display(Markdown(bizstrat_str))
+```
+
+
+
+# Acknowledgments
+
+*This tutorial is mainly based on the excellent course ["How Business Thinkers Can Start Building AI Plugins With Semantic Kernel"](https://www.deeplearning.ai/short-courses/microsoft-semantic-kernel/) provided by John Maeda and Andrew Ng*
+
+# What's next? {background-image="../images/logo.png" background-opacity="0.5"}
+
+- **Congratulations! You have completed this tutorial** 👍
+
+**Next, you may want to go back to the [lab's website](https://kirenz.github.io/semantic-kernel/)**
+
+
+
