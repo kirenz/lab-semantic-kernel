@@ -1,11 +1,11 @@
 ---
-title: SWOT with Semantic Kernel
+title: SWOT-Analysis 
 title-slide-attributes:
   data-background-image: ../images/logo.png
   data-background-size: contain
   data-background-opacity: "0.5"
 lang: en
-subtitle: Tutorial 2
+subtitle: with Semantic Kernel
 author: Jan Kirenz
 execute:
   eval: false
@@ -34,7 +34,7 @@ format:
 ---
 
 
-# Create a SWOT with the Kernel
+# Create a SWOT with the Semantic Kernel
 
 # Setup
 
@@ -89,7 +89,7 @@ summary_function = kernel.create_semantic_function(prompt_template=sk_prompt,
 print("A semantic function for summarization has been registered.")
 ```
 
-## Prompt input
+## Prompt input {.smaller}
 
 ```{python}
 sk_input = """
@@ -111,7 +111,7 @@ thousand dollars a year, that will be a huge deal to him.
 ```
 
 
-## Call semantic function 
+## Run kernel 
 
 ```{python}
 summary_result = await kernel.run_async(summary_function,
@@ -126,10 +126,9 @@ summary_result = await kernel.run_async(summary_function,
 display(Markdown("### ✨ " + str(summary_result)))
 ```
 
-
 - ✨ AI can help a small pizza store owner improve revenues by analyzing data and suggesting changes, like making more popular pizzas on certain days.
 
-## Alternative to call semantic function: summary_function
+## Alternative to run kernel: summary_function
 
 - Shorter version to call semantic function (same result)
 
@@ -150,9 +149,9 @@ display(Markdown("### ✨ " + str(summary_result)))
 
 # Register Native functions
 
-## Define a function 
+## Define a function {.smaller}
 
-- Write some native function
+- Write some function
 
 ```{python}
 
@@ -189,6 +188,8 @@ class ExoticLanguagePlugin:
 
 - Register custom function in the kernel
 
+. . .
+
 ```{python}
 
 
@@ -200,7 +201,7 @@ pig_latin_function = exotic_language_plugin["pig_latin"]
 
 ```
 
-## Call semantic function and native function
+## Run kernel with semantic function and native function
 
 ```{python}
 final_result = await kernel.run_async(summary_function,
@@ -274,7 +275,7 @@ Meanwhile there's money being left on the table (their opportunities) with calam
 | Upcoming annual food fair                         | No immediate local regulatory changes but it's election season |
 
 
-# LLMs, Semantic Kernel & SWOT
+# SWOT Workflow
 
 ## Input {.smaller}
 
@@ -305,7 +306,6 @@ swot_interview = """
 ## Prompt template
 
 ```{python}
-
 sk_prompt = """
 {{$input}}
 
