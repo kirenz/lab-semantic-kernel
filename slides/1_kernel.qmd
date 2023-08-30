@@ -5,7 +5,7 @@ title-slide-attributes:
   data-background-size: contain
   data-background-opacity: "0.5"
 lang: en
-subtitle: Tutorial 1
+subtitle: Introduction
 author: Jan Kirenz
 execute:
   eval: false
@@ -44,14 +44,12 @@ format:
 from semantic_kernel.connectors.ai.hugging_face import HuggingFaceTextCompletion
 import semantic_kernel as sk
 from semantic_kernel.connectors.ai.open_ai import AzureChatCompletion, OpenAIChatCompletion
-
-
 ```
 
 
 # Create Kernel
 
-## OpenAI
+# OpenAI Kernel
 
 ```{python}
 kernel = sk.Kernel()
