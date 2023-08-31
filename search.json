@@ -4,7 +4,245 @@
     "href": "requirements.html",
     "title": "Requirements",
     "section": "",
-    "text": "To start this lab, you’ll need the following environments:\n\n\n\n\n\n\nImportant\n\n\n\nVisit the “Programming Toolkit-webpage” to learn how to meet all requirements.\n\n\n\nSQL: MySQL, MySQL Workbench and a database called db_data\nPython: Anaconda, Anaconda Environment lab and Visual Studio Code\nEnvironment: A folder on your machine called competitive and an environment file with your MySQL password"
+    "text": "To start this lab, you’ll need the following environments:\n\n\n\n\n\n\nImportant\n\n\n\nVisit the “Programming Toolkit-webpage” to learn how to meet all requirements.\n\n\n\nPython: Anaconda, Anaconda Environment kernel and Visual Studio Code\nEnvironment: A folder on your machine called semantic-kernel and an environment file with your OpenAI API key."
+  },
+  {
+    "objectID": "slides/7_apps.html",
+    "href": "slides/7_apps.html",
+    "title": "Apps",
+    "section": "",
+    "text": "https://github.com/microsoft/chat-copilot"
+  },
+  {
+    "objectID": "slides/7_apps.html#the-backend-server-demonstrates-how-to-connect-to-a-variety-of-resources-like-auth-vector-dbs-telemetry-content-safety-pdf-import-and-even-ocr.",
+    "href": "slides/7_apps.html#the-backend-server-demonstrates-how-to-connect-to-a-variety-of-resources-like-auth-vector-dbs-telemetry-content-safety-pdf-import-and-even-ocr.",
+    "title": "Apps",
+    "section": "🎁 The backend server demonstrates how to connect to a variety of resources like auth, vector dbs, telemetry, content safety, PDF import, and even OCR.",
+    "text": "🎁 The backend server demonstrates how to connect to a variety of resources like auth, vector dbs, telemetry, content safety, PDF import, and even OCR.\n//\n// # ABBREVIATED Chat Copilot Application Settings\n{\n  \"AIService\": {\n    \"Type\": \"AzureOpenAI\",\n    \"Endpoint\": \"\", // ignored when AIService is \"OpenAI\"\n     \"Key\": \"\",\n    \"Models\": {\n      \"Completion\": \"gpt-35-turbo\", \n      \"Embedding\": \"text-embedding-ada-002\",\n      \"Planner\": \"gpt-35-turbo\" \n    }\n  },\n  //\n  // Optional Azure Speech service configuration for providing Azure Speech access tokens.\n  // - Set the Region to the region of your Azure Speech resource (e.g., \"westus\").\n  // - Set the Key using dotnet's user secrets (see above)\n  //     (i.e. dotnet user-secrets set \"AzureSpeech:Key\" \"MY_AZURE_SPEECH_KEY\")\n  //\n  \"AzureSpeech\": {\n    \"Region\": \"\"\n    // \"Key\": \"\"\n  },\n  //\n  // Authorization configuration to gate access to the service.\n  // - Supported Types are \"None\", \"ApiKey\", or \"AzureAd\".\n  // - Set ApiKey using dotnet's user secrets (see above)\n  //     (i.e. dotnet user-secret set \"Authorization:ApiKey\" \"MY_API_KEY\")\n  //\n  \"Authorization\": {\n    \"Type\": \"None\",\n    \"ApiKey\": \"\",\n    \"AzureAd\": {\n      \"Instance\": \"https://login.microsoftonline.com/\",\n      \"TenantId\": \"\",\n      \"ClientId\": \"\",\n      \"Audience\": \"\",\n      \"Scopes\": \"access_as_user\" // Scopes that the client app requires to access the API\n    }\n  },\n  //\n  // Chat stores are used for storing chat sessions and messages.\n  // - Supported Types are \"volatile\", \"filesystem\", or \"cosmos\".\n  // - Set \"ChatStore:Cosmos:ConnectionString\" using dotnet's user secrets (see above)\n  //     (i.e. dotnet user-secrets set \"ChatStore:Cosmos:ConnectionString\" \"MY_COSMOS_CONNSTRING\")\n  //\n  \"ChatStore\": {\n    \"Type\": \"volatile\",\n    \"Filesystem\": {\n      \"FilePath\": \"./data/chatstore.json\"\n    },\n    \"Cosmos\": {\n      \"Database\": \"CopilotChat\",\n      \"ChatSessionsContainer\": \"chatsessions\",\n      \"ChatMessagesContainer\": \"chatmessages\",\n      \"ChatMemorySourcesContainer\": \"chatmemorysources\",\n      \"ChatParticipantsContainer\": \"chatparticipants\"\n      // \"ConnectionString\": // dotnet user-secrets set \"ChatStore:Cosmos:ConnectionString\" \"MY_COSMOS_CONNECTION_STRING\"\n    }\n  },\n  //\n  // Memory stores are used for storing new memories and retrieving semantically similar memories.\n  \"MemoryStore\": {\n    \"Type\": \"volatile\",\n    \"Qdrant\": {\n      \"Host\": \"http://localhost\",\n      \"Port\": \"6333\",\n      \"VectorSize\": 1536\n      // \"Key\":  \"\"\n    },\n    \"AzureCognitiveSearch\": {\n      \"Endpoint\": \"\"\n      // \"Key\": \"\"\n    },\n    \"Chroma\": {\n      \"Host\": \"http://localhost\",\n      \"Port\": \"8000\"\n    },\n    \"Postgres\": {\n      \"VectorSize\": 1536\n      // \"ConnectionString\": // dotnet user-secrets set \"MemoryStore:Postgres:ConnectionString\" \"MY_POSTGRES_CONNECTION_STRING\"\n    }\n  },\n  //\n  // Document import configuration\n  //\n  \"DocumentMemory\": {\n    \"GlobalDocumentCollectionName\": \"global-documents\",\n    \"ChatDocumentCollectionNamePrefix\": \"chat-documents-\",\n    \"DocumentLineSplitMaxTokens\": 72,\n    \"DocumentChunkMaxTokens\": 512,\n    \"FileSizeLimit\": 4000000,\n    \"FileCountLimit\": 10\n  },\n  //\n  // OCR support is used for allowing end users to upload images containing text in addition to text based documents.\n  //  https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/quickstarts-sdk/client-library?tabs=windows%2Cvisual-studio&pivots=programming-language-csharp#optical-character-recognition-ocr-with-computer-vision-api-using-c\n  //\n  \"OcrSupport\": {\n    \"Type\": \"none\",\n    \"Tesseract\": {\n      \"Language\": \"eng\",\n      \"FilePath\": \"./data\"\n    },\n    \"AzureFormRecognizer\": {\n      \"Endpoint\": \"\"\n      // \"Key\": \"\",\n    }\n  },\n  //\n  // Application Insights configuration\n  // - Set \"APPLICATIONINSIGHTS_CONNECTION_STRING\" using dotnet's user secrets (see above)\n  //     (i.e. dotnet user-secrets set \"APPLICATIONINSIGHTS_CONNECTION_STRING\" \"MY_APPINS_CONNSTRING\")\n  //\n  \"APPLICATIONINSIGHTS_CONNECTION_STRING\": null\n}"
+  },
+  {
+    "objectID": "slides/5_database.html#python",
+    "href": "slides/5_database.html#python",
+    "title": "Use a Database",
+    "section": "Python",
+    "text": "Python\n\nimport shutil\nfrom IPython.display import display, Markdown\nimport semantic_kernel as sk\nfrom semantic_kernel.connectors.ai.open_ai import OpenAIChatCompletion, OpenAITextEmbedding\nfrom semantic_kernel.connectors.memory.chroma import ChromaMemoryStore"
+  },
+  {
+    "objectID": "slides/5_database.html#kernel-and-completion-service",
+    "href": "slides/5_database.html#kernel-and-completion-service",
+    "title": "Use a Database",
+    "section": "Kernel and completion service",
+    "text": "Kernel and completion service\n\nkernel = sk.Kernel()\n\napi_key, org_id = sk.openai_settings_from_dot_env()\n\n# Completion service\nkernel.add_text_completion_service(\n    \"openai-completion\", OpenAIChatCompletion(\"gpt-3.5-turbo\", api_key, org_id))"
+  },
+  {
+    "objectID": "slides/5_database.html#embeddings-and-database",
+    "href": "slides/5_database.html#embeddings-and-database",
+    "title": "Use a Database",
+    "section": "Embeddings and database",
+    "text": "Embeddings and database\n\n# Embedding service\nkernel.add_text_embedding_generation_service(\n    \"openai-embedding\", OpenAITextEmbedding(\"text-embedding-ada-002\", api_key, org_id))\n\nChroma database:\n\nkernel.register_memory_store(\n    memory_store=ChromaMemoryStore(persist_directory='../data/mymemories'))\n\nprint(\"\")"
+  },
+  {
+    "objectID": "slides/5_database.html#reset-database-if-necessary",
+    "href": "slides/5_database.html#reset-database-if-necessary",
+    "title": "Use a Database",
+    "section": "Reset database (if necessary)",
+    "text": "Reset database (if necessary)\n\n# ONLY DELETE THE DIRECTORY IF YOU WANT TO CLEAR THE MEMORY\n# OTHERWISE, SET delete_dir = True\n\ndelete_dir = False\n\nif (delete_dir):\n    dir_path = \"../data/mymemories\"\n    shutil.rmtree(dir_path)\n    kernel.register_memory_store(\n        memory_store=ChromaMemoryStore(persist_directory=dir_path))\n    print(\"⚠️ Memory cleared and reset\")"
+  },
+  {
+    "objectID": "slides/5_database.html#input-data",
+    "href": "slides/5_database.html#input-data",
+    "title": "Use a Database",
+    "section": "Input data",
+    "text": "Input data\n\nstrength_questions = [\"What unique recipes or ingredients does the pizza shop use?\", \"What are the skills and experience of the staff?\", \"Does the pizza shop have a strong reputation in the local area?\",\n                      \"Are there any unique features of the shop or its location that attract customers?\", \"Does the pizza shop have a strong reputation in the local area?\", \"Are there any unique features of the shop or its location that attract customers?\"]\nweakness_questions = [\"What are the operational challenges of the pizza shop? (e.g., slow service, high staff turnover)\", \"Are there financial constraints that limit growth or improvements?\",\n                      \"Are there any gaps in the product offering?\", \"Are there customer complaints or negative reviews that need to be addressed?\"]\nopportunities_questions = [\"Is there potential for new products or services (e.g., catering, delivery)?\", \"Are there under-served customer segments or market areas?\",\n                           \"Can new technologies or systems enhance the business operations?\", \"Are there partnerships or local events that can be leveraged for marketing?\"]\nthreats_questions = [\"Who are the major competitors and what are they offering?\", \"Are there potential negative impacts due to changes in the local area (e.g., construction, closure of nearby businesses)?\",\n                     \"Are there economic or industry trends that could impact the business negatively (e.g., increased ingredient costs)?\", \"Is there any risk due to changes in regulations or legislation (e.g., health and safety, employment)?\"]\n\nstrengths = [\"Unique garlic pizza recipe that wins top awards\", \"Owner trained in Sicily at some of the best pizzerias\",\n             \"Strong local reputation\", \"Prime location on university campus\"]\nweaknesses = [\"High staff turnover\", \"Floods in the area damaged the seating areas that are in need of repair\",\n              \"Absence of popular calzones from menu\", \"Negative reviews from younger demographic for lack of hip ingredients\"]\nopportunities = [\"Untapped catering potential\", \"Growing local tech startup community\",\n                 \"Unexplored online presence and order capabilities\", \"Upcoming annual food fair\"]\nthreats = [\"Competition from cheaper pizza businesses nearby\", \"There's nearby street construction that will impact foot traffic\",\n           \"Rising cost of cheese will increase the cost of pizzas\", \"No immediate local regulatory changes but it's election season\"]"
+  },
+  {
+    "objectID": "slides/5_database.html#import-into-database",
+    "href": "slides/5_database.html#import-into-database",
+    "title": "Use a Database",
+    "section": "Import into database",
+    "text": "Import into database\n\nCreate embeddings and store data\n\n\nmemoryCollectionName = \"SWOT\"\n\nfor i in range(len(strengths)):\n    await kernel.memory.save_information_async(memoryCollectionName, id=f\"strength-{i}\", text=f\"Internal business strength (S in SWOT) that makes customers happy and satisfied Q&A: Q: {strength_questions[i]} A: {strengths[i]}\")\n\nfor i in range(len(weaknesses)):\n    await kernel.memory.save_information_async(memoryCollectionName, id=f\"weakness-{i}\", text=f\"Internal business weakness (W in SWOT) that makes customers unhappy and dissatisfied Q&A: Q: {weakness_questions[i]} A: {weaknesses[i]}\")\n\nfor i in range(len(opportunities)):\n    await kernel.memory.save_information_async(memoryCollectionName, id=f\"opportunity-{i}\", text=f\"External opportunity (O in SWOT) for the business to gain entirely new customers Q&A: Q: {opportunities_questions[i]} A: {opportunities[i]}\")\n\nfor i in range(len(threats)):\n    await kernel.memory.save_information_async(memoryCollectionName, id=f\"threat-{i}\", text=f\"External threat (T in SWOT) to the business that impacts its survival Q&A: Q: {threats_questions[i]} A: {threats[i]}\")"
+  },
+  {
+    "objectID": "slides/5_database.html#question",
+    "href": "slides/5_database.html#question",
+    "title": "Use a Database",
+    "section": "Question",
+    "text": "Question\n\npotential_question = \"What are the easiest ways to make more money?\""
+  },
+  {
+    "objectID": "slides/5_database.html#memory-search",
+    "href": "slides/5_database.html#memory-search",
+    "title": "Use a Database",
+    "section": "Memory search",
+    "text": "Memory search\n\ncounter = 0\n\nmemories = await kernel.memory.search_async(memoryCollectionName, potential_question, limit=5, min_relevance_score=0.5)"
+  },
+  {
+    "objectID": "slides/5_database.html#result",
+    "href": "slides/5_database.html#result",
+    "title": "Use a Database",
+    "section": "Result",
+    "text": "Result\n\ndisplay(Markdown(f\"### ❓ Potential question: {potential_question}\"))\n\n\nfor memory in memories:\n    if counter == 0:\n        related_memory = memory.text\n    counter += 1\n    print(\n        f\"  &gt; Similarity result {counter}:\\n  &gt;&gt; ID: {memory.id}\\n  Text: {memory.text}  Relevance: {memory.relevance}\\n\")"
+  },
+  {
+    "objectID": "slides/5_database.html#result-1",
+    "href": "slides/5_database.html#result-1",
+    "title": "Use a Database",
+    "section": "Result",
+    "text": "Result\n&gt; Similarity result 1:\n  &gt;&gt; ID: opportunity-0\n  Text: External opportunity (O in SWOT) for the business to gain entirely new customers Q&A: Q: Is there potential for new products or services (e.g., catering, delivery)? A: Untapped catering potential  Relevance: 0.7721327504132071\n\n  &gt; Similarity result 2:\n  &gt;&gt; ID: opportunity-3\n  Text: External opportunity (O in SWOT) for the business to gain entirely new customers Q&A: Q: Are there partnerships or local events that can be leveraged for marketing? A: Upcoming annual food fair  Relevance: 0.770177891378116\n\n  &gt; Similarity result 3:\n  &gt;&gt; ID: opportunity-1\n  Text: External opportunity (O in SWOT) for the business to gain entirely new customers Q&A: Q: Are there under-served customer segments or market areas? A: Growing local tech startup community  Relevance: 0.7698220128086722\n\n  &gt; Similarity result 4:\n  &gt;&gt; ID: opportunity-2\n  Text: External opportunity (O in SWOT) for the business to gain entirely new customers Q&A: Q: Can new technologies or systems enhance the business operations? A: Unexplored online presence and order capabilities  Relevance: 0.7676498736381523\n\n  &gt; Similarity result 5:\n  &gt;&gt; ID: threat-0\n  Text: External threat (T in SWOT) to the business that impacts its survival Q&A: Q: Who are the major competitors and what are they offering? A: Competition from cheaper pizza businesses nearby  Relevance: 0.7522373129207561"
+  },
+  {
+    "objectID": "slides/5_database.html#question-1",
+    "href": "slides/5_database.html#question-1",
+    "title": "Use a Database",
+    "section": "Question",
+    "text": "Question\n\nwhat_if_scenario = \"How can the business owner save time?\""
+  },
+  {
+    "objectID": "slides/5_database.html#memory-search-1",
+    "href": "slides/5_database.html#memory-search-1",
+    "title": "Use a Database",
+    "section": "Memory search",
+    "text": "Memory search\n\ncounter = 0\ngathered_context = []\nmax_memories = 3\n\n\n\nmemories = await kernel.memory.search_async(memoryCollectionName, what_if_scenario, limit=max_memories, min_relevance_score=0.77)"
+  },
+  {
+    "objectID": "slides/5_database.html#save-output-to-database",
+    "href": "slides/5_database.html#save-output-to-database",
+    "title": "Use a Database",
+    "section": "Save output to database",
+    "text": "Save output to database\n\nprint(f\"✨ Leveraging information available to address '{what_if_scenario}'...\")\n\nfor memory in memories:\n    if counter == 0:\n        related_memory = memory.text\n    counter += 1\n    gathered_context.append(memory.text + \"\\n\")\n    print(f\"  &gt; Hit {counter}: {memory.id} \")"
+  },
+  {
+    "objectID": "slides/5_database.html#create-presentation",
+    "href": "slides/5_database.html#create-presentation",
+    "title": "Use a Database",
+    "section": "Create presentation",
+    "text": "Create presentation\n\nskillsDirectory = \"../plugins-sk\"\n\npluginFC = kernel.import_semantic_skill_from_directory(\n    skillsDirectory, \"FriendlyConsultant\")"
+  },
+  {
+    "objectID": "slides/5_database.html#context",
+    "href": "slides/5_database.html#context",
+    "title": "Use a Database",
+    "section": "Context",
+    "text": "Context\n\nmy_context = kernel.create_new_context()\nmy_context['input'] = what_if_scenario\nmy_context['context'] = \"\\n\".join(gathered_context)"
+  },
+  {
+    "objectID": "slides/5_database.html#presentation-output",
+    "href": "slides/5_database.html#presentation-output",
+    "title": "Use a Database",
+    "section": "Presentation output",
+    "text": "Presentation output\n\npreso_result = await kernel.run_async(pluginFC[\"Presentation\"], input_context=my_context)\n\n\ndisplay(Markdown(\"# ✨ Generated presentation ...\\n\"+str(preso_result)))"
+  },
+  {
+    "objectID": "slides/5_database.html#output",
+    "href": "slides/5_database.html#output",
+    "title": "Use a Database",
+    "section": "Output",
+    "text": "Output\n\n✨ Generated presentation ...\n\n# Business Strategy Consultant Presentation\n\n# Summary\n\nThe business owner has asked for ways to save time. We will explore three key concerns that can help the business owner save time and improve operations.\n\n# The Question\n- How can the business owner save time?\n\n# Key Concerns\n\n1. Unexplored online presence and order capabilities\n2. Untapped catering potential\n3. Growing local tech startup community\n\n# Unexplored Online Presence and Order Capabilities\n\n- Explanation: The business can save time by implementing online ordering capabilities and improving their online presence. This will allow customers to place orders without the need for phone calls or in-person visits.\n\n- Example: The business can create a website with an online ordering system and integrate it with their social media accounts. This will allow customers to easily place orders and the business can save time by not having to take orders over the phone.\n\n# Untapped Catering Potential\n\n- Explanation: The business can save time by exploring catering opportunities. This will allow the business to serve multiple customers at once and potentially increase revenue.\n\n- Example: The business can create a catering menu and market it to local businesses and events. This will allow the business to serve multiple customers at once and save time by not having to prepare individual orders.\n\n# Growing Local Tech Startup Community\n\n- Explanation: The business can save time by targeting under-served customer segments or market areas. The growing local tech startup community is an opportunity for the business to gain new customers and potentially increase revenue.\n\n- Example: The business can create a marketing campaign targeted towards the local tech startup community. This will allow the business to gain new customers and potentially increase revenue.\n\n# Summary\n\n- By implementing online ordering capabilities, exploring catering opportunities, and targeting under-served customer segments, the business owner can save time and improve operations."
+  },
+  {
+    "objectID": "slides/6_core_plugins.html#python",
+    "href": "slides/6_core_plugins.html#python",
+    "title": "Core Plugins",
+    "section": "Python",
+    "text": "Python\n\nimport semantic_kernel as sk\nfrom semantic_kernel.connectors.ai.open_ai import OpenAIChatCompletion, OpenAITextEmbedding\nfrom semantic_kernel.connectors.ai.open_ai import AzureChatCompletion, AzureTextEmbedding\nfrom semantic_kernel.planning import ActionPlanner\nfrom semantic_kernel.planning import SequentialPlanner\nfrom semantic_kernel.core_skills.text_skill import TextSkill\nfrom semantic_kernel.planning import SequentialPlanner\nfrom semantic_kernel.core_skills.text_skill import TextSkill\nfrom semantic_kernel.core_skills import FileIOSkill, MathSkill, TextSkill, TimeSkill\n\nfrom IPython.display import display, Markdown"
+  },
+  {
+    "objectID": "slides/6_core_plugins.html#kernel",
+    "href": "slides/6_core_plugins.html#kernel",
+    "title": "Core Plugins",
+    "section": "Kernel",
+    "text": "Kernel\n\nkernel = sk.Kernel()\n\napi_key, org_id = sk.openai_settings_from_dot_env()\n\nkernel.add_text_completion_service(\n    \"openaicompletion\", OpenAIChatCompletion(\"gpt-3.5-turbo-0301\", api_key, org_id))\n\nkernel.add_text_embedding_generation_service(\n    \"openaiembedding\", OpenAITextEmbedding(\"text-embedding-ada-002\", api_key, org_id))"
+  },
+  {
+    "objectID": "slides/6_core_plugins.html#import-plugins",
+    "href": "slides/6_core_plugins.html#import-plugins",
+    "title": "Core Plugins",
+    "section": "Import plugins",
+    "text": "Import plugins\n\nAction Planner is a simple tool which can find the right tool to get things done\n\n\nplanner = ActionPlanner(kernel)\n\n\nAdding the tools for the kernel to do math, to read/write files, to tell the time, and to play with text:\n\n\n\nkernel.import_skill(MathSkill(), \"math\")\nkernel.import_skill(FileIOSkill(), \"fileIO\")\nkernel.import_skill(TimeSkill(), \"time\")\nkernel.import_skill(TextSkill(), \"text\")"
+  },
+  {
+    "objectID": "slides/6_core_plugins.html#math",
+    "href": "slides/6_core_plugins.html#math",
+    "title": "Core Plugins",
+    "section": "Math",
+    "text": "Math\n\nask = \"What is the sum of 110 and 990?\"\n\n\n\nFinding the most similar function available to get that done…\n\n\nplan = await planner.create_plan_async(goal=ask)\n\n\n\n\nprint(\n    f\" The best single function to use is `{plan._skill_name}.{plan._function.name}`\")"
+  },
+  {
+    "objectID": "slides/6_core_plugins.html#date",
+    "href": "slides/6_core_plugins.html#date",
+    "title": "Core Plugins",
+    "section": "Date",
+    "text": "Date\n\nask = \"What is today?\"\n\n\n\nprint(f\" Finding the most similar function available to get that done...\")\n\n\n\n\nplan = await planner.create_plan_async(goal=ask)\n\n\n\n\nprint(\n    f\" The best single function to use is `{plan._skill_name}.{plan._function.name}`\")"
+  },
+  {
+    "objectID": "slides/6_core_plugins.html#text",
+    "href": "slides/6_core_plugins.html#text",
+    "title": "Core Plugins",
+    "section": "Text",
+    "text": "Text\n\nask = \"How do I write the word 'text' to a file?\"\n\n\n\nprint(f\" Finding the most similar function available to get that done...\")\nplan = await planner.create_plan_async(goal=ask)\nprint(\n    f\" The best single function to use is `{plan._skill_name}.{plan._function.name}`\")"
+  },
+  {
+    "objectID": "slides/6_core_plugins.html#custom-plugin-literatefriend",
+    "href": "slides/6_core_plugins.html#custom-plugin-literatefriend",
+    "title": "Core Plugins",
+    "section": "Custom Plugin LiterateFriend",
+    "text": "Custom Plugin LiterateFriend\n\nplugins_directory = \"../plugins-sk\"\n\n\n\nwriter_plugin = kernel.import_semantic_skill_from_directory(\n    plugins_directory, \"LiterateFriend\")"
+  },
+  {
+    "objectID": "slides/6_core_plugins.html#use-sequential-planner",
+    "href": "slides/6_core_plugins.html#use-sequential-planner",
+    "title": "Core Plugins",
+    "section": "Use Sequential Planner",
+    "text": "Use Sequential Planner\n\nplanner = SequentialPlanner(kernel)"
+  },
+  {
+    "objectID": "slides/6_core_plugins.html#task",
+    "href": "slides/6_core_plugins.html#task",
+    "title": "Core Plugins",
+    "section": "Task",
+    "text": "Task\n\nask = \"\"\"\nTomorrow is Valentine's day. I need to come up with a poem. Translate the poem to German.\n\"\"\"\n\n\nThis will require two plugins (write poem and translate)"
+  },
+  {
+    "objectID": "slides/6_core_plugins.html#call-planner",
+    "href": "slides/6_core_plugins.html#call-planner",
+    "title": "Core Plugins",
+    "section": "Call planner",
+    "text": "Call planner\n\nplan = await planner.create_plan_async(goal=ask)"
+  },
+  {
+    "objectID": "slides/6_core_plugins.html#obtain-result",
+    "href": "slides/6_core_plugins.html#obtain-result",
+    "title": "Core Plugins",
+    "section": "Obtain result",
+    "text": "Obtain result\n\nresult = await plan.invoke_async()"
+  },
+  {
+    "objectID": "slides/6_core_plugins.html#output",
+    "href": "slides/6_core_plugins.html#output",
+    "title": "Core Plugins",
+    "section": "Output",
+    "text": "Output\n\nfor index, step in enumerate(plan._steps):\n    print(f\"✅ Step {index+1} used function `{step._function.name}`\")\n\ntrace_resultp = True\n\ndisplay(\n    Markdown(f\"## ✨ Generated result from the ask: {ask}\\n\\n---\\n\" + str(result)))"
+  },
+  {
+    "objectID": "slides/6_core_plugins.html#display-output",
+    "href": "slides/6_core_plugins.html#display-output",
+    "title": "Core Plugins",
+    "section": "Display output",
+    "text": "Display output\n✅ Step 1 used function `ShortPoem`\n✅ Step 2 used function `Translate`\n✨ Generated result from the ask:\n\nTomorrow is Valentine's day. I need to come up with a poem. Translate the poem to German.\n\nRosen sind rot, Veilchen sind blau, Valentinstag ist da, was wirst du tun? Kaufe Schokolade und Blumen oder schreibe einen Liebesbrief, Vergiss nur nicht, es alles besser zu machen.\n\nWenn du Single bist, keine Sorge, Gönn dir selbst, zu...\n\nmmmhhh, maybe lost in translation 🙂"
+  },
+  {
+    "objectID": "slides/6_core_plugins.html#take-a-closer-look-at-the-output",
+    "href": "slides/6_core_plugins.html#take-a-closer-look-at-the-output",
+    "title": "Core Plugins",
+    "section": "Take a closer look at the output",
+    "text": "Take a closer look at the output\n\nfor index, step in enumerate(plan._steps):\n    print(f\"✅ Step {index+1} used function `{step._function.name}`\")\n\ntrace_resultp = True\n\nif trace_resultp:\n    print(\"Longform trace:\\n\")\n    for index, step in enumerate(plan._steps):\n        print(\"Step:\", index)\n        print(\"Description:\", step.description)\n        print(\"Function:\", step.skill_name + \".\" + step._function.name)\n        print(\"Output vars:\", step._outputs)\n        if len(step._outputs) &gt; 0:\n            print(\"  Output:\\n\", str.replace(\n                result[step._outputs[0]], \"\\n\", \"\\n  \"))\n\ndisplay(\n    Markdown(f\"## ✨ Generated result from the ask: {ask}\\n\\n---\\n\" + str(result)))"
+  },
+  {
+    "objectID": "slides/6_core_plugins.html#take-a-closer-look-at-the-output-1",
+    "href": "slides/6_core_plugins.html#take-a-closer-look-at-the-output-1",
+    "title": "Core Plugins",
+    "section": "Take a closer look at the output",
+    "text": "Take a closer look at the output\n\n✅ Step 1 used function `ShortPoem`\n✅ Step 2 used function `Translate`\nLongform trace:\n\nStep: 0\nDescription: Turn a scenario into a short and entertaining poem.\nFunction: LiterateFriend.ShortPoem\nOutput vars: ['POEM']\n  Output:\n Roses are red, violets are blue,\n  Valentine's Day is here, what will you do?\n  Buy chocolates and flowers, or write a love letter,\n  Just don't forget, to make it all better.\n  \n  If you're single, don't you fret,\n  Treat yourself, to\n\nStep: 1\nDescription: Translate the input into a language of your choice\nFunction: LiterateFriend.Translate\nOutput vars: ['RESULT__TRANSLATED_POEM']\n  Output:\n Rosen sind rot, Veilchen sind blau,\n  Valentinstag ist da, was wirst du tun?\n  Kaufe Schokolade und Blumen oder schreibe einen Liebesbrief,\n  Vergiss nur nicht, es alles besser zu machen.\n  \n  Wenn du Single bist, keine Sorge,\n  Gönn dir selbst, zu..."
   },
   {
     "objectID": "code/notebook.html",
@@ -32,69 +270,622 @@
     "href": "assignments.html",
     "title": "Assignments",
     "section": "",
-    "text": "This is a Quarto slidedeck."
+    "text": "tbd"
   },
   {
     "objectID": "slide.html",
     "href": "slide.html",
     "title": "Slides",
     "section": "",
-    "text": "The following tutorials are mainly based on “” provided by\nTxt"
+    "text": "The tutorials are mainly based on the excellent course “How Business Thinkers Can Start Building AI Plugins With Semantic Kernel” provided by John Maeda and Andrew Ng"
   },
   {
-    "objectID": "slide.html#txt",
-    "href": "slide.html#txt",
+    "objectID": "slide.html#semantic-kernel",
+    "href": "slide.html#semantic-kernel",
     "title": "Slides",
-    "section": "1 Txt",
-    "text": "1 Txt\nIn this tutorial, you’ll learn:\n\n\n\n\n\n\n\n🖥️ Presentation\n💻 Jupyter Notebook"
+    "section": "1 Semantic Kernel",
+    "text": "1 Semantic Kernel\nLearn how to utilize the open source orchestrator, the Semantic Kernel, in your applications:\n\n\n\n\n\n\n\n🖥️ Presentation\n💻 Jupyter Notebook"
+  },
+  {
+    "objectID": "slide.html#swot-analysis",
+    "href": "slide.html#swot-analysis",
+    "title": "Slides",
+    "section": "2 SWOT-Analysis",
+    "text": "2 SWOT-Analysis\nDevelop business applications like SWOT using LLM’s:\n\n\n\n\n\n\n\n🖥️ Presentation\n💻 Jupyter Notebook"
+  },
+  {
+    "objectID": "slide.html#business-plugins",
+    "href": "slide.html#business-plugins",
+    "title": "Slides",
+    "section": "3 Business Plugins",
+    "text": "3 Business Plugins\n\n\n\n\n\n\n\n🖥️ Presentation\n💻 Jupyter Notebook"
+  },
+  {
+    "objectID": "slide.html#design-thinking",
+    "href": "slide.html#design-thinking",
+    "title": "Slides",
+    "section": "4 Design Thinking",
+    "text": "4 Design Thinking\nUse Design Thinking to empathize with customers and solve their challenges:\n\n\n\n\n\n\n\n🖥️ Presentation\n💻 Jupyter Notebook"
+  },
+  {
+    "objectID": "slide.html#database",
+    "href": "slide.html#database",
+    "title": "Slides",
+    "section": "5 Database",
+    "text": "5 Database\nLearn how to use data in a vector store database:\n\n\n\n\n\n\n\n🖥️ Presentation\n💻 Jupyter Notebook"
+  },
+  {
+    "objectID": "slide.html#core-plugins",
+    "href": "slide.html#core-plugins",
+    "title": "Slides",
+    "section": "6 Core Plugins",
+    "text": "6 Core Plugins\nLearn how to add the tools for the kernel to do math, to read/write files, to tell the time, and to play with text. You can find more about core plugins here.\n\n\n\n\n\n\n\n🖥️ Presentation\n💻 Jupyter Notebook"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Welcome 👋",
     "section": "",
-    "text": "Welcome to the lab ““\n\nIn this lab you will …\n\n\n\n\n\n\nImportant\n\n\n\nMake sure you meet all the requirements and have read the lecture slides before you start with the assignments\n\n\nWhat you will learn in this lab:\n\nHow to set up a MySQL database\nUse SQL for data analysis\nMake use of Pandas for data analysis in Python\nUse Altair for data visualization in Python"
+    "text": "Welcome to the lab “Semantic Kernel”\n\nLarge Language Models (LLMs) enable us to build new kinds of applications that harness the power of AI. In this lab, you’ll learn how to use and create with Microsoft’s open source orchestrator, Semantic Kernel.\nUsing an orchestration SDK such as Semantic Kernel means you can avoid having to learn APIs for each individual AI service, and build integrations that can always stay up to date with the latest advances in AI research rather than solutions that quickly get outdated.\n\n\n\n\n\n\nImportant\n\n\n\nMake sure you meet all the requirements and have read the lecture slides before you start with the assignments\n\n\nAfter completing this course you will be able to:\n\nUtilize the open source orchestrator, the Semantic Kernel, in your applications\nDevelop business applications like SWOT using LLM’s\nUse Design Thinking to empathize with customers and solve their challenges\nChaining semantic functions for enhanced impact\nLeverage common LLM building blocks such as memories, chaining and planners\nBuild an AI planner that integrates plug-ins to create advanced logic-based plans\n\n\nThis lab is mainly based on the excellent course “How Business Thinkers Can Start Building AI Plugins With Semantic Kernel” provided by John Maeda and Andrew Ng"
   },
   {
-    "objectID": "slides/slides.html#text",
-    "href": "slides/slides.html#text",
-    "title": "foo",
-    "section": "Text",
-    "text": "Text\n\na 🤖\n\nabc\n\n\n\n\nb\nc1\n\n📚 Required reading: A & B (2023)\nhttps://arxiv.org/pdf/2303.12712.pdf\n\nRussell & Norvig, 2009"
+    "objectID": "slides/2_swot.html#python",
+    "href": "slides/2_swot.html#python",
+    "title": "SWOT-Analysis",
+    "section": "Python",
+    "text": "Python\n\nfrom semantic_kernel.skill_definition import (\n    sk_function,\n    sk_function_context_parameter,\n)\nimport semantic_kernel as sk\n\nfrom semantic_kernel.connectors.ai.open_ai import AzureChatCompletion, OpenAIChatCompletion\nfrom IPython.display import display, Markdown"
   },
   {
-    "objectID": "slides/slides.html#image",
-    "href": "slides/slides.html#image",
-    "title": "foo",
-    "section": "Image",
-    "text": "Image"
+    "objectID": "slides/2_swot.html#kernel",
+    "href": "slides/2_swot.html#kernel",
+    "title": "SWOT-Analysis",
+    "section": "Kernel",
+    "text": "Kernel\n\nkernel = sk.Kernel()\n\napi_key, org_id = sk.openai_settings_from_dot_env()\n\nkernel.add_text_completion_service(\n    \"openai\", OpenAIChatCompletion(\"gpt-3.5-turbo\", api_key, org_id))\n\nprint(\"A kernel is now ready.\")"
   },
   {
-    "objectID": "slides/slides.html#video",
-    "href": "slides/slides.html#video",
-    "title": "foo",
-    "section": "Video",
-    "text": "Video"
+    "objectID": "slides/2_swot.html#prompt-template",
+    "href": "slides/2_swot.html#prompt-template",
+    "title": "SWOT-Analysis",
+    "section": "Prompt template",
+    "text": "Prompt template\n\nsk_prompt = \"\"\"\n{{$input}}\n\nSummarize the content above in less than 140 characters.\n\"\"\""
   },
   {
-    "objectID": "slides/slides.html#a-lot-of-text",
-    "href": "slides/slides.html#a-lot-of-text",
-    "title": "foo",
-    "section": "A lot of text",
-    "text": "A lot of text\nSmaller heading"
+    "objectID": "slides/2_swot.html#define-semantic-function",
+    "href": "slides/2_swot.html#define-semantic-function",
+    "title": "SWOT-Analysis",
+    "section": "Define semantic function",
+    "text": "Define semantic function\n\nsummary_function = kernel.create_semantic_function(prompt_template=sk_prompt,\n                                                   description=\"Summarizes the input to length of an old tweet.\",\n                                                   max_tokens=200,\n                                                   temperature=0.1,\n                                                   top_p=0.5)\n# as a reminder\nprint(\"A semantic function for summarization has been registered.\")"
   },
   {
-    "objectID": "slides/slides.html#background-image",
-    "href": "slides/slides.html#background-image",
-    "title": "foo",
-    "section": "Background image",
-    "text": "Background image\nabc"
+    "objectID": "slides/2_swot.html#prompt-input",
+    "href": "slides/2_swot.html#prompt-input",
+    "title": "SWOT-Analysis",
+    "section": "Prompt input",
+    "text": "Prompt input\n\nsk_input = \"\"\"\nLet me illustrate an example. Many weekends, I drive a few minutes from my house to a local pizza store to buy \na slice of Hawaiian pizza from the gentleman that owns this pizza store. And his pizza is great, but he always \nhas a lot of cold pizzas sitting around, and every weekend some different flavor of pizza is out of stock. \nBut when I watch him operate his store, I get excited, because by selling pizza, he is generating data. \nAnd this is data that he can take advantage of if he had access to AI.\n\nAI systems are good at spotting patterns when given access to the right data, and perhaps an AI system could spot \nif Mediterranean pizzas sell really well on a Friday night, maybe it could suggest to him to make more of it on a \nFriday afternoon. Now you might say to me, \"Hey, Andrew, this is a small pizza store. What's the big deal?\" And I \nsay, to the gentleman that owns this pizza store, something that could help him improve his revenues by a few \nthousand dollars a year, that will be a huge deal to him.\n\"\"\"\n# Text source: https://www.ted.com/talks/andrew_ng_how_ai_could_empower_any_business/transcript"
   },
   {
-    "objectID": "slides/slides.html#code",
-    "href": "slides/slides.html#code",
-    "title": "foo",
-    "section": "Code",
-    "text": "Code\n1print('Hello World')\n2for i in LIST:\n  df[i] = df[i].astype('cat')\n\n1\n\nPrint Hello World, and then,\n\n2\n\ntransform all columns in the LIST element to categorical variables"
+    "objectID": "slides/2_swot.html#run-kernel",
+    "href": "slides/2_swot.html#run-kernel",
+    "title": "SWOT-Analysis",
+    "section": "Run kernel",
+    "text": "Run kernel\n\nsummary_result = await kernel.run_async(summary_function,\n                                        input_str=sk_input)"
+  },
+  {
+    "objectID": "slides/2_swot.html#output",
+    "href": "slides/2_swot.html#output",
+    "title": "SWOT-Analysis",
+    "section": "Output",
+    "text": "Output\n\ndisplay(Markdown(\"### ✨ \" + str(summary_result)))\n\n\n\n✨ AI can help a small pizza store owner improve revenues by analyzing data and suggesting changes, like making more popular pizzas on certain days."
+  },
+  {
+    "objectID": "slides/2_swot.html#output-output",
+    "href": "slides/2_swot.html#output-output",
+    "title": "SWOT-Analysis",
+    "section": "Output",
+    "text": "Output"
+  },
+  {
+    "objectID": "slides/2_swot.html#alternative-to-run-kernel-summary_function",
+    "href": "slides/2_swot.html#alternative-to-run-kernel-summary_function",
+    "title": "SWOT-Analysis",
+    "section": "Alternative to run kernel: summary_function",
+    "text": "Alternative to run kernel: summary_function\n\nShorter version to call semantic function (same result)\n\n\n\nsummary_result = summary_function(sk_input)\n\n\n\n\ndisplay(Markdown(\"### ✨ \" + str(summary_result)))\n\n\n\n✨ AI can help a small pizza store owner increase revenue by analyzing data to identify patterns and make informed decisions."
+  },
+  {
+    "objectID": "slides/2_swot.html#alternative-to-run-kernel-summary_function-output",
+    "href": "slides/2_swot.html#alternative-to-run-kernel-summary_function-output",
+    "title": "SWOT-Analysis",
+    "section": "Alternative to run kernel: summary_function",
+    "text": "Alternative to run kernel: summary_function"
+  },
+  {
+    "objectID": "slides/2_swot.html#define-a-function",
+    "href": "slides/2_swot.html#define-a-function",
+    "title": "SWOT-Analysis",
+    "section": "Define a function",
+    "text": "Define a function\n\nWrite some function\n\n\nclass ExoticLanguagePlugin:\n    def word_to_pig_latin(self, word):\n        vowels = \"AEIOUaeiou\"\n        if word[0] in vowels:\n            return word + \"way\"\n        for idx, letter in enumerate(word):\n            if letter in vowels:\n                break\n        else:\n            return word + \"ay\"\n        return word[idx:] + word[:idx] + \"ay\"\n\n    @sk_function(\n        description=\"Takes text and converts it to pig latin\",\n        name=\"pig_latin\",\n        input_description=\"The text to convert to pig latin\",\n    )\n    def pig_latin(self, sentence: str) -&gt; str:\n        words = sentence.split()\n        pig_latin_words = []\n        for word in words:\n            pig_latin_words.append(self.word_to_pig_latin(word))\n        return ' '.join(pig_latin_words)"
+  },
+  {
+    "objectID": "slides/2_swot.html#register-function",
+    "href": "slides/2_swot.html#register-function",
+    "title": "SWOT-Analysis",
+    "section": "Register function",
+    "text": "Register function\n\nRegister custom function in the kernel\n\n\n\nexotic_language_plugin = kernel.import_skill(\n    ExoticLanguagePlugin(), skill_name=\"exotic_language_plugin\")\n\npig_latin_function = exotic_language_plugin[\"pig_latin\"]"
+  },
+  {
+    "objectID": "slides/2_swot.html#run-kernel-with-semantic-function-and-native-function",
+    "href": "slides/2_swot.html#run-kernel-with-semantic-function-and-native-function",
+    "title": "SWOT-Analysis",
+    "section": "Run kernel with semantic function and native function",
+    "text": "Run kernel with semantic function and native function\n\nfinal_result = await kernel.run_async(summary_function,\n                                      pig_latin_function,\n                                      input_str=sk_input)"
+  },
+  {
+    "objectID": "slides/2_swot.html#output-1",
+    "href": "slides/2_swot.html#output-1",
+    "title": "SWOT-Analysis",
+    "section": "Output",
+    "text": "Output\n\ndisplay(Markdown(\"### ✨ \" + str(final_result)))\n\n\n\n✨ AIway ancay elphay away allsmay izzapay orestay ownerway increaseway evenueray byay analyzingway ataday andway uggestingsay opularpay izzapay avorsflay onway ecificspay ays.day"
+  },
+  {
+    "objectID": "slides/2_swot.html#output-1-output",
+    "href": "slides/2_swot.html#output-1-output",
+    "title": "SWOT-Analysis",
+    "section": "Output",
+    "text": "Output"
+  },
+  {
+    "objectID": "slides/2_swot.html#strengths",
+    "href": "slides/2_swot.html#strengths",
+    "title": "SWOT-Analysis",
+    "section": "Strengths",
+    "text": "Strengths\n\nStrengths\n\nWhat unique recipes or ingredients does the pizza shop use?\nWhat are the skills and experience of the staff?\nDoes the pizza shop have a strong reputation in the local area?\nAre there any unique features of the shop or its location that attract customers?"
+  },
+  {
+    "objectID": "slides/2_swot.html#weaknesses",
+    "href": "slides/2_swot.html#weaknesses",
+    "title": "SWOT-Analysis",
+    "section": "Weaknesses",
+    "text": "Weaknesses\n\nWeaknesses\n\nWhat are the operational challenges of the pizza shop? (e.g., slow service, high staff turnover)\nAre there financial constraints that limit growth or improvements?\nAre there any gaps in the product offering?\nAre there customer complaints or negative reviews that need to be addressed?"
+  },
+  {
+    "objectID": "slides/2_swot.html#opportunities",
+    "href": "slides/2_swot.html#opportunities",
+    "title": "SWOT-Analysis",
+    "section": "Opportunities",
+    "text": "Opportunities\n\nOpportunities\n\nIs there potential for new products or services (e.g., catering, delivery)?\nAre there under-served customer segments or market areas?\nCan new technologies or systems enhance the business operations?\nAre there partnerships or local events that can be leveraged for marketing?"
+  },
+  {
+    "objectID": "slides/2_swot.html#threats",
+    "href": "slides/2_swot.html#threats",
+    "title": "SWOT-Analysis",
+    "section": "Threats",
+    "text": "Threats\n\nThreats\n\nWho are the major competitors and what are they offering?\nAre there potential negative impacts due to changes in the local area (e.g., construction, closure of nearby businesses)?\nAre there economic or industry trends that could impact the business negatively (e.g., increased ingredient costs)?\nIs there any risk due to changes in regulations or legislation (e.g., health and safety, employment)?"
+  },
+  {
+    "objectID": "slides/2_swot.html#sw-overview",
+    "href": "slides/2_swot.html#sw-overview",
+    "title": "SWOT-Analysis",
+    "section": "SW Overview",
+    "text": "SW Overview\n\n\n\n\n\n\n\nStrengths\nWeaknesses\n\n\n\n\nUnique garlic pizza recipe that wins top awards\nHigh staff turnover\n\n\nOwner trained in Sicily at some of the best pizzerias\nFloods in the area damaged the seating areas that are in need of repair\n\n\nStrong local reputation\nAbsence of popular calzones from menu\n\n\nPrime location on university campus\nNegative reviews from younger demographic for lack of hip ingredients\n\n\n\nMeanwhile there’s money being left on the table (their opportunities) with calamities (their threats) waiting in the wings to possibly happen and may knock their pizza shop out cold."
+  },
+  {
+    "objectID": "slides/2_swot.html#ot-overview",
+    "href": "slides/2_swot.html#ot-overview",
+    "title": "SWOT-Analysis",
+    "section": "OT overview",
+    "text": "OT overview\n\n\n\n\n\n\n\nOpportunities\nThreats\n\n\n\n\nUntapped catering potential\nRising competition from cheaper pizza businesses nearby\n\n\nGrowing local tech startup community\nThere’s nearby street construction that will impact foot traffic\n\n\nUnexplored online presence and order capabilities\nRising cost of cheese\n\n\nUpcoming annual food fair\nNo immediate local regulatory changes but it’s election season"
+  },
+  {
+    "objectID": "slides/2_swot.html#input",
+    "href": "slides/2_swot.html#input",
+    "title": "SWOT-Analysis",
+    "section": "Input",
+    "text": "Input\n\nswot_interview = \"\"\"\n1. **Strengths**\n    - What unique recipes or ingredients does the pizza shop use?\n    - What are the skills and experience of the staff?\n    - Does the pizza shop have a strong reputation in the local area?\n    - Are there any unique features of the shop or its location that attract customers?\n2. **Weaknesses**\n    - What are the operational challenges of the pizza shop? (e.g., slow service, high staff turnover)\n    - Are there financial constraints that limit growth or improvements?\n    - Are there any gaps in the product offering?\n    - Are there customer complaints or negative reviews that need to be addressed?\n3. **Opportunities**\n    - Is there potential for new products or services (e.g., catering, delivery)?\n    - Are there under-served customer segments or market areas?\n    - Can new technologies or systems enhance the business operations?\n    - Are there partnerships or local events that can be leveraged for marketing?\n4. **Threats**\n    - Who are the major competitors and what are they offering?\n    - Are there potential negative impacts due to changes in the local area (e.g., construction, closure of nearby businesses)?\n    - Are there economic or industry trends that could impact the business negatively (e.g., increased ingredient costs)?\n    - Is there any risk due to changes in regulations or legislation (e.g., health and safety, employment)?\"\"\""
+  },
+  {
+    "objectID": "slides/2_swot.html#prompt-template-1",
+    "href": "slides/2_swot.html#prompt-template-1",
+    "title": "SWOT-Analysis",
+    "section": "Prompt template",
+    "text": "Prompt template\n\nsk_prompt = \"\"\"\n{{$input}}\n\nConvert the analysis provided above to the business domain of {{$domain}}.\n\"\"\""
+  },
+  {
+    "objectID": "slides/2_swot.html#define-semantic-function-1",
+    "href": "slides/2_swot.html#define-semantic-function-1",
+    "title": "SWOT-Analysis",
+    "section": "Define semantic function",
+    "text": "Define semantic function\n\nshift_domain_function = kernel.create_semantic_function(prompt_template=sk_prompt,\n                                                        description=\"Translate an idea to another domain.\",\n                                                        max_tokens=1000,\n                                                        temperature=0.1,\n                                                        top_p=0.5)"
+  },
+  {
+    "objectID": "slides/2_swot.html#context",
+    "href": "slides/2_swot.html#context",
+    "title": "SWOT-Analysis",
+    "section": "Context",
+    "text": "Context\n\nmy_context = kernel.create_new_context()\n\n\n\nmy_context['input'] = swot_interview\nmy_context['domain'] = \"construction management\""
+  },
+  {
+    "objectID": "slides/2_swot.html#run-kernel-1",
+    "href": "slides/2_swot.html#run-kernel-1",
+    "title": "SWOT-Analysis",
+    "section": "Run kernel",
+    "text": "Run kernel\n\nresult = await kernel.run_async(shift_domain_function,\n                                input_context=my_context)"
+  },
+  {
+    "objectID": "slides/2_swot.html#output-2",
+    "href": "slides/2_swot.html#output-2",
+    "title": "SWOT-Analysis",
+    "section": "Output",
+    "text": "Output\n\ndisplay(Markdown(\n    f\"### ✨ Shift the SWOT interview questions to the world of {my_context['domain']}\\n\" + str(result)))\n\n\n\n✨ Shift the SWOT interview questions to the world of construction management\n1. **Strengths**\nWhat unique construction methods or techniques does the construction company use?\nWhat are the skills and experience of the construction team?\nDoes the construction company have a strong reputation in the local area?\nAre there any unique features of the company or its projects that attract clients?\n2. **Weaknesses**\nWhat are the operational challenges of the construction company? (e.g., delays in project completion, high employee turnover)\nAre there financial constraints that limit growth or improvements?\nAre there any gaps in the services offered by the company?\nAre there client complaints or negative reviews that need to be addressed?\n3. **Opportunities**\nIs there potential for new construction projects or services (e.g., renovation, green building)?\nAre there under-served client segments or market areas?\nCan new technologies or systems enhance the construction processes?\nAre there partnerships or local events that can be leveraged for marketing?\n4. **Threats**\nWho are the major competitors in the construction industry and what services do they offer?\nAre there potential negative impacts due to changes in the local area (e.g., zoning regulations, environmental restrictions)?\nAre there economic or industry trends that could impact the construction business negatively (e.g., increased material costs)?\nIs there any risk due to changes in regulations or legislation (e.g., safety regulations, building codes)?"
+  },
+  {
+    "objectID": "slides/2_swot.html#output-2-output",
+    "href": "slides/2_swot.html#output-2-output",
+    "title": "SWOT-Analysis",
+    "section": "Output",
+    "text": "Output"
+  },
+  {
+    "objectID": "slides/2_swot.html#prompt-template-2",
+    "href": "slides/2_swot.html#prompt-template-2",
+    "title": "SWOT-Analysis",
+    "section": "Prompt template",
+    "text": "Prompt template\n\nsk_prompt = \"\"\"\n{{$input}}\n\nRewrite the text above to be understood by a {{$level}}.\n\"\"\""
+  },
+  {
+    "objectID": "slides/2_swot.html#define-semantic-function-2",
+    "href": "slides/2_swot.html#define-semantic-function-2",
+    "title": "SWOT-Analysis",
+    "section": "Define semantic function",
+    "text": "Define semantic function\n\nshift_reading_level_function = kernel.create_semantic_function(prompt_template=sk_prompt,\n                                                               description=\"Change the reading level of a given text.\",\n                                                               max_tokens=1000,\n                                                               temperature=0.1,\n                                                               top_p=0.5)"
+  },
+  {
+    "objectID": "slides/2_swot.html#context-1",
+    "href": "slides/2_swot.html#context-1",
+    "title": "SWOT-Analysis",
+    "section": "Context",
+    "text": "Context\n\nmy_context['input'] = swot_interview\nmy_context['domain'] = \"construction management\"\nmy_context[\"level\"] = \"child\""
+  },
+  {
+    "objectID": "slides/2_swot.html#run-kernel-2",
+    "href": "slides/2_swot.html#run-kernel-2",
+    "title": "SWOT-Analysis",
+    "section": "Run kernel",
+    "text": "Run kernel\n\nresult = await kernel.run_async(shift_domain_function, shift_reading_level_function, input_context=my_context)"
+  },
+  {
+    "objectID": "slides/2_swot.html#output-3",
+    "href": "slides/2_swot.html#output-3",
+    "title": "SWOT-Analysis",
+    "section": "Output",
+    "text": "Output\n\ndisplay(Markdown(\n    f\"### ✨ Shift the SWOT interview questions to the world of {my_context['domain']} at the level of {my_context['level']}\\n\" + str(result)))\n\n\n✨ Shift the SWOT interview questions to the world of construction management at the level of child\n1. **Strengths**\nWhat cool ways does the construction company build things?\nAre the people who work for the construction company really good at building?\nDo a lot of people like the construction company and think they do a great job?\nDoes the construction company do anything special that makes people want to hire them?\n2. **Weaknesses**\nAre there things that make it hard for the construction company to do their work? (like taking a long time to finish projects or people quitting their jobs)\nDo they not have a lot of money to make things better or grow?\nAre there things that the construction company doesn't do that people want them to do?\nDo some people say bad things about the construction company or not like their work?\n3. **Opportunities**\nCan the construction company do new and different projects or offer new services?\nAre there people who need construction work but don't have anyone to do it for them?\nCan the construction company use new tools or ways of doing things to make their work even better?\nCan the construction company work with other people or go to events to tell more people about what they do?\n4. **Threats**\nAre there other companies that do construction and might be better than them?\nAre there things happening in the area that could make it harder for the construction company to do their work? (like rules about where they can build or not having enough materials)\nAre there things happening in the world that could make it harder for the construction company to do their job? (like things costing more money)\nAre there new rules or laws that could make it harder for the construction company to do their work? (like rules about safety or how buildings are made)"
+  },
+  {
+    "objectID": "slides/2_swot.html#output-3-output",
+    "href": "slides/2_swot.html#output-3-output",
+    "title": "SWOT-Analysis",
+    "section": "Output",
+    "text": "Output"
+  },
+  {
+    "objectID": "slides/1_kernel.html#python",
+    "href": "slides/1_kernel.html#python",
+    "title": "Semantic Kernel",
+    "section": "Python",
+    "text": "Python\n\nfrom semantic_kernel.connectors.ai.hugging_face import HuggingFaceTextCompletion\nimport semantic_kernel as sk\nfrom semantic_kernel.connectors.ai.open_ai import AzureChatCompletion, OpenAIChatCompletion"
+  },
+  {
+    "objectID": "slides/1_kernel.html#azureopenai-optional",
+    "href": "slides/1_kernel.html#azureopenai-optional",
+    "title": "Semantic Kernel",
+    "section": "AzureOpenAI (optional)",
+    "text": "AzureOpenAI (optional)\n\n# kernel = sk.Kernel()\n\n# deployment, api_key, endpoint = sk.azure_openai_settings_from_dot_env()\n\n# kernel.add_text_completion_service(\n#         \"azureopenai\", AzureChatCompletion(deployment, endpoint, api_key))"
+  },
+  {
+    "objectID": "slides/1_kernel.html#huggingface",
+    "href": "slides/1_kernel.html#huggingface",
+    "title": "Semantic Kernel",
+    "section": "HuggingFace",
+    "text": "HuggingFace\n\nkernel = sk.Kernel()\n\nkernel.add_text_completion_service(\n    \"huggingface\", HuggingFaceTextCompletion(\"gpt2\", task=\"text-generation\"))\n\n\nprint(\"You made an open source kernel using an open source AI model!\")"
+  },
+  {
+    "objectID": "slides/4_design.html#python",
+    "href": "slides/4_design.html#python",
+    "title": "Design Thinking",
+    "section": "Python",
+    "text": "Python\n\nimport json\n\nimport semantic_kernel as sk\nfrom semantic_kernel.connectors.ai.open_ai import AzureChatCompletion, OpenAIChatCompletion\nfrom IPython.display import display, Markdown"
+  },
+  {
+    "objectID": "slides/4_design.html#kernel",
+    "href": "slides/4_design.html#kernel",
+    "title": "Design Thinking",
+    "section": "Kernel",
+    "text": "Kernel\n\nkernel = sk.Kernel()\n\napi_key, org_id = sk.openai_settings_from_dot_env()\n\nkernel.add_text_completion_service(\n    \"openai\", OpenAIChatCompletion(\"gpt-3.5-turbo-0301\", api_key, org_id))\n\nprint(\"A kernel is now ready.\")"
+  },
+  {
+    "objectID": "slides/4_design.html#plugins",
+    "href": "slides/4_design.html#plugins",
+    "title": "Design Thinking",
+    "section": "Plugins",
+    "text": "Plugins\n\npluginsDirectory = \"../plugins-sk\"\n\npluginDT = kernel.import_semantic_skill_from_directory(\n    pluginsDirectory, \"DesignThinking\")\n\nplugins-sk/\n│\n└─── DesignThinking/\n     |\n     └─── Define/\n     |    └─── config.json\n     |    └─── skprompt.txt\n     |\n     └─── Empathize/\n          └─── config.json\n          └─── skprompt.txt"
+  },
+  {
+    "objectID": "slides/4_design.html#strength-questions",
+    "href": "slides/4_design.html#strength-questions",
+    "title": "Design Thinking",
+    "section": "Strength questions",
+    "text": "Strength questions\n\nstrength_questions = [\"What unique recipes or ingredients does the pizza shop use?\", \"What are the skills and experience of the staff?\", \"Does the pizza shop have a strong reputation in the local area?\",\n                      \"Are there any unique features of the shop or its location that attract customers?\", \"Does the pizza shop have a strong reputation in the local area?\", \"Are there any unique features of the shop or its location that attract customers?\"]"
+  },
+  {
+    "objectID": "slides/4_design.html#weakness-questions",
+    "href": "slides/4_design.html#weakness-questions",
+    "title": "Design Thinking",
+    "section": "Weakness questions",
+    "text": "Weakness questions\n\nweakness_questions = [\"What are the operational challenges of the pizza shop? (e.g., slow service, high staff turnover)\", \"Are there financial constraints that limit growth or improvements?\",\n                      \"Are there any gaps in the product offering?\", \"Are there customer complaints or negative reviews that need to be addressed?\"]"
+  },
+  {
+    "objectID": "slides/4_design.html#opportunities-questions",
+    "href": "slides/4_design.html#opportunities-questions",
+    "title": "Design Thinking",
+    "section": "Opportunities questions",
+    "text": "Opportunities questions\n\nopportunities_questions = [\"Is there potential for new products or services (e.g., catering, delivery)?\", \"Are there under-served customer segments or market areas?\",\n                           \"Can new technologies or systems enhance the business operations?\", \"Are there partnerships or local events that can be leveraged for marketing?\"]"
+  },
+  {
+    "objectID": "slides/4_design.html#threats-questions",
+    "href": "slides/4_design.html#threats-questions",
+    "title": "Design Thinking",
+    "section": "Threats questions",
+    "text": "Threats questions\n\nthreats_questions = [\"Who are the major competitors and what are they offering?\", \"Are there potential negative impacts due to changes in the local area (e.g., construction, closure of nearby businesses)?\",\n                     \"Are there economic or industry trends that could impact the business negatively (e.g., increased ingredient costs)?\", \"Is there any risk due to changes in regulations or legislation (e.g., health and safety, employment)?\"]"
+  },
+  {
+    "objectID": "slides/4_design.html#strenghts",
+    "href": "slides/4_design.html#strenghts",
+    "title": "Design Thinking",
+    "section": "Strenghts",
+    "text": "Strenghts\n\nstrengths = [\"Unique garlic pizza recipe that wins top awards\", \"Owner trained in Sicily\",\n             \"Strong local reputation\", \"Prime location on university campus\"]"
+  },
+  {
+    "objectID": "slides/4_design.html#weaknesses",
+    "href": "slides/4_design.html#weaknesses",
+    "title": "Design Thinking",
+    "section": "Weaknesses",
+    "text": "Weaknesses\n\nweaknesses = [\"High staff turnover\", \"Floods in the area damaged the seating areas that are in need of repair\",\n              \"Absence of popular calzones from menu\", \"Negative reviews from younger demographic for lack of hip ingredients\"]"
+  },
+  {
+    "objectID": "slides/4_design.html#opportunities",
+    "href": "slides/4_design.html#opportunities",
+    "title": "Design Thinking",
+    "section": "Opportunities",
+    "text": "Opportunities\n\nopportunities = [\"Untapped catering potential\", \"Growing local tech startup community\",\n                 \"Unexplored online presence and order capabilities\", \"Upcoming annual food fair\"]"
+  },
+  {
+    "objectID": "slides/4_design.html#threats",
+    "href": "slides/4_design.html#threats",
+    "title": "Design Thinking",
+    "section": "Threats",
+    "text": "Threats\n\nthreats = [\"Competition from cheaper pizza businesses nearby\", \"There's nearby street construction that will impact foot traffic\",\n           \"Rising cost of cheese will increase the cost of pizzas\", \"No immediate local regulatory changes but it's election season\"]"
+  },
+  {
+    "objectID": "slides/4_design.html#customer-comments",
+    "href": "slides/4_design.html#customer-comments",
+    "title": "Design Thinking",
+    "section": "Customer comments",
+    "text": "Customer comments\n\ncustomer_comments = \"\"\"\nCustomer 1: The seats look really raggedy.\nCustomer 2: The garlic pizza is the best on this earth.\nCustomer 3: I've noticed that there's a new server every time I visit, and they're clueless.\nCustomer 4: Why aren't there calzones?\nCustomer 5: I love the garlic pizza and can't get it anywhere else.\nCustomer 6: The garlic pizza is exceptional.\nCustomer 7: I prefer a calzone's portable nature as compared with pizza.\nCustomer 8: Why is the pizza so expensive?\nCustomer 9: There's no way to do online ordering.\nCustomer 10: Why is the seating so uncomfortable and dirty?\n\"\"\""
+  },
+  {
+    "objectID": "slides/4_design.html#run-kernel-with-plugin",
+    "href": "slides/4_design.html#run-kernel-with-plugin",
+    "title": "Design Thinking",
+    "section": "Run kernel with plugin",
+    "text": "Run kernel with plugin\n\nmy_result = await kernel.run_async(pluginDT[\"Empathize\"], input_str=customer_comments)"
+  },
+  {
+    "objectID": "slides/4_design.html#output",
+    "href": "slides/4_design.html#output",
+    "title": "Design Thinking",
+    "section": "Output",
+    "text": "Output\n\ndisplay(Markdown(\n    \"## ✨ The categorized observations from the 'Empathize' phase of design thinking\\n\"))\nprint(json.dumps(json.loads(str(my_result)), indent=2))"
+  },
+  {
+    "objectID": "slides/4_design.html#output-output",
+    "href": "slides/4_design.html#output-output",
+    "title": "Design Thinking",
+    "section": "Output",
+    "text": "Output"
+  },
+  {
+    "objectID": "slides/4_design.html#run-kernel-with-plugins",
+    "href": "slides/4_design.html#run-kernel-with-plugins",
+    "title": "Design Thinking",
+    "section": "Run kernel with plugins",
+    "text": "Run kernel with plugins\n\nKernel works sequentially (first uses plugin Empathize, then Define)\n\n\n\nmy_result = await kernel.run_async(pluginDT[\"Empathize\"], pluginDT[\"Define\"], input_str=customer_comments)"
+  },
+  {
+    "objectID": "slides/4_design.html#output-1",
+    "href": "slides/4_design.html#output-1",
+    "title": "Design Thinking",
+    "section": "Output",
+    "text": "Output\n\ndisplay(Markdown(\"## ✨ The categorized observations from the 'Empathize' + 'Define' phases of design thinking\\n\"+str(my_result)))"
+  },
+  {
+    "objectID": "slides/4_design.html#output-1-output",
+    "href": "slides/4_design.html#output-1-output",
+    "title": "Design Thinking",
+    "section": "Output",
+    "text": "Output"
+  },
+  {
+    "objectID": "slides/4_design.html#run-kernel",
+    "href": "slides/4_design.html#run-kernel",
+    "title": "Design Thinking",
+    "section": "Run kernel",
+    "text": "Run kernel\n\nmy_result = await kernel.run_async(pluginDT[\"Empathize\"], pluginDT[\"Define\"], pluginDT[\"Ideate\"], pluginDT[\"PrototypeWithPaper\"], input_str=customer_comments)"
+  },
+  {
+    "objectID": "slides/4_design.html#output-2",
+    "href": "slides/4_design.html#output-2",
+    "title": "Design Thinking",
+    "section": "Output",
+    "text": "Output\n\ndisplay(Markdown(\"## ✨ The categorized observations from the 'Empathize' + 'Define' + 'Ideate' + 'Prototype' + phases of design thinking\\n\"+str(my_result)))"
+  },
+  {
+    "objectID": "slides/4_design.html#output-2-output",
+    "href": "slides/4_design.html#output-2-output",
+    "title": "Design Thinking",
+    "section": "Output",
+    "text": "Output"
+  },
+  {
+    "objectID": "slides/4_design.html#prompt-template",
+    "href": "slides/4_design.html#prompt-template",
+    "title": "Design Thinking",
+    "section": "Prompt template",
+    "text": "Prompt template\n\nsk_prompt = \"\"\"\nA 40-year old man who has just finished his shift at work and comes into the bar. They are in a bad mood.\n\nThey are given an experience like:\n{{$input}}\n\nSummarize their possible reactions to this experience.\n\"\"\""
+  },
+  {
+    "objectID": "slides/4_design.html#test-function",
+    "href": "slides/4_design.html#test-function",
+    "title": "Design Thinking",
+    "section": "Test function",
+    "text": "Test function\n\ntest_function = kernel.create_semantic_function(prompt_template=sk_prompt,\n                                                description=\"Simulates reaction to an experience.\",\n                                                max_tokens=1000,\n                                                temperature=0.1,\n                                                top_p=0.5)"
+  },
+  {
+    "objectID": "slides/4_design.html#example-prototype-idea",
+    "href": "slides/4_design.html#example-prototype-idea",
+    "title": "Design Thinking",
+    "section": "Example prototype idea",
+    "text": "Example prototype idea\n\nsk_input = \"\"\"\nA simple loyalty card that includes details such as the rewards for each level of loyalty, how to earn points, and how to redeem rewards is given to every person visiting the bar.\n\"\"\""
+  },
+  {
+    "objectID": "slides/4_design.html#run-kernel-1",
+    "href": "slides/4_design.html#run-kernel-1",
+    "title": "Design Thinking",
+    "section": "Run kernel",
+    "text": "Run kernel\n\ntest_result = await kernel.run_async(test_function, input_str=sk_input)"
+  },
+  {
+    "objectID": "slides/4_design.html#output-3",
+    "href": "slides/4_design.html#output-3",
+    "title": "Design Thinking",
+    "section": "Output",
+    "text": "Output\n\ndisplay(Markdown(\"### ✨ \" + str(test_result)))"
+  },
+  {
+    "objectID": "slides/4_design.html#output-3-output",
+    "href": "slides/4_design.html#output-3-output",
+    "title": "Design Thinking",
+    "section": "Output",
+    "text": "Output"
+  },
+  {
+    "objectID": "slides/3_business_plugins.html#python",
+    "href": "slides/3_business_plugins.html#python",
+    "title": "Business Plugins",
+    "section": "Python",
+    "text": "Python\n\nimport semantic_kernel as sk\nfrom semantic_kernel.connectors.ai.open_ai import AzureChatCompletion, OpenAIChatCompletion\nfrom IPython.display import display, Markdown"
+  },
+  {
+    "objectID": "slides/3_business_plugins.html#kernel",
+    "href": "slides/3_business_plugins.html#kernel",
+    "title": "Business Plugins",
+    "section": "Kernel",
+    "text": "Kernel\n\nkernel = sk.Kernel()\n\napi_key, org_id = sk.openai_settings_from_dot_env()\n\nkernel.add_text_completion_service(\n    \"openai\", OpenAIChatCompletion(\"gpt-3.5-turbo\", api_key, org_id))\n\nprint(\"A kernel is now ready.\")\n\nA kernel is now ready."
+  },
+  {
+    "objectID": "slides/3_business_plugins.html#business-goals",
+    "href": "slides/3_business_plugins.html#business-goals",
+    "title": "Business Plugins",
+    "section": "Business goals",
+    "text": "Business goals\n\nGrow the existing business\nSave money and time\nAdd completely new business\nPrepare for the unknown"
+  },
+  {
+    "objectID": "slides/3_business_plugins.html#plugins-directory",
+    "href": "slides/3_business_plugins.html#plugins-directory",
+    "title": "Business Plugins",
+    "section": "Plugins directory",
+    "text": "Plugins directory\nplugins-sk/\n│\n└─── BusinessThinking/\n     |\n     └─── BasicStrategies/\n     |    └─── config.json\n     |    └─── skprompt.txt\n     |\n     └─── SeekCostEfficiency/\n     |    └─── config.json\n     |    └─── skprompt.txt\n     |\n     └─── SeekTimeEfficiency/\n          └─── config.json\n          └─── skprompt.txt"
+  },
+  {
+    "objectID": "slides/3_business_plugins.html#activate-plugins",
+    "href": "slides/3_business_plugins.html#activate-plugins",
+    "title": "Business Plugins",
+    "section": "Activate plugins",
+    "text": "Activate plugins\n\npluginsDirectory = \"../plugins-sk\"\n\npluginBT = kernel.import_semantic_skill_from_directory(\n    pluginsDirectory, \"BusinessThinking\")"
+  },
+  {
+    "objectID": "slides/3_business_plugins.html#input-strengths-and-weaknesses",
+    "href": "slides/3_business_plugins.html#input-strengths-and-weaknesses",
+    "title": "Business Plugins",
+    "section": "Input strengths and weaknesses",
+    "text": "Input strengths and weaknesses\n\nstrengths = [\"Unique garlic pizza recipe that wins top awards\", \"Owner trained in Sicily at some of the best pizzerias\",\n             \"Strong local reputation\", \"Prime location on university campus\"]\n\nweaknesses = [\"High staff turnover\", \"Floods in the area damaged the seating areas that are in need of repair\",\n              \"Absence of popular calzones from menu\", \"Negative reviews from younger demographic for lack of hip ingredients\"]"
+  },
+  {
+    "objectID": "slides/3_business_plugins.html#context",
+    "href": "slides/3_business_plugins.html#context",
+    "title": "Business Plugins",
+    "section": "Context",
+    "text": "Context\n\nmy_context = kernel.create_new_context()\n\nmy_context['input'] = 'makes pizzas'\nmy_context['strengths'] = \", \".join(strengths)\nmy_context['weaknesses'] = \", \".join(weaknesses)"
+  },
+  {
+    "objectID": "slides/3_business_plugins.html#run-kernel-with-cost-efficiency-plugin",
+    "href": "slides/3_business_plugins.html#run-kernel-with-cost-efficiency-plugin",
+    "title": "Business Plugins",
+    "section": "Run kernel with cost efficiency plugin",
+    "text": "Run kernel with cost efficiency plugin\n\ncostefficiency_result = await kernel.run_async(pluginBT[\"SeekCostEfficiency\"], input_context=my_context)"
+  },
+  {
+    "objectID": "slides/3_business_plugins.html#output",
+    "href": "slides/3_business_plugins.html#output",
+    "title": "Business Plugins",
+    "section": "Output",
+    "text": "Output\n\ncostefficiency_str = str(\n    \"### ✨ Suggestions for how to gain cost efficiencies\\n\" + str(costefficiency_result))\n\n\n\ndisplay(Markdown(costefficiency_str))"
+  },
+  {
+    "objectID": "slides/3_business_plugins.html#output-output",
+    "href": "slides/3_business_plugins.html#output-output",
+    "title": "Business Plugins",
+    "section": "Output",
+    "text": "Output\n\n✨ Suggestions for how to gain cost efficiencies\n\n\n\n\n\n\n\n\n\nTitle\nStrength\nWeakness\nDescription\n\n\n\n\nStreamlining operations\nStrong local reputation\nHigh staff turnover\nImplementing efficient processes and systems to reduce the need for excessive staff and improve productivity. This can include automating certain tasks, cross-training employees, and implementing performance management systems.\n\n\nRenovating seating areas\nPrime location on university campus\nFloods damaging seating areas\nInvesting in repairs and renovations to the seating areas to attract more customers and improve the overall dining experience. This can include fixing any damages caused by floods, updating the furniture and decor, and creating a more inviting atmosphere.\n\n\nAdding popular calzones to the menu\nUnique garlic pizza recipe that wins top awards\nAbsence of popular calzones from menu\nExpanding the menu to include popular calzones can attract a wider customer base and increase sales. This can involve researching and developing delicious calzone recipes, training staff on how to prepare them, and marketing them to customers."
+  },
+  {
+    "objectID": "slides/3_business_plugins.html#input-opportunities-and-threats",
+    "href": "slides/3_business_plugins.html#input-opportunities-and-threats",
+    "title": "Business Plugins",
+    "section": "Input opportunities and threats",
+    "text": "Input opportunities and threats\n\nopportunities = [\"Untapped catering potential\", \"Growing local tech startup community\",\n                 \"Unexplored online presence and order capabilities\", \"Upcoming annual food fair\"]\n\nthreats = [\"Competition from cheaper pizza businesses nearby\", \"There's nearby street construction that will impact foot traffic\",\n           \"Rising cost of cheese will increase the cost of pizzas\", \"No immediate local regulatory changes but it's election season\"]"
+  },
+  {
+    "objectID": "slides/3_business_plugins.html#import-plugin",
+    "href": "slides/3_business_plugins.html#import-plugin",
+    "title": "Business Plugins",
+    "section": "Import plugin",
+    "text": "Import plugin\n\npluginBT = kernel.import_semantic_skill_from_directory(\n    pluginsDirectory, \"BusinessThinking\")"
+  },
+  {
+    "objectID": "slides/3_business_plugins.html#context-1",
+    "href": "slides/3_business_plugins.html#context-1",
+    "title": "Business Plugins",
+    "section": "Context",
+    "text": "Context\n\nmy_context = kernel.create_new_context()\n\nmy_context['input'] = 'makes pizzas'\nmy_context['strengths'] = \", \".join(strengths)\nmy_context['weaknesses'] = \", \".join(weaknesses)\nmy_context['opportunities'] = \", \".join(opportunities)\nmy_context['threats'] = \", \".join(threats)"
+  },
+  {
+    "objectID": "slides/3_business_plugins.html#run-kernel",
+    "href": "slides/3_business_plugins.html#run-kernel",
+    "title": "Business Plugins",
+    "section": "Run kernel",
+    "text": "Run kernel\n\nbizstrat_result = await kernel.run_async(pluginBT[\"BasicStrategies\"], input_context=my_context)"
+  },
+  {
+    "objectID": "slides/3_business_plugins.html#output-1",
+    "href": "slides/3_business_plugins.html#output-1",
+    "title": "Business Plugins",
+    "section": "Output",
+    "text": "Output\n\nbizstrat_str = \"## ✨ Business strategy thinking based on SWOT analysis\\n\" + \\\n    str(bizstrat_result)\n\n\n\ndisplay(Markdown(bizstrat_str))"
+  },
+  {
+    "objectID": "slides/3_business_plugins.html#business-strategy-thinking-based-on-swot-analysis",
+    "href": "slides/3_business_plugins.html#business-strategy-thinking-based-on-swot-analysis",
+    "title": "Business Plugins",
+    "section": "✨ Business strategy thinking based on SWOT analysis",
+    "text": "✨ Business strategy thinking based on SWOT analysis\nBuilding on strengths can immediately improve the business\n\n\n\n\n\n\n\n\n\nTitle\nStrength\nWeakness\nDescription\n\n\n\n\nExpand menu with popular calzones\nUnique garlic pizza recipe that wins top awards\nAbsence of popular calzones from menu\nAdd popular calzones to the menu to attract customers who are looking for a different type of pizza option\n\n\nImprove seating areas\nStrong local reputation, Prime location on university campus\nFloods in the area damaged the seating areas that are in need of repair\nRepair and upgrade the seating areas to provide a comfortable and inviting environment for customers\n\n\nEnhance online presence and marketing\nStrong local reputation\nNegative reviews from younger demographic for lack of hip ingredients\nDevelop a strong online presence through social media, website, and online advertising to target the younger demographic and showcase the unique aspects of the business\n\n\n\nTaking advantage of opportunities whenever possible\n\n\n\n\n\n\n\n\nTitle\nOpportunity\nDescription\n\n\n\n\nLaunch catering services\nUntapped catering potential\nTap into the untapped market of catering services by offering customized pizza options for events, parties, and corporate gatherings\n\n\nDevelop online ordering capabilities\nUnexplored online presence and order capabilities\nCreate a user-friendly online ordering system to cater to the growing trend of online food ordering and delivery services\n\n\nParticipate in the upcoming annual food fair\nUpcoming annual food fair\nShowcase the unique garlic pizza recipe and attract new customers by participating in the local food fair, offering special discounts and promotions\n\n\n\nBuilding resilience to threats is always a good idea\n\n\n\n\n\n\n\n\nTitle\nThreat\nDescription\n\n\n\n\nEnhance cost-saving measures\nRising cost of cheese will increase the cost of pizzas\nImplement cost-saving measures such as optimizing ingredient usage, negotiating better deals with suppliers, and finding alternative sources for ingredients to mitigate the impact of rising cheese costs\n\n\nDiversify customer base\nCompetition from cheaper pizza businesses nearby\nExpand marketing efforts to target different customer segments, such as families, students, and professionals, to reduce reliance on a single customer base and mitigate the impact of competition\n\n\nStay updated on local regulatory changes\nNo immediate local regulatory changes but it’s election season\nStay informed about potential regulatory changes that may affect the business, especially during election seasons, and adapt strategies accordingly to minimize any negative impact"
   }
 ]

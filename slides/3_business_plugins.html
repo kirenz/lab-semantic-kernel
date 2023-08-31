@@ -12,7 +12,7 @@
   <meta name="generator" content="quarto-1.3.450">
 
   <meta name="author" content="Jan Kirenz">
-  <title>Lab - foo</title>
+  <title>Semantic Kernel - Business Plugins</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -394,8 +394,8 @@
     <div class="slides">
 
 <section id="title-slide" data-background-image="../images/logo.png" data-background-opacity="0.5" data-background-size="contain" class="quarto-title-block center">
-  <h1 class="title">foo</h1>
-  <p class="subtitle">foo</p>
+  <h1 class="title">Business Plugins</h1>
+  <p class="subtitle">Enhance Semantic Kernel</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -409,79 +409,349 @@ Jan Kirenz
 <nav role="doc-toc"> 
 <h2 id="toc-title">Table of contents</h2>
 <ul>
-<li class="fragment"><a href="#/h1" id="/toc-h1">H1</a></li>
+<li class="fragment"><a href="#/business-plugins" id="/toc-business-plugins">Business Plugins</a></li>
+<li class="fragment"><a href="#/setup" id="/toc-setup">Setup</a></li>
+<li class="fragment"><a href="#/business-plugins-1" id="/toc-business-plugins-1">Business Plugins</a></li>
+<li class="fragment"><a href="#/cost-efficiency" id="/toc-cost-efficiency">Cost Efficiency</a></li>
+<li class="fragment"><a href="#/business-strategy" id="/toc-business-strategy">Business Strategy</a></li>
+<li class="fragment"><a href="#/acknowledgments" id="/toc-acknowledgments">Acknowledgments</a></li>
 <li class="fragment"><a href="#/whats-next" id="/toc-whats-next">What’s next?</a></li>
 </ul>
 </nav>
 </section>
+<section id="business-plugins" class="title-slide slide level1 center">
+<h1>Business Plugins</h1>
+
+</section>
+
 <section>
-<section id="h1" class="title-slide slide level1 center" data-background-image="../images/logo.png">
-<h1>H1</h1>
+<section id="setup" class="title-slide slide level1 center">
+<h1>Setup</h1>
 
 </section>
-<section id="text" class="slide level2">
-<h2>Text</h2>
-<ul>
-<li class="fragment"><p>a 🤖</p>
-<ul>
-<li class="fragment">abc</li>
-</ul></li>
-</ul>
-<div class="fragment">
-<ul>
-<li class="fragment"><p>b</p></li>
-<li class="fragment"><p>c<sup>1</sup></p></li>
-</ul>
-<p>📚 Required reading: <a href="link">A &amp; B (2023)</a></p>
-<p><a href="https://arxiv.org/pdf/2303.12712.pdf" class="uri">https://arxiv.org/pdf/2303.12712.pdf</a></p>
+<section id="python" class="slide level2">
+<h2>Python</h2>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> semantic_kernel <span class="im">as</span> sk</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">from</span> semantic_kernel.connectors.ai.open_ai <span class="im">import</span> AzureChatCompletion, OpenAIChatCompletion</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="im">from</span> IPython.display <span class="im">import</span> display, Markdown</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<aside><ol class="aside-footnotes"><li id="fn1"><p>Russell &amp; Norvig, 2009</p></li></ol></aside></section>
-<section id="image" class="slide level2">
-<h2>Image</h2>
-
-<img data-src="../images/hdm.png" class="r-stretch"></section>
-<section id="video" class="slide level2">
-<h2>Video</h2>
-<iframe data-external="1" src="https://www.youtube.com/embed/KpedmJdrTpY" width="1920" height="1080" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
-<!-- Video about Protein -->
 </section>
-<section id="a-lot-of-text" class="slide level2 smaller">
-<h2>A lot of text</h2>
-<p>Smaller heading</p>
-</section>
-<section id="background-image" class="slide level2" data-background-image="../images/hdm.png">
-<h2>Background image</h2>
-<p>abc</p>
-</section>
-<section id="code" class="slide level2">
-<h2>Code</h2>
-<div class="sourceCode" id="annotated-cell-1"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1"></a><span class="bu">print</span>(<span class="st">'Hello World'</span>)</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-1-2" class="code-annotation-target"><a href="#annotated-cell-1-2"></a><span class="cf">for</span> i <span class="kw">in</span> LIST:</span>
-<span id="annotated-cell-1-3"><a href="#annotated-cell-1-3"></a>  df[i] <span class="op">=</span> df[i].astype(<span class="st">'cat'</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<dl class="code-annotation-container-grid">
-<dt class="fragment" data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
-<dd class="fragment">
-<span data-code-annotation="1" data-code-cell="annotated-cell-1" data-code-lines="1">Print Hello World, and then,</span>
-</dd>
-<dt class="fragment" data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
-<dd class="fragment">
-<span data-code-annotation="2" data-code-cell="annotated-cell-1" data-code-lines="2,3">transform all columns in the LIST element to categorical variables</span>
-</dd>
-</dl>
+<section id="kernel" class="slide level2">
+<h2>Kernel</h2>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>kernel <span class="op">=</span> sk.Kernel()</span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a>api_key, org_id <span class="op">=</span> sk.openai_settings_from_dot_env()</span>
+<span id="cb2-4"><a href="#cb2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5"></a>kernel.add_text_completion_service(</span>
+<span id="cb2-6"><a href="#cb2-6"></a>    <span class="st">"openai"</span>, OpenAIChatCompletion(<span class="st">"gpt-3.5-turbo"</span>, api_key, org_id))</span>
+<span id="cb2-7"><a href="#cb2-7"></a></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="bu">print</span>(<span class="st">"A kernel is now ready."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>A kernel is now ready.</code></pre>
+</div>
+</div>
 </section></section>
+<section>
+<section id="business-plugins-1" class="title-slide slide level1 center">
+<h1>Business Plugins</h1>
+
+</section>
+<section id="business-goals" class="slide level2">
+<h2>Business goals</h2>
+<ol type="1">
+<li class="fragment">Grow the existing business</li>
+<li class="fragment">Save money and time</li>
+<li class="fragment">Add completely new business</li>
+<li class="fragment">Prepare for the unknown</li>
+</ol>
+</section>
+<section id="plugins-directory" class="slide level2">
+<h2>Plugins directory</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource directory number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1"></a>plugins-sk/</span>
+<span id="cb4-2"><a href="#cb4-2"></a>│</span>
+<span id="cb4-3"><a href="#cb4-3"></a>└─── BusinessThinking/</span>
+<span id="cb4-4"><a href="#cb4-4"></a>     |</span>
+<span id="cb4-5"><a href="#cb4-5"></a>     └─── BasicStrategies/</span>
+<span id="cb4-6"><a href="#cb4-6"></a>     |    └─── config.json</span>
+<span id="cb4-7"><a href="#cb4-7"></a>     |    └─── skprompt.txt</span>
+<span id="cb4-8"><a href="#cb4-8"></a>     |</span>
+<span id="cb4-9"><a href="#cb4-9"></a>     └─── SeekCostEfficiency/</span>
+<span id="cb4-10"><a href="#cb4-10"></a>     |    └─── config.json</span>
+<span id="cb4-11"><a href="#cb4-11"></a>     |    └─── skprompt.txt</span>
+<span id="cb4-12"><a href="#cb4-12"></a>     |</span>
+<span id="cb4-13"><a href="#cb4-13"></a>     └─── SeekTimeEfficiency/</span>
+<span id="cb4-14"><a href="#cb4-14"></a>          └─── config.json</span>
+<span id="cb4-15"><a href="#cb4-15"></a>          └─── skprompt.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="activate-plugins" class="slide level2">
+<h2>Activate plugins</h2>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>pluginsDirectory <span class="op">=</span> <span class="st">"../plugins-sk"</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a></span>
+<span id="cb5-3"><a href="#cb5-3"></a>pluginBT <span class="op">=</span> kernel.import_semantic_skill_from_directory(</span>
+<span id="cb5-4"><a href="#cb5-4"></a>    pluginsDirectory, <span class="st">"BusinessThinking"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section>
+<section>
+<section id="cost-efficiency" class="title-slide slide level1 center">
+<h1>Cost Efficiency</h1>
+
+</section>
+<section id="input-strengths-and-weaknesses" class="slide level2">
+<h2>Input strengths and weaknesses</h2>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>strengths <span class="op">=</span> [<span class="st">"Unique garlic pizza recipe that wins top awards"</span>, <span class="st">"Owner trained in Sicily at some of the best pizzerias"</span>,</span>
+<span id="cb6-2"><a href="#cb6-2"></a>             <span class="st">"Strong local reputation"</span>, <span class="st">"Prime location on university campus"</span>]</span>
+<span id="cb6-3"><a href="#cb6-3"></a></span>
+<span id="cb6-4"><a href="#cb6-4"></a>weaknesses <span class="op">=</span> [<span class="st">"High staff turnover"</span>, <span class="st">"Floods in the area damaged the seating areas that are in need of repair"</span>,</span>
+<span id="cb6-5"><a href="#cb6-5"></a>              <span class="st">"Absence of popular calzones from menu"</span>, <span class="st">"Negative reviews from younger demographic for lack of hip ingredients"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="context" class="slide level2">
+<h2>Context</h2>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>my_context <span class="op">=</span> kernel.create_new_context()</span>
+<span id="cb7-2"><a href="#cb7-2"></a></span>
+<span id="cb7-3"><a href="#cb7-3"></a>my_context[<span class="st">'input'</span>] <span class="op">=</span> <span class="st">'makes pizzas'</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>my_context[<span class="st">'strengths'</span>] <span class="op">=</span> <span class="st">", "</span>.join(strengths)</span>
+<span id="cb7-5"><a href="#cb7-5"></a>my_context[<span class="st">'weaknesses'</span>] <span class="op">=</span> <span class="st">", "</span>.join(weaknesses)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="run-kernel-with-cost-efficiency-plugin" class="slide level2">
+<h2>Run kernel with cost efficiency plugin</h2>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>costefficiency_result <span class="op">=</span> <span class="cf">await</span> kernel.run_async(pluginBT[<span class="st">"SeekCostEfficiency"</span>], input_context<span class="op">=</span>my_context)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="output" class="slide level2">
+<h2>Output</h2>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>costefficiency_str <span class="op">=</span> <span class="bu">str</span>(</span>
+<span id="cb9-2"><a href="#cb9-2"></a>    <span class="st">"### ✨ Suggestions for how to gain cost efficiencies</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="bu">str</span>(costefficiency_result))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>display(Markdown(costefficiency_str))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+</div>
+</section><section id="output-output" class="slide level2 output-location-slide"><h2>Output</h2><div class="cell output-location-slide" data-execution_count="8">
+<section id="suggestions-for-how-to-gain-cost-efficiencies" class="cell-output cell-output-display">
+<h3>✨ Suggestions for how to gain cost efficiencies</h3>
+<table>
+<colgroup>
+<col style="width: 15%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Title</th>
+<th>Strength</th>
+<th>Weakness</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Streamlining operations</td>
+<td>Strong local reputation</td>
+<td>High staff turnover</td>
+<td>Implementing efficient processes and systems to reduce the need for excessive staff and improve productivity. This can include automating certain tasks, cross-training employees, and implementing performance management systems.</td>
+</tr>
+<tr class="even">
+<td>Renovating seating areas</td>
+<td>Prime location on university campus</td>
+<td>Floods damaging seating areas</td>
+<td>Investing in repairs and renovations to the seating areas to attract more customers and improve the overall dining experience. This can include fixing any damages caused by floods, updating the furniture and decor, and creating a more inviting atmosphere.</td>
+</tr>
+<tr class="odd">
+<td>Adding popular calzones to the menu</td>
+<td>Unique garlic pizza recipe that wins top awards</td>
+<td>Absence of popular calzones from menu</td>
+<td>Expanding the menu to include popular calzones can attract a wider customer base and increase sales. This can involve researching and developing delicious calzone recipes, training staff on how to prepare them, and marketing them to customers.</td>
+</tr>
+</tbody>
+</table>
+</section>
+</div></section></section>
+<section>
+<section id="business-strategy" class="title-slide slide level1 center">
+<h1>Business Strategy</h1>
+
+</section>
+<section id="input-opportunities-and-threats" class="slide level2">
+<h2>Input opportunities and threats</h2>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>opportunities <span class="op">=</span> [<span class="st">"Untapped catering potential"</span>, <span class="st">"Growing local tech startup community"</span>,</span>
+<span id="cb11-2"><a href="#cb11-2"></a>                 <span class="st">"Unexplored online presence and order capabilities"</span>, <span class="st">"Upcoming annual food fair"</span>]</span>
+<span id="cb11-3"><a href="#cb11-3"></a></span>
+<span id="cb11-4"><a href="#cb11-4"></a>threats <span class="op">=</span> [<span class="st">"Competition from cheaper pizza businesses nearby"</span>, <span class="st">"There's nearby street construction that will impact foot traffic"</span>,</span>
+<span id="cb11-5"><a href="#cb11-5"></a>           <span class="st">"Rising cost of cheese will increase the cost of pizzas"</span>, <span class="st">"No immediate local regulatory changes but it's election season"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="import-plugin" class="slide level2">
+<h2>Import plugin</h2>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>pluginBT <span class="op">=</span> kernel.import_semantic_skill_from_directory(</span>
+<span id="cb12-2"><a href="#cb12-2"></a>    pluginsDirectory, <span class="st">"BusinessThinking"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="context-1" class="slide level2">
+<h2>Context</h2>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>my_context <span class="op">=</span> kernel.create_new_context()</span>
+<span id="cb13-2"><a href="#cb13-2"></a></span>
+<span id="cb13-3"><a href="#cb13-3"></a>my_context[<span class="st">'input'</span>] <span class="op">=</span> <span class="st">'makes pizzas'</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a>my_context[<span class="st">'strengths'</span>] <span class="op">=</span> <span class="st">", "</span>.join(strengths)</span>
+<span id="cb13-5"><a href="#cb13-5"></a>my_context[<span class="st">'weaknesses'</span>] <span class="op">=</span> <span class="st">", "</span>.join(weaknesses)</span>
+<span id="cb13-6"><a href="#cb13-6"></a>my_context[<span class="st">'opportunities'</span>] <span class="op">=</span> <span class="st">", "</span>.join(opportunities)</span>
+<span id="cb13-7"><a href="#cb13-7"></a>my_context[<span class="st">'threats'</span>] <span class="op">=</span> <span class="st">", "</span>.join(threats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="run-kernel" class="slide level2">
+<h2>Run kernel</h2>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>bizstrat_result <span class="op">=</span> <span class="cf">await</span> kernel.run_async(pluginBT[<span class="st">"BasicStrategies"</span>], input_context<span class="op">=</span>my_context)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="output-1" class="slide level2">
+<h2>Output</h2>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>bizstrat_str <span class="op">=</span> <span class="st">"## ✨ Business strategy thinking based on SWOT analysis</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>    <span class="bu">str</span>(bizstrat_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>display(Markdown(bizstrat_str))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<div class="cell output-location-slide" data-execution_count="14">
+<section id="business-strategy-thinking-based-on-swot-analysis" class="slide level2 cell-output cell-output-display">
+<h2>✨ Business strategy thinking based on SWOT analysis</h2>
+<h3 id="building-on-strengths-can-immediately-improve-the-business">Building on strengths can immediately improve the business</h3>
+<table>
+<colgroup>
+<col style="width: 15%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Title</th>
+<th>Strength</th>
+<th>Weakness</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Expand menu with popular calzones</td>
+<td>Unique garlic pizza recipe that wins top awards</td>
+<td>Absence of popular calzones from menu</td>
+<td>Add popular calzones to the menu to attract customers who are looking for a different type of pizza option</td>
+</tr>
+<tr class="even">
+<td>Improve seating areas</td>
+<td>Strong local reputation, Prime location on university campus</td>
+<td>Floods in the area damaged the seating areas that are in need of repair</td>
+<td>Repair and upgrade the seating areas to provide a comfortable and inviting environment for customers</td>
+</tr>
+<tr class="odd">
+<td>Enhance online presence and marketing</td>
+<td>Strong local reputation</td>
+<td>Negative reviews from younger demographic for lack of hip ingredients</td>
+<td>Develop a strong online presence through social media, website, and online advertising to target the younger demographic and showcase the unique aspects of the business</td>
+</tr>
+</tbody>
+</table>
+<h3 id="taking-advantage-of-opportunities-whenever-possible">Taking advantage of opportunities whenever possible</h3>
+<table>
+<colgroup>
+<col style="width: 20%">
+<col style="width: 33%">
+<col style="width: 45%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Title</th>
+<th>Opportunity</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Launch catering services</td>
+<td>Untapped catering potential</td>
+<td>Tap into the untapped market of catering services by offering customized pizza options for events, parties, and corporate gatherings</td>
+</tr>
+<tr class="even">
+<td>Develop online ordering capabilities</td>
+<td>Unexplored online presence and order capabilities</td>
+<td>Create a user-friendly online ordering system to cater to the growing trend of online food ordering and delivery services</td>
+</tr>
+<tr class="odd">
+<td>Participate in the upcoming annual food fair</td>
+<td>Upcoming annual food fair</td>
+<td>Showcase the unique garlic pizza recipe and attract new customers by participating in the local food fair, offering special discounts and promotions</td>
+</tr>
+</tbody>
+</table>
+<h3 id="building-resilience-to-threats-is-always-a-good-idea">Building resilience to threats is always a good idea</h3>
+<table>
+<colgroup>
+<col style="width: 20%">
+<col style="width: 33%">
+<col style="width: 45%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Title</th>
+<th>Threat</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Enhance cost-saving measures</td>
+<td>Rising cost of cheese will increase the cost of pizzas</td>
+<td>Implement cost-saving measures such as optimizing ingredient usage, negotiating better deals with suppliers, and finding alternative sources for ingredients to mitigate the impact of rising cheese costs</td>
+</tr>
+<tr class="even">
+<td>Diversify customer base</td>
+<td>Competition from cheaper pizza businesses nearby</td>
+<td>Expand marketing efforts to target different customer segments, such as families, students, and professionals, to reduce reliance on a single customer base and mitigate the impact of competition</td>
+</tr>
+<tr class="odd">
+<td>Stay updated on local regulatory changes</td>
+<td>No immediate local regulatory changes but it’s election season</td>
+<td>Stay informed about potential regulatory changes that may affect the business, especially during election seasons, and adapt strategies accordingly to minimize any negative impact</td>
+</tr>
+</tbody>
+</table>
+</section>
+</div></section>
+<section id="acknowledgments" class="title-slide slide level1 center">
+<h1>Acknowledgments</h1>
+<p><em>This tutorial is mainly based on the excellent course <a href="https://www.deeplearning.ai/short-courses/microsoft-semantic-kernel/">“How Business Thinkers Can Start Building AI Plugins With Semantic Kernel”</a> provided by John Maeda and Andrew Ng</em></p>
+</section>
+
 <section id="whats-next" class="title-slide slide level1 center" data-background-image="../images/logo.png" data-background-opacity="0.5">
 <h1>What’s next?</h1>
 <ul>
 <li class="fragment"><strong>Congratulations! You have completed this tutorial</strong> 👍</li>
 </ul>
-<p><strong>Next, you may want to go back to the <a href="https://kirenz.github.io/foo/">lab’s website</a></strong></p>
+<p><strong>Next, you may want to go back to the <a href="https://kirenz.github.io/semantic-kernel/">lab’s website</a></strong></p>
 
 <div class="footer footer-default">
 <p>Jan Kirenz</p>
 </div>
 </section>
-
-
     </div>
   </div>
 
