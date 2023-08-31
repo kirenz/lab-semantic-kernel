@@ -18,10 +18,11 @@ Make sure you meet all the [requirements](/requirements.qmd) and have read the l
 After completing this course you will be able to:
 
 - Utilize the open source orchestrator, the Semantic Kernel, in your applications
-- Develop business applications like SWOT and Design Thinking using LLM’s
-- Leverage common LLM building blocks such as memories and planners
-
-
+- Develop business applications like SWOT using LLM’s
+- Use Design Thinking to empathize with customers and solve their challenges
+- Chaining semantic functions for enhanced impact
+- Leverage common LLM building blocks such as memories, chaining and planners
+- Build an AI planner that integrates plug-ins to create advanced logic-based plans
 
 ---
 
