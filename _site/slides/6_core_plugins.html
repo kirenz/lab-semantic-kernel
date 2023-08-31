@@ -457,7 +457,7 @@ Jan Kirenz
 <span id="cb2-3"><a href="#cb2-3"></a>api_key, org_id <span class="op">=</span> sk.openai_settings_from_dot_env()</span>
 <span id="cb2-4"><a href="#cb2-4"></a></span>
 <span id="cb2-5"><a href="#cb2-5"></a>kernel.add_text_completion_service(</span>
-<span id="cb2-6"><a href="#cb2-6"></a>    <span class="st">"openaicompletion"</span>, OpenAIChatCompletion(<span class="st">"gpt-3.5-turbo-0301"</span>, api_key, org_id))</span>
+<span id="cb2-6"><a href="#cb2-6"></a>    <span class="st">"openaicompletion"</span>, OpenAIChatCompletion(<span class="st">"gpt-3.5-turbo"</span>, api_key, org_id))</span>
 <span id="cb2-7"><a href="#cb2-7"></a></span>
 <span id="cb2-8"><a href="#cb2-8"></a>kernel.add_text_embedding_generation_service(</span>
 <span id="cb2-9"><a href="#cb2-9"></a>    <span class="st">"openaiembedding"</span>, OpenAITextEmbedding(<span class="st">"text-embedding-ada-002"</span>, api_key, org_id))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -685,9 +685,7 @@ Jan Kirenz
 
 <section id="whats-next" class="title-slide slide level1 center" data-background-image="../images/logo.png" data-background-opacity="0.5">
 <h1>What’s next?</h1>
-<ul>
-<li class="fragment"><strong>Congratulations! You have completed this tutorial</strong> 👍</li>
-</ul>
+<p><strong>Congratulations! You have completed this tutorial</strong> 👍</p>
 <p><strong>Next, you may want to go back to the <a href="https://kirenz.github.io/semantic-kernel/">lab’s website</a></strong></p>
 
 <div class="footer footer-default">
