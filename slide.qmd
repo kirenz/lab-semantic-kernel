@@ -15,6 +15,7 @@ To download Jupyter Notebooks: Go to the Colab menu and choose "File" > "Downloa
 
 ## Semantic Kernel 
 
+Learn how to utilize the open source orchestrator, the Semantic Kernel, in your applications:
 
 ::: {.callout-tip appearance="simple" icon=false}
 - [🖥️ Presentation](slides/1_kernel.qmd)
@@ -24,6 +25,7 @@ To download Jupyter Notebooks: Go to the Colab menu and choose "File" > "Downloa
 
 ## SWOT-Analysis  
 
+Develop business applications like SWOT using LLM’s:
 
 ::: {.callout-tip appearance="simple" icon=false}
 - [🖥️ Presentation](slides/2_swot.qmd)
@@ -41,7 +43,7 @@ To download Jupyter Notebooks: Go to the Colab menu and choose "File" > "Downloa
 
 ## Design Thinking
 
-Use the Semantic Kernel in the Design Thinking process:
+Use Design Thinking to empathize with customers and solve their challenges:
 
 ::: {.callout-tip appearance="simple" icon=false}
 - [🖥️ Presentation](slides/4_design.qmd)
