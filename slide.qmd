@@ -6,6 +6,7 @@ number-sections: true
 *The tutorials are mainly based on the excellent course ["How Business Thinkers Can Start Building AI Plugins With Semantic Kernel"](https://www.deeplearning.ai/short-courses/microsoft-semantic-kernel/) provided by John Maeda and Andrew Ng*
 
 
+
 ::: {.callout-note appearance="simple"}
 Take a look at the [slides tutorial](https://kirenz.github.io/lab-toolkit/slides/slides.html#/title-slide) to learn how to use all slide options. 
 
@@ -13,7 +14,7 @@ To download Jupyter Notebooks: Go to the Colab menu and choose "File" > "Downloa
 :::
 
 
-## Semantic Kernel 
+## Semantic Kernel introduction
 
 Learn how to utilize the open source orchestrator, the Semantic Kernel, in your applications:
 
@@ -22,6 +23,11 @@ Learn how to utilize the open source orchestrator, the Semantic Kernel, in your 
 - [💻 Jupyter Notebook]()
 :::
 
+To learn more about the Semantic Kernel, take a look at these resources:
+
+- [📖 Semantic Kernel documentation](https://learn.microsoft.com/en-us/semantic-kernel/)
+
+- [ ▶️ Building AI solutions with Semantic Kernel](https://build.microsoft.com/en-US/sessions/31e11443-70d3-4020-8c8c-0a654bccd233?source=sessions)
 
 ## SWOT-Analysis  
 
@@ -34,6 +40,7 @@ Develop business applications like SWOT using LLM’s:
 
 ## Business Plugins
 
+Use different plugins to enhance Semantic Kernel
 
 ::: {.callout-tip appearance="simple" icon=false}
 - [🖥️ Presentation](slides/3_business_plugins.qmd)
@@ -50,7 +57,7 @@ Use Design Thinking to empathize with customers and solve their challenges:
 - [💻 Jupyter Notebook]()
 :::
 
-## Database
+## Vector store database
 
 Learn how to use data in a vector store database:
 
@@ -69,3 +76,20 @@ Learn how to add the tools for the kernel to do math, to read/write files, to te
 - [🖥️ Presentation](slides/6_core_plugins.qmd)
 - [💻 Jupyter Notebook]()
 :::
+
+
+## Create your own App: Chat Copilot
+
+This tutorial allows you to build your own integrated large language model (LLM) chat copilot. The sample is built on Microsoft Semantic Kernel and has two components: a frontend React web app and a backend .NET web API service:
+
+
+::: {.callout-tip appearance="simple" icon=false}
+- [🖥️ Presentation](slides/7_apps.qmd)
+- [💻 Jupyter Notebook]()
+:::
+
+Learn more:
+
+- GitHub repo: <https://github.com/microsoft/chat-copilot> 
+
+- [ ⚡️ Getting started with Semantic Kernel](https://github.com/microsoft/semantic-kernel/blob/main/python/README.md) 
