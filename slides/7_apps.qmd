@@ -1,24 +1,75 @@
 ---
-title: Apps
-jupyter: python3
+title: Custom App Examples
+title-slide-attributes:
+  data-background-image: ../images/logo.png
+  data-background-size: contain
+  data-background-opacity: "0.5"
+lang: en
+subtitle: Semantic Kernel
+author: Jan Kirenz
+execute:
+  eval: false
+  echo: true
+highlight-style: github
+format:
+  revealjs: 
+    toc: true
+    toc-depth: 1
+    embed-resources: false
+    theme: [dark, ../custom.scss]  
+    incremental: true
+    transition: slide
+    background-transition: fade
+    transition-speed: slow
+    code-copy: true
+    code-line-numbers: true
+    smaller: false
+    scrollable: true
+    slide-number: c
+    preview-links: auto
+    chalkboard: 
+      buttons: false
+   # logo: ../images/logo.png
+    footer: Jan Kirenz
 ---
 
+# Chat Copilot Sample Application
 
-https://github.com/microsoft/chat-copilot
+## Basics
 
-![](./assets/cc_githubrepo.png)
+![](/images/copilot-chat.png)
 
-![](./assets/cc_plain.png)
 
-![](./assets/cc_chatgptplugin.gif)
+- This sample allows you to build your own integrated large language model (LLM) chat copilot. The sample is built on Microsoft Semantic Kernel and has two components: a frontend React web app and a backend .NET web API service.
 
-![](./assets/cc_vectordbs.jpg)
+- GitHub repo: <https://github.com/microsoft/chat-copilot>
 
-![](./assets/cc_settings.png)
+## UI
 
-## 🎁 The backend server demonstrates how to connect to a variety of resources like auth, vector dbs, telemetry, content safety, PDF import, and even OCR. 
 
-```
+![](../images/cc_chatcopilotclip.gif)
+
+
+## Chat
+
+![](../images/cc_plain.png)
+
+## Plugin
+
+![](../images/cc_chatgptplugin.gif)
+
+## Vector Database
+
+![](../images/cc_vectordbs.jpg)
+
+![](./images/cc_settings.png)
+
+## Backend {.smaller}
+
+The backend server demonstrates how to connect to a variety of resources like auth, vector dbs, telemetry, content safety, PDF import, and even OCR. 
+
+
+```json
 //
 // # ABBREVIATED Chat Copilot Application Settings
 {
@@ -136,5 +187,3 @@ https://github.com/microsoft/chat-copilot
   "APPLICATIONINSIGHTS_CONNECTION_STRING": null
 }
 ```
-
-
