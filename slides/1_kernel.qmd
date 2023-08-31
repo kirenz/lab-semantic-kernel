@@ -134,4 +134,4 @@ print("You made an open source kernel using an open source AI model!")
 
 **Congratulations! You have completed this tutorial** 👍
 
-**Next, you may want to go back to the [lab's website](https://kirenz.github.io/semantic-kernel/)**
+**Next, you may want to go back to the [lab's website](https://kirenz.github.io/lab-semantic-kernel/)**

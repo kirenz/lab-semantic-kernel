@@ -187,3 +187,9 @@ The backend server demonstrates how to connect to a variety of resources like au
   "APPLICATIONINSIGHTS_CONNECTION_STRING": null
 }
 ```
+
+# What's next? {background-image="../images/logo.png" background-opacity="0.5"}
+
+**Congratulations! You have completed this tutorial** 👍
+
+**Next, you may want to go back to the [lab's website](https://kirenz.github.io/lab-semantic-kernel/)**
