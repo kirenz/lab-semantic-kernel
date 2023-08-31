@@ -68,7 +68,7 @@ kernel = sk.Kernel()
 api_key, org_id = sk.openai_settings_from_dot_env()
 
 kernel.add_text_completion_service(
-    "openaicompletion", OpenAIChatCompletion("gpt-3.5-turbo-0301", api_key, org_id))
+    "openaicompletion", OpenAIChatCompletion("gpt-3.5-turbo", api_key, org_id))
 
 kernel.add_text_embedding_generation_service(
     "openaiembedding", OpenAITextEmbedding("text-embedding-ada-002", api_key, org_id))
@@ -303,6 +303,6 @@ Output vars: ['RESULT__TRANSLATED_POEM']
 
 # What's next? {background-image="../images/logo.png" background-opacity="0.5"}
 
-- **Congratulations! You have completed this tutorial** 👍
+**Congratulations! You have completed this tutorial** 👍
 
 **Next, you may want to go back to the [lab's website](https://kirenz.github.io/semantic-kernel/)**
