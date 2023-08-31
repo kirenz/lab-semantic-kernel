@@ -4,7 +4,7 @@ title: "Welcome 👋"
 
 Welcome to the lab *"Semantic Kernel"* 
 
-![](/images/logo.png){width="60%"}
+![](/images/logo.png){width="80%"}
 
 
 Large Language Models (LLMs) enable us to build new kinds of applications that harness the power of AI. In this lab, you’ll learn how to use and create with Microsoft’s open source orchestrator, [Semantic Kernel](https://learn.microsoft.com/en-us/semantic-kernel/overview/). 
@@ -20,7 +20,6 @@ After completing this course you will be able to:
 - Utilize the open source orchestrator, the Semantic Kernel, in your applications
 - Develop business applications like SWOT using LLM’s
 - Use Design Thinking to empathize with customers and solve their challenges
-- Chaining semantic functions for enhanced impact
 - Leverage common LLM building blocks such as memories, chaining and planners
 - Build an AI planner that integrates plug-ins to create advanced logic-based plans
 
