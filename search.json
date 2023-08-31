@@ -7,18 +7,46 @@
     "text": "To start this lab, you’ll need the following environments:\n\n\n\n\n\n\nImportant\n\n\n\nVisit the “Programming Toolkit-webpage” to learn how to meet all requirements.\n\n\n\nPython: Anaconda, Anaconda Environment kernel and Visual Studio Code\nEnvironment: A folder on your machine called semantic-kernel and an environment file with your OpenAI API key."
   },
   {
-    "objectID": "slides/7_apps.html",
-    "href": "slides/7_apps.html",
-    "title": "Apps",
-    "section": "",
-    "text": "https://github.com/microsoft/chat-copilot"
+    "objectID": "slides/7_apps.html#basics",
+    "href": "slides/7_apps.html#basics",
+    "title": "Custom App Examples",
+    "section": "Basics",
+    "text": "Basics\n\n\nThis sample allows you to build your own integrated large language model (LLM) chat copilot. The sample is built on Microsoft Semantic Kernel and has two components: a frontend React web app and a backend .NET web API service.\nGitHub repo: https://github.com/microsoft/chat-copilot"
   },
   {
-    "objectID": "slides/7_apps.html#the-backend-server-demonstrates-how-to-connect-to-a-variety-of-resources-like-auth-vector-dbs-telemetry-content-safety-pdf-import-and-even-ocr.",
-    "href": "slides/7_apps.html#the-backend-server-demonstrates-how-to-connect-to-a-variety-of-resources-like-auth-vector-dbs-telemetry-content-safety-pdf-import-and-even-ocr.",
-    "title": "Apps",
-    "section": "🎁 The backend server demonstrates how to connect to a variety of resources like auth, vector dbs, telemetry, content safety, PDF import, and even OCR.",
-    "text": "🎁 The backend server demonstrates how to connect to a variety of resources like auth, vector dbs, telemetry, content safety, PDF import, and even OCR.\n//\n// # ABBREVIATED Chat Copilot Application Settings\n{\n  \"AIService\": {\n    \"Type\": \"AzureOpenAI\",\n    \"Endpoint\": \"\", // ignored when AIService is \"OpenAI\"\n     \"Key\": \"\",\n    \"Models\": {\n      \"Completion\": \"gpt-35-turbo\", \n      \"Embedding\": \"text-embedding-ada-002\",\n      \"Planner\": \"gpt-35-turbo\" \n    }\n  },\n  //\n  // Optional Azure Speech service configuration for providing Azure Speech access tokens.\n  // - Set the Region to the region of your Azure Speech resource (e.g., \"westus\").\n  // - Set the Key using dotnet's user secrets (see above)\n  //     (i.e. dotnet user-secrets set \"AzureSpeech:Key\" \"MY_AZURE_SPEECH_KEY\")\n  //\n  \"AzureSpeech\": {\n    \"Region\": \"\"\n    // \"Key\": \"\"\n  },\n  //\n  // Authorization configuration to gate access to the service.\n  // - Supported Types are \"None\", \"ApiKey\", or \"AzureAd\".\n  // - Set ApiKey using dotnet's user secrets (see above)\n  //     (i.e. dotnet user-secret set \"Authorization:ApiKey\" \"MY_API_KEY\")\n  //\n  \"Authorization\": {\n    \"Type\": \"None\",\n    \"ApiKey\": \"\",\n    \"AzureAd\": {\n      \"Instance\": \"https://login.microsoftonline.com/\",\n      \"TenantId\": \"\",\n      \"ClientId\": \"\",\n      \"Audience\": \"\",\n      \"Scopes\": \"access_as_user\" // Scopes that the client app requires to access the API\n    }\n  },\n  //\n  // Chat stores are used for storing chat sessions and messages.\n  // - Supported Types are \"volatile\", \"filesystem\", or \"cosmos\".\n  // - Set \"ChatStore:Cosmos:ConnectionString\" using dotnet's user secrets (see above)\n  //     (i.e. dotnet user-secrets set \"ChatStore:Cosmos:ConnectionString\" \"MY_COSMOS_CONNSTRING\")\n  //\n  \"ChatStore\": {\n    \"Type\": \"volatile\",\n    \"Filesystem\": {\n      \"FilePath\": \"./data/chatstore.json\"\n    },\n    \"Cosmos\": {\n      \"Database\": \"CopilotChat\",\n      \"ChatSessionsContainer\": \"chatsessions\",\n      \"ChatMessagesContainer\": \"chatmessages\",\n      \"ChatMemorySourcesContainer\": \"chatmemorysources\",\n      \"ChatParticipantsContainer\": \"chatparticipants\"\n      // \"ConnectionString\": // dotnet user-secrets set \"ChatStore:Cosmos:ConnectionString\" \"MY_COSMOS_CONNECTION_STRING\"\n    }\n  },\n  //\n  // Memory stores are used for storing new memories and retrieving semantically similar memories.\n  \"MemoryStore\": {\n    \"Type\": \"volatile\",\n    \"Qdrant\": {\n      \"Host\": \"http://localhost\",\n      \"Port\": \"6333\",\n      \"VectorSize\": 1536\n      // \"Key\":  \"\"\n    },\n    \"AzureCognitiveSearch\": {\n      \"Endpoint\": \"\"\n      // \"Key\": \"\"\n    },\n    \"Chroma\": {\n      \"Host\": \"http://localhost\",\n      \"Port\": \"8000\"\n    },\n    \"Postgres\": {\n      \"VectorSize\": 1536\n      // \"ConnectionString\": // dotnet user-secrets set \"MemoryStore:Postgres:ConnectionString\" \"MY_POSTGRES_CONNECTION_STRING\"\n    }\n  },\n  //\n  // Document import configuration\n  //\n  \"DocumentMemory\": {\n    \"GlobalDocumentCollectionName\": \"global-documents\",\n    \"ChatDocumentCollectionNamePrefix\": \"chat-documents-\",\n    \"DocumentLineSplitMaxTokens\": 72,\n    \"DocumentChunkMaxTokens\": 512,\n    \"FileSizeLimit\": 4000000,\n    \"FileCountLimit\": 10\n  },\n  //\n  // OCR support is used for allowing end users to upload images containing text in addition to text based documents.\n  //  https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/quickstarts-sdk/client-library?tabs=windows%2Cvisual-studio&pivots=programming-language-csharp#optical-character-recognition-ocr-with-computer-vision-api-using-c\n  //\n  \"OcrSupport\": {\n    \"Type\": \"none\",\n    \"Tesseract\": {\n      \"Language\": \"eng\",\n      \"FilePath\": \"./data\"\n    },\n    \"AzureFormRecognizer\": {\n      \"Endpoint\": \"\"\n      // \"Key\": \"\",\n    }\n  },\n  //\n  // Application Insights configuration\n  // - Set \"APPLICATIONINSIGHTS_CONNECTION_STRING\" using dotnet's user secrets (see above)\n  //     (i.e. dotnet user-secrets set \"APPLICATIONINSIGHTS_CONNECTION_STRING\" \"MY_APPINS_CONNSTRING\")\n  //\n  \"APPLICATIONINSIGHTS_CONNECTION_STRING\": null\n}"
+    "objectID": "slides/7_apps.html#ui",
+    "href": "slides/7_apps.html#ui",
+    "title": "Custom App Examples",
+    "section": "UI",
+    "text": "UI"
+  },
+  {
+    "objectID": "slides/7_apps.html#chat",
+    "href": "slides/7_apps.html#chat",
+    "title": "Custom App Examples",
+    "section": "Chat",
+    "text": "Chat"
+  },
+  {
+    "objectID": "slides/7_apps.html#plugin",
+    "href": "slides/7_apps.html#plugin",
+    "title": "Custom App Examples",
+    "section": "Plugin",
+    "text": "Plugin"
+  },
+  {
+    "objectID": "slides/7_apps.html#vector-database",
+    "href": "slides/7_apps.html#vector-database",
+    "title": "Custom App Examples",
+    "section": "Vector Database",
+    "text": "Vector Database"
+  },
+  {
+    "objectID": "slides/7_apps.html#backend",
+    "href": "slides/7_apps.html#backend",
+    "title": "Custom App Examples",
+    "section": "Backend",
+    "text": "Backend\nThe backend server demonstrates how to connect to a variety of resources like auth, vector dbs, telemetry, content safety, PDF import, and even OCR.\n//\n// # ABBREVIATED Chat Copilot Application Settings\n{\n  \"AIService\": {\n    \"Type\": \"AzureOpenAI\",\n    \"Endpoint\": \"\", // ignored when AIService is \"OpenAI\"\n     \"Key\": \"\",\n    \"Models\": {\n      \"Completion\": \"gpt-35-turbo\", \n      \"Embedding\": \"text-embedding-ada-002\",\n      \"Planner\": \"gpt-35-turbo\" \n    }\n  },\n  //\n  // Optional Azure Speech service configuration for providing Azure Speech access tokens.\n  // - Set the Region to the region of your Azure Speech resource (e.g., \"westus\").\n  // - Set the Key using dotnet's user secrets (see above)\n  //     (i.e. dotnet user-secrets set \"AzureSpeech:Key\" \"MY_AZURE_SPEECH_KEY\")\n  //\n  \"AzureSpeech\": {\n    \"Region\": \"\"\n    // \"Key\": \"\"\n  },\n  //\n  // Authorization configuration to gate access to the service.\n  // - Supported Types are \"None\", \"ApiKey\", or \"AzureAd\".\n  // - Set ApiKey using dotnet's user secrets (see above)\n  //     (i.e. dotnet user-secret set \"Authorization:ApiKey\" \"MY_API_KEY\")\n  //\n  \"Authorization\": {\n    \"Type\": \"None\",\n    \"ApiKey\": \"\",\n    \"AzureAd\": {\n      \"Instance\": \"https://login.microsoftonline.com/\",\n      \"TenantId\": \"\",\n      \"ClientId\": \"\",\n      \"Audience\": \"\",\n      \"Scopes\": \"access_as_user\" // Scopes that the client app requires to access the API\n    }\n  },\n  //\n  // Chat stores are used for storing chat sessions and messages.\n  // - Supported Types are \"volatile\", \"filesystem\", or \"cosmos\".\n  // - Set \"ChatStore:Cosmos:ConnectionString\" using dotnet's user secrets (see above)\n  //     (i.e. dotnet user-secrets set \"ChatStore:Cosmos:ConnectionString\" \"MY_COSMOS_CONNSTRING\")\n  //\n  \"ChatStore\": {\n    \"Type\": \"volatile\",\n    \"Filesystem\": {\n      \"FilePath\": \"./data/chatstore.json\"\n    },\n    \"Cosmos\": {\n      \"Database\": \"CopilotChat\",\n      \"ChatSessionsContainer\": \"chatsessions\",\n      \"ChatMessagesContainer\": \"chatmessages\",\n      \"ChatMemorySourcesContainer\": \"chatmemorysources\",\n      \"ChatParticipantsContainer\": \"chatparticipants\"\n      // \"ConnectionString\": // dotnet user-secrets set \"ChatStore:Cosmos:ConnectionString\" \"MY_COSMOS_CONNECTION_STRING\"\n    }\n  },\n  //\n  // Memory stores are used for storing new memories and retrieving semantically similar memories.\n  \"MemoryStore\": {\n    \"Type\": \"volatile\",\n    \"Qdrant\": {\n      \"Host\": \"http://localhost\",\n      \"Port\": \"6333\",\n      \"VectorSize\": 1536\n      // \"Key\":  \"\"\n    },\n    \"AzureCognitiveSearch\": {\n      \"Endpoint\": \"\"\n      // \"Key\": \"\"\n    },\n    \"Chroma\": {\n      \"Host\": \"http://localhost\",\n      \"Port\": \"8000\"\n    },\n    \"Postgres\": {\n      \"VectorSize\": 1536\n      // \"ConnectionString\": // dotnet user-secrets set \"MemoryStore:Postgres:ConnectionString\" \"MY_POSTGRES_CONNECTION_STRING\"\n    }\n  },\n  //\n  // Document import configuration\n  //\n  \"DocumentMemory\": {\n    \"GlobalDocumentCollectionName\": \"global-documents\",\n    \"ChatDocumentCollectionNamePrefix\": \"chat-documents-\",\n    \"DocumentLineSplitMaxTokens\": 72,\n    \"DocumentChunkMaxTokens\": 512,\n    \"FileSizeLimit\": 4000000,\n    \"FileCountLimit\": 10\n  },\n  //\n  // OCR support is used for allowing end users to upload images containing text in addition to text based documents.\n  //  https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/quickstarts-sdk/client-library?tabs=windows%2Cvisual-studio&pivots=programming-language-csharp#optical-character-recognition-ocr-with-computer-vision-api-using-c\n  //\n  \"OcrSupport\": {\n    \"Type\": \"none\",\n    \"Tesseract\": {\n      \"Language\": \"eng\",\n      \"FilePath\": \"./data\"\n    },\n    \"AzureFormRecognizer\": {\n      \"Endpoint\": \"\"\n      // \"Key\": \"\",\n    }\n  },\n  //\n  // Application Insights configuration\n  // - Set \"APPLICATIONINSIGHTS_CONNECTION_STRING\" using dotnet's user secrets (see above)\n  //     (i.e. dotnet user-secrets set \"APPLICATIONINSIGHTS_CONNECTION_STRING\" \"MY_APPINS_CONNSTRING\")\n  //\n  \"APPLICATIONINSIGHTS_CONNECTION_STRING\": null\n}\n\n\nJan Kirenz"
   },
   {
     "objectID": "slides/5_database.html#python",
@@ -151,7 +179,7 @@
     "href": "slides/6_core_plugins.html#kernel",
     "title": "Core Plugins",
     "section": "Kernel",
-    "text": "Kernel\n\nkernel = sk.Kernel()\n\napi_key, org_id = sk.openai_settings_from_dot_env()\n\nkernel.add_text_completion_service(\n    \"openaicompletion\", OpenAIChatCompletion(\"gpt-3.5-turbo-0301\", api_key, org_id))\n\nkernel.add_text_embedding_generation_service(\n    \"openaiembedding\", OpenAITextEmbedding(\"text-embedding-ada-002\", api_key, org_id))"
+    "text": "Kernel\n\nkernel = sk.Kernel()\n\napi_key, org_id = sk.openai_settings_from_dot_env()\n\nkernel.add_text_completion_service(\n    \"openaicompletion\", OpenAIChatCompletion(\"gpt-3.5-turbo\", api_key, org_id))\n\nkernel.add_text_embedding_generation_service(\n    \"openaiembedding\", OpenAITextEmbedding(\"text-embedding-ada-002\", api_key, org_id))"
   },
   {
     "objectID": "slides/6_core_plugins.html#import-plugins",
@@ -280,11 +308,11 @@
     "text": "The tutorials are mainly based on the excellent course “How Business Thinkers Can Start Building AI Plugins With Semantic Kernel” provided by John Maeda and Andrew Ng"
   },
   {
-    "objectID": "slide.html#semantic-kernel",
-    "href": "slide.html#semantic-kernel",
+    "objectID": "slide.html#semantic-kernel-introduction",
+    "href": "slide.html#semantic-kernel-introduction",
     "title": "Slides",
-    "section": "1 Semantic Kernel",
-    "text": "1 Semantic Kernel\nLearn how to utilize the open source orchestrator, the Semantic Kernel, in your applications:\n\n\n\n\n\n\n\n🖥️ Presentation\n💻 Jupyter Notebook"
+    "section": "1 Semantic Kernel introduction",
+    "text": "1 Semantic Kernel introduction\nLearn how to utilize the open source orchestrator, the Semantic Kernel, in your applications:\n\n\n\n\n\n\n\n🖥️ Presentation\n💻 Jupyter Notebook\n\n\n\n\nTo learn more about the Semantic Kernel, take a look at these resources:\n\n📖 Semantic Kernel documentation\n▶️ Building AI solutions with Semantic Kernel"
   },
   {
     "objectID": "slide.html#swot-analysis",
@@ -298,7 +326,7 @@
     "href": "slide.html#business-plugins",
     "title": "Slides",
     "section": "3 Business Plugins",
-    "text": "3 Business Plugins\n\n\n\n\n\n\n\n🖥️ Presentation\n💻 Jupyter Notebook"
+    "text": "3 Business Plugins\nUse different plugins to enhance Semantic Kernel\n\n\n\n\n\n\n\n🖥️ Presentation\n💻 Jupyter Notebook"
   },
   {
     "objectID": "slide.html#design-thinking",
@@ -308,11 +336,11 @@
     "text": "4 Design Thinking\nUse Design Thinking to empathize with customers and solve their challenges:\n\n\n\n\n\n\n\n🖥️ Presentation\n💻 Jupyter Notebook"
   },
   {
-    "objectID": "slide.html#database",
-    "href": "slide.html#database",
+    "objectID": "slide.html#vector-store-database",
+    "href": "slide.html#vector-store-database",
     "title": "Slides",
-    "section": "5 Database",
-    "text": "5 Database\nLearn how to use data in a vector store database:\n\n\n\n\n\n\n\n🖥️ Presentation\n💻 Jupyter Notebook"
+    "section": "5 Vector store database",
+    "text": "5 Vector store database\nLearn how to use data in a vector store database:\n\n\n\n\n\n\n\n🖥️ Presentation\n💻 Jupyter Notebook"
   },
   {
     "objectID": "slide.html#core-plugins",
@@ -322,11 +350,18 @@
     "text": "6 Core Plugins\nLearn how to add the tools for the kernel to do math, to read/write files, to tell the time, and to play with text. You can find more about core plugins here.\n\n\n\n\n\n\n\n🖥️ Presentation\n💻 Jupyter Notebook"
   },
   {
+    "objectID": "slide.html#create-your-own-app-chat-copilot",
+    "href": "slide.html#create-your-own-app-chat-copilot",
+    "title": "Slides",
+    "section": "7 Create your own App: Chat Copilot",
+    "text": "7 Create your own App: Chat Copilot\nThis tutorial allows you to build your own integrated large language model (LLM) chat copilot. The sample is built on Microsoft Semantic Kernel and has two components: a frontend React web app and a backend .NET web API service:\n\n\n\n\n\n\n\n🖥️ Presentation\n💻 Jupyter Notebook\n\n\n\n\nLearn more:\n\nGitHub repo: https://github.com/microsoft/chat-copilot\n⚡️ Getting started with Semantic Kernel"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Welcome 👋",
     "section": "",
-    "text": "Welcome to the lab “Semantic Kernel”\n\nLarge Language Models (LLMs) enable us to build new kinds of applications that harness the power of AI. In this lab, you’ll learn how to use and create with Microsoft’s open source orchestrator, Semantic Kernel.\nUsing an orchestration SDK such as Semantic Kernel means you can avoid having to learn APIs for each individual AI service, and build integrations that can always stay up to date with the latest advances in AI research rather than solutions that quickly get outdated.\n\n\n\n\n\n\nImportant\n\n\n\nMake sure you meet all the requirements and have read the lecture slides before you start with the assignments\n\n\nAfter completing this course you will be able to:\n\nUtilize the open source orchestrator, the Semantic Kernel, in your applications\nDevelop business applications like SWOT using LLM’s\nUse Design Thinking to empathize with customers and solve their challenges\nChaining semantic functions for enhanced impact\nLeverage common LLM building blocks such as memories, chaining and planners\nBuild an AI planner that integrates plug-ins to create advanced logic-based plans\n\n\nThis lab is mainly based on the excellent course “How Business Thinkers Can Start Building AI Plugins With Semantic Kernel” provided by John Maeda and Andrew Ng"
+    "text": "Welcome to the lab “Semantic Kernel”\n\nLarge Language Models (LLMs) enable us to build new kinds of applications that harness the power of AI. In this lab, you’ll learn how to use and create with Microsoft’s open source orchestrator, Semantic Kernel.\nUsing an orchestration SDK such as Semantic Kernel means you can avoid having to learn APIs for each individual AI service, and build integrations that can always stay up to date with the latest advances in AI research rather than solutions that quickly get outdated.\n\n\n\n\n\n\nImportant\n\n\n\nMake sure you meet all the requirements and have read the lecture slides before you start with the assignments\n\n\nAfter completing this course you will be able to:\n\nUtilize the open source orchestrator, the Semantic Kernel, in your applications\nDevelop business applications like SWOT using LLM’s\nUse Design Thinking to empathize with customers and solve their challenges\nLeverage common LLM building blocks such as memories, chaining and planners\nBuild an AI planner that integrates plug-ins to create advanced logic-based plans\n\n\nThis lab is mainly based on the excellent course “How Business Thinkers Can Start Building AI Plugins With Semantic Kernel” provided by John Maeda and Andrew Ng"
   },
   {
     "objectID": "slides/2_swot.html#python",
@@ -567,11 +602,60 @@
     "text": "Output"
   },
   {
-    "objectID": "slides/1_kernel.html#python",
-    "href": "slides/1_kernel.html#python",
+    "objectID": "slides/1_kernel.html#satya-nadella-at-microsoft-build-2023-about-copilot",
+    "href": "slides/1_kernel.html#satya-nadella-at-microsoft-build-2023-about-copilot",
     "title": "Semantic Kernel",
-    "section": "Python",
-    "text": "Python\n\nfrom semantic_kernel.connectors.ai.hugging_face import HuggingFaceTextCompletion\nimport semantic_kernel as sk\nfrom semantic_kernel.connectors.ai.open_ai import AzureChatCompletion, OpenAIChatCompletion"
+    "section": "Satya Nadella at Microsoft Build 2023 about Copilot",
+    "text": "Satya Nadella at Microsoft Build 2023 about Copilot"
+  },
+  {
+    "objectID": "slides/1_kernel.html#microsoft-copilot",
+    "href": "slides/1_kernel.html#microsoft-copilot",
+    "title": "Semantic Kernel",
+    "section": "Microsoft Copilot",
+    "text": "Microsoft Copilot"
+  },
+  {
+    "objectID": "slides/1_kernel.html#semantic-kernel-is-at-the-center-of-the-copilot-stack",
+    "href": "slides/1_kernel.html#semantic-kernel-is-at-the-center-of-the-copilot-stack",
+    "title": "Semantic Kernel",
+    "section": "Semantic Kernel is at the center of the copilot stack",
+    "text": "Semantic Kernel is at the center of the copilot stack\n\n\nTo help developers build their own Copilot experiences on top of AI plugins, Microsoft has released Semantic Kernel, a lightweight open-source SDK that allows you to orchestrate AI plugins.\nWith Semantic Kernel, you can leverage the same AI orchestration patterns that power Microsoft 365 Copilot and Bing in your own apps, while still leveraging your existing development skills and investments."
+  },
+  {
+    "objectID": "slides/1_kernel.html#who-needs-semantic-kernel",
+    "href": "slides/1_kernel.html#who-needs-semantic-kernel",
+    "title": "Semantic Kernel",
+    "section": "Who needs Semantic Kernel?",
+    "text": "Who needs Semantic Kernel?"
+  },
+  {
+    "objectID": "slides/1_kernel.html#orchestration-overview",
+    "href": "slides/1_kernel.html#orchestration-overview",
+    "title": "Semantic Kernel",
+    "section": "Orchestration overview",
+    "text": "Orchestration overview"
+  },
+  {
+    "objectID": "slides/1_kernel.html#orchestration-explained",
+    "href": "slides/1_kernel.html#orchestration-explained",
+    "title": "Semantic Kernel",
+    "section": "Orchestration explained",
+    "text": "Orchestration explained\n\n\n\nStep\nComponent\nDescription\n\n\n\n\n1\nAsk\nIt starts with a goal being sent to Semantic Kernel by either a user or developer.\n\n\n2\nKernel\nThe kernel orchestrates a user’s ask. To do so, the kernel runs a pipeline / chain that is defined by a developer. While the chain is run, a common context is provided by the kernel so data can be shared between functions.\n\n\n2.1\nMemories\nWith a specialized plugin, a developer can recall and store context in vector databases. This allows developers to simulate memory within their AI apps.\n\n\n2.2\nPlanner\nDevelopers can ask Semantic Kernel to auto create chains to address novel needs for a user. Planner achieves this by mixing-and-matching plugins that have already been loaded into the kernel to create additional steps. This is similar to how ChatGPT, Bing, and Microsoft 365 Copilot combines plugins together in their experiences.\n\n\n2.3\nConnectors\nTo get additional data or to perform autonomous actions, you can use out-of-the-box plugins like the Microsoft Graph Connector kit or create a custom connector to provide data to your own services.\n\n\n2.4\nCustom plugins\nAs a developer, you can create custom plugins that run inside of Semantic Kernel. These plugins can consist of either LLM prompts (semantic functions) or native C# or Python code (native function). This allows you to add new AI capabilities and integrate your existing apps and services into Semantic Kernel.\n\n\n3\nResponse\nOnce the kernel is done, you can send the response back to the user to let them know the process is complete.\n\n\n\nSource: Microsoft"
+  },
+  {
+    "objectID": "slides/1_kernel.html#setup",
+    "href": "slides/1_kernel.html#setup",
+    "title": "Semantic Kernel",
+    "section": "Setup",
+    "text": "Setup\n\nfrom semantic_kernel.connectors.ai.hugging_face import HuggingFaceTextCompletion\nimport semantic_kernel as sk\nfrom semantic_kernel.connectors.ai.open_ai import AzureChatCompletion, OpenAIChatCompletion"
+  },
+  {
+    "objectID": "slides/1_kernel.html#openai-kernel",
+    "href": "slides/1_kernel.html#openai-kernel",
+    "title": "Semantic Kernel",
+    "section": "OpenAI Kernel",
+    "text": "OpenAI Kernel\n\nkernel = sk.Kernel()\n\napi_key, org_id = sk.openai_settings_from_dot_env()\n\nkernel.add_text_completion_service(\n    \"openai\", OpenAIChatCompletion(\"gpt-3.5-turbo\", api_key, org_id))"
   },
   {
     "objectID": "slides/1_kernel.html#azureopenai-optional",
@@ -581,11 +665,11 @@
     "text": "AzureOpenAI (optional)\n\n# kernel = sk.Kernel()\n\n# deployment, api_key, endpoint = sk.azure_openai_settings_from_dot_env()\n\n# kernel.add_text_completion_service(\n#         \"azureopenai\", AzureChatCompletion(deployment, endpoint, api_key))"
   },
   {
-    "objectID": "slides/1_kernel.html#huggingface",
-    "href": "slides/1_kernel.html#huggingface",
+    "objectID": "slides/1_kernel.html#huggingface-kernel",
+    "href": "slides/1_kernel.html#huggingface-kernel",
     "title": "Semantic Kernel",
-    "section": "HuggingFace",
-    "text": "HuggingFace\n\nkernel = sk.Kernel()\n\nkernel.add_text_completion_service(\n    \"huggingface\", HuggingFaceTextCompletion(\"gpt2\", task=\"text-generation\"))\n\n\nprint(\"You made an open source kernel using an open source AI model!\")"
+    "section": "HuggingFace Kernel",
+    "text": "HuggingFace Kernel\n\nkernel = sk.Kernel()\n\nkernel.add_text_completion_service(\n    \"huggingface\", HuggingFaceTextCompletion(\"gpt2\", task=\"text-generation\"))\n\n\nprint(\"You made an open source kernel using an open source AI model!\")"
   },
   {
     "objectID": "slides/4_design.html#python",
@@ -844,7 +928,7 @@
     "href": "slides/3_business_plugins.html#output-output",
     "title": "Business Plugins",
     "section": "Output",
-    "text": "Output\n\n✨ Suggestions for how to gain cost efficiencies\n\n\n\n\n\n\n\n\n\nTitle\nStrength\nWeakness\nDescription\n\n\n\n\nStreamlining operations\nStrong local reputation\nHigh staff turnover\nImplementing efficient processes and systems to reduce the need for excessive staff and improve productivity. This can include automating certain tasks, cross-training employees, and implementing performance management systems.\n\n\nRenovating seating areas\nPrime location on university campus\nFloods damaging seating areas\nInvesting in repairs and renovations to the seating areas to attract more customers and improve the overall dining experience. This can include fixing any damages caused by floods, updating the furniture and decor, and creating a more inviting atmosphere.\n\n\nAdding popular calzones to the menu\nUnique garlic pizza recipe that wins top awards\nAbsence of popular calzones from menu\nExpanding the menu to include popular calzones can attract a wider customer base and increase sales. This can involve researching and developing delicious calzone recipes, training staff on how to prepare them, and marketing them to customers."
+    "text": "Output\n\n✨ Suggestions for how to gain cost efficiencies\n\n\n\n\n\n\n\n\n\nTitle\nStrength\nWeakness\nDescription\n\n\n\n\nStreamlining operations\nStrong local reputation\nHigh staff turnover\nImplementing efficient processes and systems to reduce the need for excessive staff and minimize turnover\n\n\nRenovating seating areas\nPrime location on university campus\nFlood damage to seating areas\nInvesting in repairs and renovations to attract more customers and improve the dining experience\n\n\nExpanding menu options\nUnique garlic pizza recipe that wins top awards\nAbsence of popular calzones from menu\nAdding popular calzones to the menu to attract a wider range of customers and increase sales"
   },
   {
     "objectID": "slides/3_business_plugins.html#input-opportunities-and-threats",
@@ -886,6 +970,6 @@
     "href": "slides/3_business_plugins.html#business-strategy-thinking-based-on-swot-analysis",
     "title": "Business Plugins",
     "section": "✨ Business strategy thinking based on SWOT analysis",
-    "text": "✨ Business strategy thinking based on SWOT analysis\nBuilding on strengths can immediately improve the business\n\n\n\n\n\n\n\n\n\nTitle\nStrength\nWeakness\nDescription\n\n\n\n\nExpand menu with popular calzones\nUnique garlic pizza recipe that wins top awards\nAbsence of popular calzones from menu\nAdd popular calzones to the menu to attract customers who are looking for a different type of pizza option\n\n\nImprove seating areas\nStrong local reputation, Prime location on university campus\nFloods in the area damaged the seating areas that are in need of repair\nRepair and upgrade the seating areas to provide a comfortable and inviting environment for customers\n\n\nEnhance online presence and marketing\nStrong local reputation\nNegative reviews from younger demographic for lack of hip ingredients\nDevelop a strong online presence through social media, website, and online advertising to target the younger demographic and showcase the unique aspects of the business\n\n\n\nTaking advantage of opportunities whenever possible\n\n\n\n\n\n\n\n\nTitle\nOpportunity\nDescription\n\n\n\n\nLaunch catering services\nUntapped catering potential\nTap into the untapped market of catering services by offering customized pizza options for events, parties, and corporate gatherings\n\n\nDevelop online ordering capabilities\nUnexplored online presence and order capabilities\nCreate a user-friendly online ordering system to cater to the growing trend of online food ordering and delivery services\n\n\nParticipate in the upcoming annual food fair\nUpcoming annual food fair\nShowcase the unique garlic pizza recipe and attract new customers by participating in the local food fair, offering special discounts and promotions\n\n\n\nBuilding resilience to threats is always a good idea\n\n\n\n\n\n\n\n\nTitle\nThreat\nDescription\n\n\n\n\nEnhance cost-saving measures\nRising cost of cheese will increase the cost of pizzas\nImplement cost-saving measures such as optimizing ingredient usage, negotiating better deals with suppliers, and finding alternative sources for ingredients to mitigate the impact of rising cheese costs\n\n\nDiversify customer base\nCompetition from cheaper pizza businesses nearby\nExpand marketing efforts to target different customer segments, such as families, students, and professionals, to reduce reliance on a single customer base and mitigate the impact of competition\n\n\nStay updated on local regulatory changes\nNo immediate local regulatory changes but it’s election season\nStay informed about potential regulatory changes that may affect the business, especially during election seasons, and adapt strategies accordingly to minimize any negative impact"
+    "text": "✨ Business strategy thinking based on SWOT analysis\nBuilding on strengths can immediately improve the business\n\n\n\n\n\n\n\n\n\nTitle\nStrength\nWeakness\nDescription\n\n\n\n\nExpand menu with popular calzones\nUnique garlic pizza recipe that wins top awards\nAbsence of popular calzones from menu\nAdd popular calzones to the menu to attract customers who are looking for a different type of pizza option\n\n\nImprove seating areas\nStrong local reputation, Prime location on university campus\nFloods in the area damaged the seating areas that are in need of repair\nInvest in repairing and renovating the seating areas to provide a comfortable and inviting space for customers\n\n\nEnhance online presence and marketing\nStrong local reputation\nNegative reviews from younger demographic for lack of hip ingredients\nDevelop a strong online presence through social media, website, and online advertising to reach a wider audience and showcase the unique aspects of the business\n\n\n\nTaking advantage of opportunities whenever possible\n\n\n\n\n\n\n\n\nTitle\nOpportunity\nDescription\n\n\n\n\nLaunch catering services\nUntapped catering potential\nTap into the potential market for catering services by offering customized pizza options for events, parties, and corporate functions\n\n\nDevelop online ordering capabilities\nUnexplored online presence and order capabilities\nCreate a user-friendly online ordering system to cater to the growing trend of online food ordering and delivery services\n\n\nParticipate in the upcoming annual food fair\nUpcoming annual food fair\nShowcase the unique garlic pizza recipe and attract new customers by participating in the local food fair, offering special discounts and promotions\n\n\n\nBuilding resilience to threats is always a good idea\n\n\n\n\n\n\n\n\nTitle\nThreat\nDescription\n\n\n\n\nEnhance cost management strategies\nRising cost of cheese will increase the cost of pizzas\nImplement cost-saving measures such as negotiating better deals with suppliers, optimizing ingredient usage, and exploring alternative cheese options to mitigate the impact of rising costs\n\n\nDiversify customer base\nCompetition from cheaper pizza businesses nearby\nTarget different customer segments such as families, students, and professionals by offering meal deals, loyalty programs, and personalized promotions to differentiate from cheaper competitors\n\n\nStay updated on local regulatory changes\nNo immediate local regulatory changes but it’s election season\nMonitor local regulatory changes and stay informed about potential impacts on the business, such as changes in zoning, licensing, or taxation, to proactively adapt and comply with any new regulations"
   }
 ]
