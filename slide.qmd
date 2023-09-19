@@ -14,13 +14,14 @@ To download Jupyter Notebooks: Go to the Colab menu and choose "File" > "Downloa
 :::
 
 
+
 ## Semantic Kernel introduction
 
 Learn how to utilize the open source orchestrator, the Semantic Kernel, in your applications:
 
 ::: {.callout-tip appearance="simple" icon=false}
 - [🖥️ Presentation](slides/1_kernel.qmd)
-- [💻 Jupyter Notebook]()
+- [💻 Jupyter Notebook](https://colab.research.google.com/github/kirenz/lab-semantic-kernel/blob/main/code/1_kernel.ipynb))
 :::
 
 To learn more about the Semantic Kernel, take a look at these resources:
@@ -35,7 +36,7 @@ Develop business applications like SWOT using LLM’s:
 
 ::: {.callout-tip appearance="simple" icon=false}
 - [🖥️ Presentation](slides/2_swot.qmd)
-- [💻 Jupyter Notebook]()
+- [💻 Jupyter Notebook](https://colab.research.google.com/github/kirenz/lab-semantic-kernel/blob/main/code/2_swot.ipynb)
 :::
 
 ## Business Plugins
@@ -44,7 +45,7 @@ Use different plugins to enhance Semantic Kernel
 
 ::: {.callout-tip appearance="simple" icon=false}
 - [🖥️ Presentation](slides/3_business_plugins.qmd)
-- [💻 Jupyter Notebook]()
+- [💻 Jupyter Notebook](https://colab.research.google.com/github/kirenz/lab-semantic-kernel/blob/main/code/3_business_plugins.ipynb)
 :::
 
 
@@ -54,7 +55,7 @@ Use Design Thinking to empathize with customers and solve their challenges:
 
 ::: {.callout-tip appearance="simple" icon=false}
 - [🖥️ Presentation](slides/4_design.qmd)
-- [💻 Jupyter Notebook]()
+- [💻 Jupyter Notebook](https://colab.research.google.com/github/kirenz/lab-semantic-kernel/blob/main/code/4_design.ipynb)
 :::
 
 ## Vector store database
@@ -63,7 +64,8 @@ Learn how to use data in a vector store database:
 
 ::: {.callout-tip appearance="simple" icon=false}
 - [🖥️ Presentation](slides/5_database.qmd)
-- [💻 Jupyter Notebook]()
+- [💻 Jupyter Notebook](https://colab.research.google.com/github/kirenz/lab-semantic-kernel/blob/main/code/5_database.ipynb)
+
 :::
 
 
@@ -74,7 +76,7 @@ Learn how to add the tools for the kernel to do math, to read/write files, to te
 
 ::: {.callout-tip appearance="simple" icon=false}
 - [🖥️ Presentation](slides/6_core_plugins.qmd)
-- [💻 Jupyter Notebook]()
+- [💻 Jupyter Notebook](https://colab.research.google.com/github/kirenz/lab-semantic-kernel/blob/main/code/6_core_plugins.ipynb)
 :::
 
 
@@ -85,7 +87,7 @@ This tutorial allows you to build your own integrated large language model (LLM)
 
 ::: {.callout-tip appearance="simple" icon=false}
 - [🖥️ Presentation](slides/7_apps.qmd)
-- [💻 Jupyter Notebook]()
+- [💻 Jupyter Notebook](https://colab.research.google.com/github/kirenz/lab-semantic-kernel/blob/main/code/7_apps.ipynb)
 :::
 
 Learn more:
