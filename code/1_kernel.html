@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Semantic Kernel - Notebook</title>
+<title>Semantic Kernel</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -148,8 +148,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a></li>
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#copilot-from-microsoft" id="toc-copilot-from-microsoft" class="nav-link active" data-scroll-target="#copilot-from-microsoft">Copilot from Microsoft</a>
+  <ul class="collapse">
+  <li><a href="#satya-nadella-at-microsoft-build-2023-about-copilot" id="toc-satya-nadella-at-microsoft-build-2023-about-copilot" class="nav-link" data-scroll-target="#satya-nadella-at-microsoft-build-2023-about-copilot">Satya Nadella at Microsoft Build 2023 about Copilot</a></li>
+  <li><a href="#microsoft-copilot" id="toc-microsoft-copilot" class="nav-link" data-scroll-target="#microsoft-copilot">Microsoft Copilot</a></li>
+  <li><a href="#semantic-kernel-is-at-the-center-of-the-copilot-stack" id="toc-semantic-kernel-is-at-the-center-of-the-copilot-stack" class="nav-link" data-scroll-target="#semantic-kernel-is-at-the-center-of-the-copilot-stack">Semantic Kernel is at the center of the copilot stack</a></li>
+  <li><a href="#who-needs-semantic-kernel" id="toc-who-needs-semantic-kernel" class="nav-link" data-scroll-target="#who-needs-semantic-kernel">Who needs Semantic Kernel?</a></li>
+  <li><a href="#orchestration-overview" id="toc-orchestration-overview" class="nav-link" data-scroll-target="#orchestration-overview">Orchestration overview</a></li>
+  <li><a href="#orchestration-explained" id="toc-orchestration-explained" class="nav-link" data-scroll-target="#orchestration-explained">Orchestration explained</a></li>
+  </ul></li>
+  <li><a href="#create-kernels" id="toc-create-kernels" class="nav-link" data-scroll-target="#create-kernels">Create Kernels</a>
+  <ul class="collapse">
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#openai-kernel" id="toc-openai-kernel" class="nav-link" data-scroll-target="#openai-kernel">OpenAI Kernel</a></li>
+  <li><a href="#azureopenai-optional" id="toc-azureopenai-optional" class="nav-link" data-scroll-target="#azureopenai-optional">AzureOpenAI (optional)</a></li>
+  <li><a href="#huggingface-kernel" id="toc-huggingface-kernel" class="nav-link" data-scroll-target="#huggingface-kernel">HuggingFace Kernel</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -158,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Notebook</h1>
+<h1 class="title">Semantic Kernel</h1>
 </div>
 
 
@@ -173,25 +187,134 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
+<p>Semantic Kernel is an open-source SDK that lets you easily combine AI services like OpenAI, Azure OpenAI, and Hugging Face with programming languages like Python.</p>
+<p>By doing so, you can create AI apps that combine the best of both worlds.</p>
+<section id="copilot-from-microsoft" class="level1">
+<h1>Copilot from Microsoft</h1>
+<section id="satya-nadella-at-microsoft-build-2023-about-copilot" class="level2">
+<h2 class="anchored" data-anchor-id="satya-nadella-at-microsoft-build-2023-about-copilot">Satya Nadella at Microsoft Build 2023 about Copilot</h2>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/FaV0tIaWWEg?si=umcUKV_k4MM2oApI&amp;start=515" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="">
+</iframe>
+</section>
+<section id="microsoft-copilot" class="level2">
+<h2 class="anchored" data-anchor-id="microsoft-copilot">Microsoft Copilot</h2>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/E5g20qmeKpg?si=oe9X-bNx_JYv8vQ0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="">
+</iframe>
+</section>
+<section id="semantic-kernel-is-at-the-center-of-the-copilot-stack" class="level2">
+<h2 class="anchored" data-anchor-id="semantic-kernel-is-at-the-center-of-the-copilot-stack">Semantic Kernel is at the center of the copilot stack</h2>
+<p><img src="../images/sk.png" class="img-fluid"></p>
+<ul>
+<li><p>To help developers build their own Copilot experiences on top of AI plugins, Microsoft has released Semantic Kernel, a lightweight open-source SDK that allows you to orchestrate AI plugins.</p></li>
+<li><p>With Semantic Kernel, you can leverage the same AI orchestration patterns that power Microsoft 365 Copilot and Bing in your own apps, while still leveraging your existing development skills and investments.</p></li>
+</ul>
+</section>
+<section id="who-needs-semantic-kernel" class="level2">
+<h2 class="anchored" data-anchor-id="who-needs-semantic-kernel">Who needs Semantic Kernel?</h2>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/d9uzkkWfVho?si=ZWqPHqTyRVjg9E3w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="">
+</iframe>
+</section>
+<section id="orchestration-overview" class="level2">
+<h2 class="anchored" data-anchor-id="orchestration-overview">Orchestration overview</h2>
+<p><img src="../images/orchestration.png" class="img-fluid"></p>
+</section>
+<section id="orchestration-explained" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="orchestration-explained">Orchestration explained</h2>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>Component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Ask</td>
+<td>It starts with a goal being sent to Semantic Kernel by either a user or developer.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Kernel</td>
+<td>The&nbsp;<a href="https://learn.microsoft.com/en-us/semantic-kernel/create-chains/kernel">kernel</a>&nbsp;orchestrates a user’s ask. To do so, the kernel runs a&nbsp;<a href="https://learn.microsoft.com/en-us/semantic-kernel/create-chains/">pipeline / chain</a>&nbsp;that is defined by a developer. While the chain is run, a common context is provided by the kernel so data can be shared between functions.</td>
+</tr>
+<tr class="odd">
+<td>2.1</td>
+<td>Memories</td>
+<td>With a specialized plugin, a developer can recall and store context in vector databases. This allows developers to simulate&nbsp;<a href="https://learn.microsoft.com/en-us/semantic-kernel/memories/">memory</a>&nbsp;within their AI apps.</td>
+</tr>
+<tr class="even">
+<td>2.2</td>
+<td>Planner</td>
+<td>Developers can ask Semantic Kernel to auto create chains to address novel needs for a user.&nbsp;<a href="https://learn.microsoft.com/en-us/semantic-kernel/create-chains/planner">Planner</a>&nbsp;achieves this by mixing-and-matching plugins that have already been loaded into the kernel to create additional steps. This is similar to how ChatGPT, Bing, and Microsoft 365 Copilot combines plugins together in their experiences.</td>
+</tr>
+<tr class="odd">
+<td>2.3</td>
+<td>Connectors</td>
+<td>To get additional data or to perform autonomous actions, you can use out-of-the-box plugins like the Microsoft Graph Connector kit or create a custom connector to provide data to your own services.</td>
+</tr>
+<tr class="even">
+<td>2.4</td>
+<td>Custom plugins</td>
+<td>As a developer, you can create custom plugins that run inside of Semantic Kernel. These plugins can consist of either LLM prompts (semantic functions) or native C# or Python code (native function). This allows you to add new AI capabilities and integrate your existing apps and services into Semantic Kernel.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Response</td>
+<td>Once the kernel is done, you can send the response back to the user to let them know the process is complete.</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://learn.microsoft.com/en-us/semantic-kernel/overview/#seeing-ai-orchestration-with-semantic-kernel">Source: Microsoft</a></p>
+</section>
+</section>
+<section id="create-kernels" class="level1">
+<h1>Create Kernels</h1>
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
-<p>Load Python libaries and API keys.</p>
-<div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> openai</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv, find_dotenv</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>_ <span class="op">=</span> load_dotenv(find_dotenv()) <span class="co"># read local .env file</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>openai.api_key  <span class="op">=</span> os.environ[<span class="st">'OPENAI_API_KEY'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> semantic_kernel.connectors.ai.hugging_face <span class="im">import</span> HuggingFaceTextCompletion</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> semantic_kernel <span class="im">as</span> sk</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> semantic_kernel.connectors.ai.open_ai <span class="im">import</span> AzureChatCompletion, OpenAIChatCompletion</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="data" class="level2">
-<h2 class="anchored" data-anchor-id="data">Data</h2>
+<section id="openai-kernel" class="level2">
+<h2 class="anchored" data-anchor-id="openai-kernel">OpenAI Kernel</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>kernel <span class="op">=</span> sk.Kernel()</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>api_key, org_id <span class="op">=</span> sk.openai_settings_from_dot_env()</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>kernel.add_text_completion_service(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"openai"</span>, OpenAIChatCompletion(<span class="st">"gpt-3.5-turbo"</span>, api_key, org_id))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="azureopenai-optional" class="level2">
+<h2 class="anchored" data-anchor-id="azureopenai-optional">AzureOpenAI (optional)</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># kernel = sk.Kernel()</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># deployment, api_key, endpoint = sk.azure_openai_settings_from_dot_env()</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># kernel.add_text_completion_service(</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#         "azureopenai", AzureChatCompletion(deployment, endpoint, api_key))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="huggingface-kernel" class="level2">
+<h2 class="anchored" data-anchor-id="huggingface-kernel">HuggingFace Kernel</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>kernel <span class="op">=</span> sk.Kernel()</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>kernel.add_text_completion_service(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"huggingface"</span>, HuggingFaceTextCompletion(<span class="st">"gpt2"</span>, task<span class="op">=</span><span class="st">"text-generation"</span>))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"You made an open source kernel using an open source AI model!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
