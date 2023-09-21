@@ -2,7 +2,10 @@
 title: "Requirements"
 ---
 
-To start this lab, you'll need the following environments:
+
+## Local development
+
+To start this lab on your local machine, you'll need:
 
 :::{.callout-important}
 Visit the "[Programming Toolkit-webpage](https://kirenz.github.io/lab-toolkit/)" to learn how to meet all requirements.
@@ -10,3 +13,8 @@ Visit the "[Programming Toolkit-webpage](https://kirenz.github.io/lab-toolkit/)"
 
 - **Python**: Anaconda, Anaconda Environment `kernel` and Visual Studio Code
 - **Environment**: A folder on your machine called *semantic-kernel* and an environment file with your OpenAI API key.
+
+
+## Cloud development
+
+Instead of local development, you may also work in a fully configured dev environment in the cloud with GitHub Codespaces. Take a look at [this site](/slide.qmd) to learn more about the different options.
