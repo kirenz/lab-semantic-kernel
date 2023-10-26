@@ -8,7 +8,7 @@ lang: en
 subtitle: Enhance Semantic Kernel
 author: Jan Kirenz
 execute:
-  eval: true
+  eval: false
   echo: true
 highlight-style: github
 format:
@@ -56,7 +56,6 @@ api_key, org_id = sk.openai_settings_from_dot_env()
 kernel.add_text_completion_service(
     "openai", OpenAIChatCompletion("gpt-3.5-turbo", api_key, org_id))
 
-print("A kernel is now ready.")
 ```
 
 # Business Plugins
@@ -68,7 +67,7 @@ print("A kernel is now ready.")
 3. Add completely new business
 4. Prepare for the unknown
 
-## Plugins directory
+## Plugins directory {.smaller}
 
 ```directory
 plugins-sk/
@@ -100,7 +99,7 @@ pluginBT = kernel.import_semantic_skill_from_directory(
 
 # Cost Efficiency 
 
-## Input strengths and weaknesses
+## Input strengths and weaknesses {.smaller}
 
 ```{python}
 strengths = ["Unique garlic pizza recipe that wins top awards", "Owner trained in Sicily at some of the best pizzerias",
@@ -141,7 +140,6 @@ costefficiency_str = str(
 . . .
 
 ```{python}
-# | output-location: slide
 display(Markdown(costefficiency_str))
 ```
 
@@ -199,11 +197,18 @@ bizstrat_str = "## ✨ Business strategy thinking based on SWOT analysis\n" + \
 . . .
 
 ```{python}
-# | output-location: slide
 display(Markdown(bizstrat_str))
 ```
 
 
+## ✨ Business strategy thinking based on SWOT analysis
+
+
+| Title                               | Strength                                        | Weakness                              | Description                                                                                                                                                                                                                                       |
+|-------------------------------------|-------------------------------------------------|---------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Streamlining operations             | Strong local reputation                         | High staff turnover                   | Implementing efficient processes and systems to reduce the need for excessive staff and improve productivity. This can include automating certain tasks, cross-training employees, and optimizing workflow.                                       |
+| Renovating seating areas            | Prime location on university campus             | Floods damaging seating areas         | Investing in repairing and renovating the seating areas to attract more customers and enhance the dining experience. This can include redesigning the layout, upgrading furniture and fixtures, and creating a comfortable and inviting ambiance. |
+| Adding popular calzones to the menu | Unique garlic pizza recipe that wins top awards | Absence of popular calzones from menu | Expanding the menu to include popular calzones can attract a wider customer base and increase sales. This can be achieved by developing delicious and unique calzone recipes that align with the business's culinary expertise and reputation.    |
 
 # Acknowledgments
 
