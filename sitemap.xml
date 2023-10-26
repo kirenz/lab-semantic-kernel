@@ -2,74 +2,82 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://github.com/kirenz/lab-semantic-kernel/assignments.html</loc>
-    <lastmod>2023-09-21T16:07:56.054Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/kirenz/lab-semantic-kernel/code/7_apps.html</loc>
-    <lastmod>2023-09-21T16:07:55.105Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/kirenz/lab-semantic-kernel/code/5_database.html</loc>
-    <lastmod>2023-09-21T16:07:54.389Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/kirenz/lab-semantic-kernel/code/2_swot.html</loc>
-    <lastmod>2023-09-21T16:07:53.457Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/kirenz/lab-semantic-kernel/slides/5_database.html</loc>
-    <lastmod>2023-09-21T16:07:51.805Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/kirenz/lab-semantic-kernel/slides/3_business_plugins.html</loc>
-    <lastmod>2023-09-21T16:07:50.861Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/kirenz/lab-semantic-kernel/slides/1_kernel.html</loc>
-    <lastmod>2023-09-21T16:07:49.409Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/kirenz/lab-semantic-kernel/slides/2_swot.html</loc>
-    <lastmod>2023-09-21T16:07:47.185Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/kirenz/lab-semantic-kernel/require.html</loc>
-    <lastmod>2023-09-21T16:07:45.345Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/kirenz/lab-semantic-kernel/index.html</loc>
-    <lastmod>2023-09-21T16:07:44.673Z</lastmod>
+    <lastmod>2023-10-26T07:25:06.488Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/kirenz/lab-semantic-kernel/slide.html</loc>
-    <lastmod>2023-09-21T16:07:46.253Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/kirenz/lab-semantic-kernel/slides/4_design.html</loc>
-    <lastmod>2023-09-21T16:07:48.941Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/kirenz/lab-semantic-kernel/slides/6_core_plugins.html</loc>
-    <lastmod>2023-09-21T16:07:49.949Z</lastmod>
+    <lastmod>2023-10-26T07:25:05.692Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/kirenz/lab-semantic-kernel/slides/7_apps.html</loc>
-    <lastmod>2023-09-21T16:07:51.193Z</lastmod>
+    <lastmod>2023-10-26T07:25:03.656Z</lastmod>
   </url>
   <url>
-    <loc>https://github.com/kirenz/lab-semantic-kernel/code/3_business_plugins.html</loc>
-    <lastmod>2023-09-21T16:07:52.773Z</lastmod>
+    <loc>https://github.com/kirenz/lab-semantic-kernel/slides/4_design.html</loc>
+    <lastmod>2023-10-26T07:25:02.528Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/kirenz/lab-semantic-kernel/slides/2_swot_hf.html</loc>
+    <lastmod>2023-10-26T07:25:00.344Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/kirenz/lab-semantic-kernel/slides/5_database.html</loc>
+    <lastmod>2023-10-26T07:24:58.212Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/kirenz/lab-semantic-kernel/code/5_database.html</loc>
+    <lastmod>2023-10-26T07:24:55.300Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/kirenz/lab-semantic-kernel/code/2_swot_hf.html</loc>
+    <lastmod>2023-10-26T07:24:53.748Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/kirenz/lab-semantic-kernel/code/1_kernel.html</loc>
-    <lastmod>2023-09-21T16:07:53.901Z</lastmod>
+    <lastmod>2023-10-26T07:24:51.940Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/kirenz/lab-semantic-kernel/code/2_swot.html</loc>
+    <lastmod>2023-10-26T07:24:50.896Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/kirenz/lab-semantic-kernel/code/6_core_plugins.html</loc>
-    <lastmod>2023-09-21T16:07:54.821Z</lastmod>
+    <lastmod>2023-10-26T07:24:49.380Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/kirenz/lab-semantic-kernel/code/7_apps.html</loc>
+    <lastmod>2023-10-26T07:24:51.332Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/kirenz/lab-semantic-kernel/code/3_business_plugins.html</loc>
+    <lastmod>2023-10-26T07:24:52.776Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/kirenz/lab-semantic-kernel/code/4_design.html</loc>
-    <lastmod>2023-09-21T16:07:55.777Z</lastmod>
+    <lastmod>2023-10-26T07:24:54.616Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/kirenz/lab-semantic-kernel/slides/6_core_plugins.html</loc>
+    <lastmod>2023-10-26T07:24:56.264Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/kirenz/lab-semantic-kernel/slides/3_business_plugins.html</loc>
+    <lastmod>2023-10-26T07:24:59.180Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/kirenz/lab-semantic-kernel/slides/2_swot.html</loc>
+    <lastmod>2023-10-26T07:25:01.516Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/kirenz/lab-semantic-kernel/slides/1_kernel.html</loc>
+    <lastmod>2023-10-26T07:25:03.188Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/kirenz/lab-semantic-kernel/index.html</loc>
+    <lastmod>2023-10-26T07:25:04.592Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/kirenz/lab-semantic-kernel/require.html</loc>
+    <lastmod>2023-10-26T07:25:06.100Z</lastmod>
   </url>
 </urlset>

@@ -215,9 +215,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>api_key, org_id <span class="op">=</span> sk.openai_settings_from_dot_env()</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>kernel.add_text_completion_service(</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"openai"</span>, OpenAIChatCompletion(<span class="st">"gpt-3.5-turbo"</span>, api_key, org_id))</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"A kernel is now ready."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"openai"</span>, OpenAIChatCompletion(<span class="st">"gpt-3.5-turbo"</span>, api_key, org_id))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -232,8 +230,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Prepare for the unknown</li>
 </ol>
 </section>
-<section id="plugins-directory" class="level2">
-<h2 class="anchored" data-anchor-id="plugins-directory">Plugins directory</h2>
+<section id="plugins-directory" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="plugins-directory">Plugins directory</h2>
 <pre class="directory"><code>plugins-sk/
 │
 └─── BusinessThinking/
@@ -262,8 +260,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="cost-efficiency" class="level1">
 <h1>Cost Efficiency</h1>
-<section id="input-strengths-and-weaknesses" class="level2">
-<h2 class="anchored" data-anchor-id="input-strengths-and-weaknesses">Input strengths and weaknesses</h2>
+<section id="input-strengths-and-weaknesses" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="input-strengths-and-weaknesses">Input strengths and weaknesses</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>strengths <span class="op">=</span> [<span class="st">"Unique garlic pizza recipe that wins top awards"</span>, <span class="st">"Owner trained in Sicily at some of the best pizzerias"</span>,</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Strong local reputation"</span>, <span class="st">"Prime location on university campus"</span>]</span>
@@ -294,7 +292,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>costefficiency_str <span class="op">=</span> <span class="bu">str</span>(</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"### ✨ Suggestions for how to gain cost efficiencies</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="bu">str</span>(costefficiency_result))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-output-location="slide">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>display(Markdown(costefficiency_str))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -342,7 +340,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>bizstrat_str <span class="op">=</span> <span class="st">"## ✨ Business strategy thinking based on SWOT analysis</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">str</span>(bizstrat_result)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-output-location="slide">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>display(Markdown(bizstrat_str))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
